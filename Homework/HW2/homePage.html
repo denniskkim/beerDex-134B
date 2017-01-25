@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BeerDex - HomePage</title>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <header>
+        <nav>
+          <h1 id="home-logo">BeerDex
+            <a href="index.html"><img src="img/tempIcon.png" alt="BeerDex Icon"></a>
+          </h1>
+          <ul id="nav-list">
+            <li>
+              <a href="collection.html">Collections</a>
+            </li>
+            <li>
+              <a href="trades.html">Trades</a>
+            </li>
+            <li>
+              <a href="wishList.html">Wish-List</a>
+            </li>
+            <li>
+              <a href="statistics.html">Statistics</a>
+            </li>
+          </ul>
+        </nav>
+    </header>
+    <main id="browse-list">
+      <aside id="filter-bar">
+        <fieldset id="breweries">
+          <legend>Breweries</legend>
+          <label><input type=checkbox name=stone> Stone </label>
+          <label><input type=checkbox name=ballast> Ballast Point</label>
+          <label><input type=checkbox name=aleSmith> Ale Smith</label>
+        </fieldset>
+        <fieldset id="beer-style">
+          <legend>Style</legend>
+          <!-- For future: encapsulate each label element inside a div-->
+          <label><input type=checkbox name=ipa> IPA</label>
+          <label><input type=checkbox name=stout> Stout</label>
+          <label><input type=checkbox name=hefew> Hefeweizer</label>
+        </fieldset>
+      </aside>
+      <section id="beer-result-view">
+        <h2 id="browse-header">Best of BeerDex</h2>
+        <ul class="beer-case">
+          <li><img class="beer-img" src="img/ballast_cal_amber.png" alt="ballast California Amber"></li>
+          <li>
+            <p class="brewery-text">Ballast Point</p>
+          </li>
+          <li>
+            <p class="beer-text">California Amber</p>
+          </li>
+          <li>
+            <button class="collection-add">Add to Collection</button>
+          </li>
+          <li>
+            <button class="wishlist-add">Add to Wish-List</button>
+          </li>
+        </ul>
+        <ul class="beer-case">
+          <li><img class="beer-img" src="img/ballast_victory.png" alt="ballast California Amber"></li>
+          <li>
+            <p class="brewery-text">Ballast Point</p>
+          </li>
+          <li>
+            <p class="beer-text">Peppermint Victory at Sea</p>
+          </li>
+          <li>
+            <button class="collection-add">Add to Collection</button>
+          </li>
+          <li>
+            <button class="wishlist-add">Add to Wish-List</button>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <!-- Use aside tag for filter sidebar -->
+  </body>
+</html>
