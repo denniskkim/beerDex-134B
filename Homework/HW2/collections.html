@@ -18,7 +18,7 @@
               <a href="trades.html">Trades</a>
             </li>
             <li>
-              <a href="wishlist.html">Wish-List</a>
+              <a href="wishList.html">Wish-List</a>
             </li>
             <li>
               <a href="statistics.html">Statistics</a>
@@ -43,35 +43,61 @@
         </fieldset>
       </aside>
       <section id="beer-result-view">
-        <h2 id="browse-header">Best of BeerDex</h2>
+        <h2 id="browse-header">My Collection</h2>
         <ul class="beer-case">
-          <li><img class="beer-img" src="img/ballast_cal_amber.png" alt="ballast California Amber"></li>
+          <li><img class="beer-img" src="img/ballast-collection1.jpg" alt="ballast Dorado"></li>
           <li>
             <p class="brewery-text">Ballast Point</p>
           </li>
           <li>
-            <p class="beer-text">California Amber</p>
+            <p class="beer-text">Dorado</p>
           </li>
           <li>
-            <button class="collection-add">Add to Collection</button>
+            <button class="remove-item">
+              <img src="img/trash.png" alt="trash bin image">
+            </button>
           </li>
           <li>
-            <button class="wishlist-add">Add to Wish-List</button>
+            <label>Quantity:
+              <select name="quantity" class="quantity_val">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5+</option>
+              </select>
+            </label>
+          </li>
+          <li>
+            <button class="search-trades">Search for Trades</button>
           </li>
         </ul>
         <ul class="beer-case">
-          <li><img class="beer-img" src="img/ballast_victory.png" alt="ballast California Amber"></li>
+          <li><img class="beer-img" src="img/ballast-collection2.jpg" alt="ballast sculpin"></li>
           <li>
             <p class="brewery-text">Ballast Point</p>
           </li>
           <li>
-            <p class="beer-text">Peppermint Victory at Sea</p>
+            <p class="beer-text">Scuplin</p>
           </li>
           <li>
-            <button class="collection-add">Add to Collection</button>
+            <button class="remove-item">
+              <img src="img/trash.png" alt="trash bin image">
+            </button>
           </li>
           <li>
-            <button class="wishlist-add">Add to Wish-List</button>
+            <label>Quantity:
+              <select name="quantity" class="quantity_val">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5+</option>
+              </select>
+            </label>
+          </li>
+          <li>
+            <button class="search-trades">Search for Trades</button>
           </li>
         </ul>
       </section>
