@@ -1,15 +1,7 @@
-html {
-    background-color: F09000 !important
+body {
+    background-color: gray !important
 }
 
-page.h1 {
-    color: whitesmoke
-}
-
-.bio-card {
-    background-color: C04800
-}
-
-.bio-link {
-    color: whitesmoke
+p {
+    color: greenyellow
 }
