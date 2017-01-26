@@ -26,25 +26,27 @@
           </ul>
         </nav>
     </header>
-    <main id="browse-list">
+    <main id="collection-list">
       <aside id="filter-bar">
-        <fieldset id="breweries">
-          <legend>Breweries</legend>
-          <label><input type=checkbox name=stone> Stone </label>
-          <label><input type=checkbox name=ballast> Ballast Point</label>
-          <label><input type=checkbox name=aleSmith> Ale Smith</label>
-        </fieldset>
-        <fieldset id="beer-style">
-          <legend>Style</legend>
-          <!-- For future: encapsulate each label element inside a div-->
-          <label><input type=checkbox name=ipa> IPA</label>
-          <label><input type=checkbox name=stout> Stout</label>
-          <label><input type=checkbox name=hefew> Hefeweizer</label>
-        </fieldset>
+          <label>Breweries:
+          <input list="breweries" name="breweryList" /></label>
+          <datalist id="breweries">
+            <option value="Ballast Point">
+            <option value="Stone Brewery">
+            <option value="Green Flash">
+          </datalist>
+          <br>
+          <label>Type:
+          <input list="type" name="typeList" /></label>
+          <datalist id="type">
+            <option value="IPA">
+            <option value="Amber Ale">
+            <option value="Stout">
+          </datalist>
       </aside>
-      <section id="beer-result-view">
-        <h2 id="browse-header">My Collection</h2>
-        <ul class="beer-case">
+      <section id="collection-view">
+        <h2 id="collection-header">My Collection</h2>
+        <ul class="collection-list">
           <li><img class="beer-img" src="img/ballast-collection1.jpg" alt="ballast Dorado"></li>
           <li>
             <p class="brewery-text">Ballast Point</p>
