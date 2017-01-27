@@ -1,3 +1,10 @@
+Part 1: https://cse134-beerdex-hw2.firebaseapp.com/ 
+
+Part 2: https://cse134-beerdex-hw2.firebaseapp.com/supplementary.html 
+
+Part 3: https://cse134-beerdex-hw2.firebaseapp.com/team.html 
+
+
 # Project Structure
 **supplementary.html** contains all of the tags not used in wireframe html
 
