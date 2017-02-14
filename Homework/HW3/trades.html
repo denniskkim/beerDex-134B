@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>BeerDex - HomePage</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="static/main.css" type="text/css">
+</head>
+
+<body>
+    <header>
+        <nav class="nav">
+            <img src="img/tempIcon.png" alt="BeerDex Icon" id="logo" class="nav">
+            <ul class="nav">
+                <li class="nav">
+                    <a href="collection.html" class="nav">Collections</a>
+                </li>
+                <li class="nav">
+                    <a href="trades.html" class="nav">Trades</a>
+                </li>
+                <li class="nav">
+                    <a href="wishlist.html" class="nav">Wish-List</a>
+                </li>
+                <li class="nav">
+                    <a href="statistics.html" class="nav">Statistics</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main id="trade-container">
+        <aside id="filter-bar">
+            <fieldset id="trade-type">
+                <legend>Trades</legend>
+                <label><input type=checkbox name=stone>Looking For </label>
+                <label><input type=checkbox name=ballast>Trading For</label>
+            </fieldset>
+            <fieldset id="breweries">
+                <legend>Breweries</legend>
+                <label><input type=checkbox name=stone> Stone </label>
+                <label><input type=checkbox name=ballast> Ballast Point</label>
+                <label><input type=checkbox name=aleSmith> Ale Smith</label>
+            </fieldset>
+            <fieldset id="beer-style">
+                <legend>Style</legend>
+                <!-- For future: encapsulate each label element inside a div-->
+                <label><input type=checkbox name=ipa> IPA</label>
+                <label><input type=checkbox name=stout> Stout</label>
+                <label><input type=checkbox name=hefew> Hefeweizer</label>
+            </fieldset>
+        </aside>
+        <section id="trade-view">
+            <h2 id="trade-header">Trade Lisitings</h2>
+            <ul id="trade-list">
+                <li>
+                    <img class="beer-img" src="img/ballast-trade.jpg" alt="ballast-trade">
+                </li>
+                <li>
+                    <p class="looking-for">Looking For: Ballast Point Homework Series #1</p>
+                </li>
+                <li>
+                    <p class="trade-for">Trading For: Ballast Point Sea Monster</p>
+                </li>
+                <li>
+                    <form>
+                        <button formaction="tradeForm.html" class="message-user">
+                        <img src="img/speech-bubble.png" alt="Message Icon">
+                      </button>
+                    </form>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <!-- Use aside tag for filter sidebar -->
+</body>
+
+</html>

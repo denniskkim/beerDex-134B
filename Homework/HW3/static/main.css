@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.logo {
+    float: left;
+}
+
+li.nav {
+    display: inline;
+}
+
+a.nav {
+    text-decoration: none;
+}
+
+ul.nav {
+    padding: 10px;
+    margin: 0px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+}
+
+div.stat-box {
+    float: left;
+    width: 30%;
+    height: 20%;
+    padding: 100px;
+    border: 1px solid black;
+}
