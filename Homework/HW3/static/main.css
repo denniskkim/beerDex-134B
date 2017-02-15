@@ -1,6 +1,6 @@
 body {
-    margin: 0;
     padding: 0;
+    margin: 0;
 }
 
 .logo {
@@ -13,6 +13,10 @@ li.nav {
 
 a.nav {
     text-decoration: none;
+}
+
+nav {
+    background: gray;
 }
 
 ul.nav {
@@ -29,4 +33,45 @@ div.stat-box {
     height: 20%;
     padding: 100px;
     border: 1px solid black;
+    margin: auto;
+    padding: 10px;
+}
+
+aside.filter {
+    padding: 10px;
+    border: 1px solid red;
+    width: 10%;
+    height: 400px;
+    float: left;
+}
+
+.overflow {
+    height: 100px;
+    overflow-y: scroll;
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+    height: 600px;
+    overflow-y: scroll;
+    border: 3px solid #73AD21;
+}
+
+.card {
+    border: 1px solid blue;
+    padding: 10px;
+}
+
+.card-img {
+    height: 200px;
+    width: 150px;
+}
+
+.collection-list {
+    list-style: none;
+}
+
+.collection-item {
+    padding: 5px;
 }
