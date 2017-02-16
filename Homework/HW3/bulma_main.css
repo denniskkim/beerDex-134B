@@ -1,0 +1,64 @@
+
+header{
+  padding-bottom: 10px;
+  background-color: #E4DBBC;
+}
+
+/*************
+ *  Nav-Bar  *
+ *************/
+
+.nav-center{
+  max-width: 960px;
+}
+
+.nav-item{
+  font-size: 16px;
+}
+
+li .nav-item{
+  padding-top: 20px;
+}
+
+/****************
+ * Main content *
+ ****************/
+#collection-list,
+#filter-bar{
+  margin: 20px;
+}
+
+.checked-filters li{
+  list-style-type: square;
+  margin-left: 5px;
+}
+
+.menu-list{
+  margin-left: 6px;
+}
+
+/**************
+ * collection *
+ **************/
+.cardImage{
+  text-align: center;
+  background-color:#4B5048;
+  padding-top: 10px;
+  padding-bottom: 6px;
+
+}
+
+
+.card-img{
+  max-width: 200px;
+  max-height:307px;
+}
+
+.card{
+  background-color:#EBE9DC;
+}
+
+.collection-list{
+  max-width:1140px;
+
+}
