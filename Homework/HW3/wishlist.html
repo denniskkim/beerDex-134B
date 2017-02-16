@@ -27,7 +27,46 @@
             </ul>
         </nav>
     </header>
-    <main id="browse-list">
+    <aside id="filter-bar" class="filter">
+        <ul class="filter-text">
+            <li>Ballast Point</li>
+            <li>IPA</li>
+        </ul>
+        <h3 class="filter-text">Breweries</h3>
+        <div class="overflow">
+            <input type="checkbox" name="beer" value="Ballast Point" checked="checked">Ballast Point<br>
+            <input type="checkbox" name="beer" value="Alesmith">Alesmith<br>
+            <input type="checkbox" name="beer" value="Green Flash">Green Flash<br>
+            <input type="checkbox" name="beer" value="Ballast Point">Modern Times<br>
+            <input type="checkbox" name="beer" value="Alesmith">Belching Beaver<br>
+            <input type="checkbox" name="beer" value="Green Flash">Stone<br>
+        </div>
+        <h3 class="filter-text">Styles</h3>
+        <div class="overflow">
+            <input type="checkbox" name="beer" value="IPA" checked="checked">IPA<br>
+            <input type="checkbox" name="beer" value="Stout">Stout<br>
+            <input type="checkbox" name="beer" value="Gose">Gose<br>
+            <input type="checkbox" name="beer" value="Ballast Point">Hefeweizen<br>
+            <input type="checkbox" name="beer" value="Berliner Weissbeir">Berliner Weissbier<br>
+            <input type="checkbox" name="beer" value="Kolsch">Kolsch<br>
+        </div>
+    </aside>
+    <main id="collection-list" class="center">
+        <section id="collection-view">
+            <ul class="collection-list">
+                <li class="collection-item">
+                    <div class="card">
+                        <img class="card-img" src="img/ballast_wishlist1.jpg" alt="ballast California Amber"> <b>Ballast Point</b> Indra Kunindra
+                        <form>
+                            <button>Remove</button>
+                            <button formaction="trades.html">Find a Trade</button>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <!--<main id="browse-list">
         <aside id="filter-bar">
             <label>Breweries:
         <input list="breweries" name="breweryList" /></label>
@@ -92,7 +131,7 @@
                 </li>
             </ul>
         </section>
-    </main>
+    </main>-->
     <!-- Use aside tag for filter sidebar -->
 </body>
 

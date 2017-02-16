@@ -22,6 +22,7 @@ nav {
 }
 
 ul.nav {
+    margin: auto;
     padding: 10px;
     margin: 0px;
     text-align: center;
@@ -63,6 +64,7 @@ aside.filter {
 }
 
 .card {
+    overflow: auto;
     float: none;
     border: 2px solid#BA8E51;
     padding: 10px;
@@ -107,4 +109,8 @@ aside.filter {
 
 .add-header {
     vertical-align: top;
+}
+
+.filter-text {
+    overflow: auto;
 }
