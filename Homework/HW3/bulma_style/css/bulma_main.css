@@ -45,9 +45,15 @@ li .nav-item{
   background-color:#4B5048;
   padding-top: 10px;
   padding-bottom: 6px;
-
 }
 
+.collection-view{
+  max-width: 1140px;
+}
+
+.heading{
+  text-align: center;
+}
 
 .card-img{
   max-width: 200px;
@@ -58,7 +64,24 @@ li .nav-item{
   background-color:#EBE9DC;
 }
 
-.collection-list{
-  max-width:1140px;
 
+.collection-item{
+  display: inline-block;
+  margin: 15px;
+}
+
+.card{
+  width: 280px;
+}
+
+.card-footer{
+  border-top: 1px solid #555952;
+}
+
+.card-footer-item{
+  color: black;
+}
+
+.card-footer-item:not(:last-child) {
+  border-right: 1px solid #555952;
 }

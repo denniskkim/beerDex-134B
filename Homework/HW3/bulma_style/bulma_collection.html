@@ -4,25 +4,26 @@
 <head>
     <title>BeerDex - HomePage</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="vendor/css/bulma.css">
-    <link rel="stylesheet" href="bulma_main.css">
+    <link rel="stylesheet" href="../vendor/css/bulma.css">
+    <link rel="stylesheet" href="css/bulma_main.css">
 </head>
+
 
 <body>
     <header>
         <nav class="nav-center">
             <div class="nav-left">
-                <a class="nav-item" href="index.html"><img src="img/tempIcon.png" alt="BeerDex Icon"><br>BeerDex</a>
+                <a class="nav-item" href="bulma_index.html"><img src="img/tempIcon.png" alt="BeerDex Icon"><br>BeerDex</a>
             </div>
             <ul id="nav-list" class="nav-right">
                 <li>
-                    <a class="nav-item" href="collection.html">Collections</a>
+                    <a class="nav-item" href="bulma_collection.html">Collections</a>
                 </li>
                 <li>
                     <a class="nav-item" href="trades.html">Trades</a>
                 </li>
                 <li>
-                    <a class="nav-item" href="wishlist.html">Wish-List</a>
+                    <a class="nav-item" href="bulma_wishlist.html">Wish-List</a>
                 </li>
                 <li>
                     <a class="nav-item" href="statistics.html">Statistics</a>
@@ -31,7 +32,7 @@
         </nav>
     </header>
 
-    <main id="collection-list" class="columns">
+    <main id="collection-list" class="columns is-fluid">
         <div class="column is-2">
           <aside id="filter-bar" class="menu box">
               <ul class="checked-filters menu-list">
@@ -59,8 +60,8 @@
           </aside>
         </div>
 
-        <section id="collection-view column is-9" >
-            <!-- <h2 id="collection-header">My Collection</h2> -->
+        <section id="collection-view column " >
+            <h2 class="title is-2 heading">My Collection</h2>
             <ul class="collection-list">
                 <li class="collection-item">
                     <div class="card">
@@ -68,22 +69,26 @@
                           <img class="card-img" src="img/ballast-collection1.jpg" alt="ballast Dorado">
                         </figure>
                         <div class="card-content">
-                          <div class="media">
-                            <div class="media-content">
-                              <p class="title is-4"><b>Ballast Point</b></p>
-                              <p class="subtitle is-6"><b>Dorado</b> Double IPA Rating: 4.6</p>
+                            <div class="media">
+                              <div class="media-content">
+                                <p class="title is-4"><b>Ballast Point</b></p>
+                                <p class="subtitle is-6"><b>Dorado</b> 	&#91;Double IPA &#93;</p>
+                                <label>Quantity:
+                                  <select name="quantity" class="quantity_val">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5+</option>
+                                  </select>
+                                </label>
+                              </div>
+                              <div class="media-right">
+                                <button>Delete</button>
+                              </div>
                             </div>
                           </div>
                         </div>
-                        <select>
-                        <option value="volvo">1</option>
-                        <option value="saab" selected="selected">2</option>
-                        <option value="opel">3</option>
-                        <option value="audi">4</option>
-                        <option value="audi">5</option>
-                        <option value="audi">5+</option>
-                        </select>
-                        <button>Delete</button>
                     </div>
                 </li>
                 <li class="collection-item">
@@ -95,22 +100,23 @@
                           <div class="media">
                             <div class="media-content">
                               <p class="title is-4"><b>Ballast Point</b></p>
-                              <p class="subtitle is-6"><b>Victory at Sea</b> Stout Rating: 4.8</p>
+                              <p class="subtitle is-6"><b>Victory at Sea</b> &#91;Stout &#93;</p>
+                              <label>Quantity:
+                                <select name="quantity" class="quantity_val">
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                  <option value="5">5+</option>
+                                </select>
+                              </label>
+                            </div>
+                            <div class="media-right">
+                              <button>Delete</button>
+                            </div>
                             </div>
                           </div>
                         </div>
-
-
-                        <select>
-                        <option value="volvo">1</option>
-                        <option value="saab" selected="selected">2</option>
-                        <option value="opel">3</option>
-                        <option value="audi">4</option>
-                        <option value="audi">5</option>
-                        <option value="audi">5+</option>
-                        </select>
-                        <button>Delete</button>
-                    </div>
                 </li>
                 <li class="collection-item">
                     <div class="card">
@@ -121,20 +127,23 @@
                         <div class="media">
                           <div class="media-content">
                             <p class="title is-4"><b>Ballast Point</b></p>
-                            <p class="subtitle is-6"><b>Sculpin</b> IPA Rating: 4.8</p>
+                            <p class="subtitle is-6"><b>Sculpin</b> &#91;IPA&#93; </p>
+                            <label>Quantity:
+                              <select name="quantity" class="quantity_val">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5+</option>
+                              </select>
+                            </label>
+                          </div>
+                          <div class="media-right">
+                            <button>Delete</button>
+                          </div>
                           </div>
                         </div>
                       </div>
-                        <select>
-                        <option value="volvo">1</option>
-                        <option value="saab" >2</option>
-                        <option value="opel">3</option>
-                        <option value="audi">4</option>
-                        <option value="audi">5</option>
-                        <option value="audi" selected="selected">5+</option>
-                        </select>
-                        <button>Delete</button>
-                    </div>
                 </li>
             </ul>
         </section>
