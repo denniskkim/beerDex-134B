@@ -28,17 +28,23 @@ ul.nav {
     display: inline-block;
     vertical-align: top;
 }
-
-div.stat-box {
-    float: left;
-    width: 30%;
-    height: 20%;
-    padding: 100px;
-    border: 1px solid black;
-    margin: auto;
-    padding: 10px;
+#browse-list {
+    width: 100%;
 }
-
+div.stat-box {
+    display: inline-block;
+    width: 20%;
+    height: 20%;
+    vertical-align: top;
+    /* padding: 100px; */
+    border: 1px solid black;
+    padding: 10px;
+    margin: 1% 0.5% 0.5% 0.5%;
+}
+div.stat-box>img {
+    max-width: 100%;
+    max-height: 100%;
+}
 aside.filter {
     margin-top: 50px;
     margin-left: 5%;
