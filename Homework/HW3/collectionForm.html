@@ -1,37 +1,70 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Collection Form</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="static/main.css" type="text/css">
 </head>
+
 <body>
-    <header>
-        <h1>Add Beer to Collection</h1>
-    </header><!-- /header -->
+    <!-- /header -->
     <main>
-        <form>
-            Brewery &nbsp; <input type="text" name="brewery" placeholder="Name of Brewery"> <br>
-            Name &nbsp; <input type="text" name="beer" placeholder="Name of Beer"> <br>
-            Style &nbsp; <input type="text" name="style" placeholder="Name of Beer Style"> <br>
-            Flavors &nbsp; <br>
-            <select name="flavors" multiple>
-                <option value="Vanilla">Vanilla</option>
-                <option value="Coffee">Coffee</option>
-                <option value="Chocolate">Chocolate</option>
-            </select><br>
-            Rating (Between 1 and 5) &nbsp; <input type="number" name="rating" min="1" max="5"> <br>
-            Buy Again &nbsp; <input type="checkbox" name="buyAgain"> <br>
-            Quantity &nbsp;
-            <select name="quantity">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select> <br>
-            <input type="submit" name="submit" value="Add">
-        </form>
+        <div class="outer-container">
+            <div class="middle">
+                <div class="add-form">
+                    <header class="add-header">
+                        <h1>Add Beer to Collection</h1>
+                    </header>
+                    <form>
+                        <p>
+                            Brewery &nbsp; <input type="text" name="brewery" placeholder="Name of Brewery">
+                        </p>
+                        <p>
+                            Name &nbsp; <input type="text" name="beer" placeholder="Name of Beer">
+                        </p>
+                        <p>
+                            Style &nbsp;
+                            <input type="text" name="style" placeholder="Name of Beer Style">
+                        </p>
+                        <p>
+                            Flavors &nbsp;<br>
+                            <select name="flavors" multiple>
+                            <option value="Vanilla">Vanilla</option>
+                            <option value="Coffee">Coffee</option>
+                            <option value="Chocolate">Chocolate</option>
+                            <option value="Citrus">Citrus</option>
+                            <option value="Pine">Pine</option>
+                        </select>
+                        </p>
+                        <p>Rating
+                            <select name="rating">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        </p>
+                        <p>
+                            Buy Again &nbsp; <input type="checkbox" name="buyAgain">
+                        </p>
+                        <p>
+                            Quantity &nbsp;
+                            <select name="quantity">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        </p>
+                        <input type="submit" formaction="collection.html" name="submit" value="Add">
+                    </form>
+                </div>
+            </div>
+        </div>
     </main>
 </body>
+
 </html>

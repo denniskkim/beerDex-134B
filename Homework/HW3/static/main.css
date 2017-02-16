@@ -1,6 +1,7 @@
 body {
     padding: 0;
     margin: 0;
+    background: #FAF8E3;
 }
 
 .logo {
@@ -13,10 +14,11 @@ li.nav {
 
 a.nav {
     text-decoration: none;
+    color: #FAF8E3;
 }
 
 nav {
-    background: gray;
+    background: #C33430;
 }
 
 ul.nav {
@@ -38,8 +40,10 @@ div.stat-box {
 }
 
 aside.filter {
+    margin-top: 50px;
+    margin-left: 5%;
     padding: 10px;
-    border: 1px solid red;
+    border: 2px solid#BA8E51;
     width: 10%;
     height: 400px;
     float: left;
@@ -51,16 +55,18 @@ aside.filter {
 }
 
 .center {
-    margin: auto;
+    margin-top: 50px;
+    margin-left: 25%;
     width: 50%;
     height: 600px;
     overflow-y: scroll;
-    border: 3px solid #73AD21;
 }
 
 .card {
-    border: 1px solid blue;
+    float: none;
+    border: 2px solid#BA8E51;
     padding: 10px;
+    margin: auto;
 }
 
 .card-img {
@@ -74,4 +80,31 @@ aside.filter {
 
 .collection-item {
     padding: 5px;
+}
+
+.add-form {
+    padding: 50px;
+    background: white;
+    height: 60%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+}
+
+.outer-container {
+    background: darkgray;
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.add-header {
+    vertical-align: top;
 }

@@ -10,7 +10,7 @@
 <body>
     <header>
         <nav class="nav">
-            <img src="img/tempIcon.png" alt="BeerDex Icon" id="logo" class="nav">
+            <a href="index.html"><img src="img/tempIcon.png" alt="BeerDex Icon" id="logo" class="nav"></a>
             <ul class="nav">
                 <li class="nav">
                     <a href="collection.html" class="nav">Collections</a>
@@ -27,8 +27,153 @@
             </ul>
         </nav>
     </header>
+    <aside id="filter-bar" class="filter">
+        <ul>
+            <li>Ballast Point</li>
+            <li>IPA</li>
+        </ul>
+        <h3>Breweries</h3>
+        <div class="overflow">
+            <input type="checkbox" name="beer" value="Ballast Point" checked="checked">Ballast Point<br>
+            <input type="checkbox" name="beer" value="Alesmith">Alesmith<br>
+            <input type="checkbox" name="beer" value="Green Flash">Green Flash<br>
+            <input type="checkbox" name="beer" value="Ballast Point">Modern Times<br>
+            <input type="checkbox" name="beer" value="Alesmith">Belching Beaver<br>
+            <input type="checkbox" name="beer" value="Green Flash">Stone<br>
+        </div>
+        <h3>Styles</h3>
+        <div class="overflow">
+            <input type="checkbox" name="beer" value="IPA" checked="checked">IPA<br>
+            <input type="checkbox" name="beer" value="Stout">Stout<br>
+            <input type="checkbox" name="beer" value="Gose">Gose<br>
+            <input type="checkbox" name="beer" value="Ballast Point">Hefeweizen<br>
+            <input type="checkbox" name="beer" value="Berliner Weissbeir">Berliner Weissbier<br>
+            <input type="checkbox" name="beer" value="Kolsch">Kolsch<br>
+        </div>
+    </aside>
+    <main id="collection-list" class="center">
+        <section id="collection-view">
+            <ul class="collection-list">
+                <li class="collection-item">
+                    <div class="card">
+                        <img class="card-img" src="img/ballast_cal_amber.png" alt="ballast California Amber">
+                        <!--<p class="brewery-text">Ballast Point</p>
+                            </li>
+                            <li>
+                                <p class="beer-text">California Amber</p>
+                            </li>
+                            <li>
+                                <form>
+                                    <button formaction="collectionForm.html">Add to Collection</button>
+                                </form>
+                            </li>
+                            <li>
+                                <button class="wishlist-add">Add to Wish-List</button>
+                            </li>-->
+                    </div>
+                </li>
+                <li class="collection-item">
+                    <div class="card">
+                        <img class="card-img" src="img/ballast-collection1.jpg" alt="ballast Dorado">
+                        <b>Ballast Point</b>
+                        <b>Dorado</b> Double IPA Rating: 4.6
+                        <select>
+                        <option value="volvo">1</option>
+                        <option value="saab" selected="selected">2</option>
+                        <option value="opel">3</option>
+                        <option value="audi">4</option>
+                        <option value="audi">5</option>
+                        <option value="audi">5+</option>
+                        </select>
+                        <button>Delete</button>
+                    </div>
+                </li>
+                <li class="collection-item">
+                    <div class="card">
+                        <img class="card-img" src="img/victory-at-sea.jpg" alt="victory-at-sea">
+                        <b>Ballast Point</b>
+                        <b>Victory at Sea</b> Stout Rating: 4.8
+                        <select>
+                        <option value="volvo">1</option>
+                        <option value="saab" selected="selected">2</option>
+                        <option value="opel">3</option>
+                        <option value="audi">4</option>
+                        <option value="audi">5</option>
+                        <option value="audi">5+</option>
+                        </select>
+                        <button>Delete</button>
+                    </div>
+                </li>
+                <li class="collection-item">
+                    <div class="card">
+                        <img class="card-img" src="img/ballast-collection2.jpg" alt="Sculpin"> <b>Ballast Point</b>
+                        <b>Sculpin</b> IPA Rating: 5.0
+                        <select>
+                        <option value="volvo">1</option>
+                        <option value="saab" >2</option>
+                        <option value="opel">3</option>
+                        <option value="audi">4</option>
+                        <option value="audi">5</option>
+                        <option value="audi" selected="selected">5+</option>
+                        </select>
+                        <button>Delete</button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <!--
     <main id="browse-list">
-        <aside id="filter-bar">
+        <ul class="collection-list">
+            <li class="collection-item">
+                <div class="card">
+                    <img class="card-img" src="img/ballast-collection1.jpg" alt="ballast Dorado">
+                    <b>Ballast Point</b>
+                    <b>Dorado</b> Double IPA Rating: 4.6
+                    <select>
+                        <option value="volvo">1</option>
+                        <option value="saab" selected="selected">2</option>
+                        <option value="opel">3</option>
+                        <option value="audi">4</option>
+                        <option value="audi">5</option>
+                        <option value="audi">5+</option>
+                        </select>
+                    <button>Delete</button>
+                </div>
+            </li>
+            <li class="collection-item">
+                <div class="card">
+                    <img class="card-img" src="img/victory-at-sea.jpg" alt="victory-at-sea">
+                    <b>Ballast Point</b>
+                    <b>Victory at Sea</b> Stout Rating: 4.8
+                    <select>
+                        <option value="volvo">1</option>
+                        <option value="saab" selected="selected">2</option>
+                        <option value="opel">3</option>
+                        <option value="audi">4</option>
+                        <option value="audi">5</option>
+                        <option value="audi">5+</option>
+                        </select>
+                    <button>Delete</button>
+                </div>
+            </li>
+            <li class="collection-item">
+                <div class="card">
+                    <img class="card-img" src="img/ballast-collection2.jpg" alt="Sculpin"> <b>Ballast Point</b>
+                    <b>Sculpin</b> IPA Rating: 5.0
+                    <select>
+                        <option value="volvo">1</option>
+                        <option value="saab" >2</option>
+                        <option value="opel">3</option>
+                        <option value="audi">4</option>
+                        <option value="audi">5</option>
+                        <option value="audi" selected="selected">5+</option>
+                        </select>
+                    <button>Delete</button>
+                </div>
+            </li>
+        </ul>-->
+    <!--<aside id="filter-bar">
             <label>Breweries:
         <input list="breweries" name="breweryList" /></label>
             <datalist id="breweries">
@@ -81,7 +226,7 @@
                     <button class="wishlist-add">Add to Wish-List</button>
                 </li>
             </ul>
-        </section>
+        </section>-->
     </main>
     <!-- Use aside tag for filter sidebar -->
 </body>
