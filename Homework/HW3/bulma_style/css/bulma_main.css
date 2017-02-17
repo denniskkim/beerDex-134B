@@ -1,13 +1,18 @@
-
 header{
   padding-bottom: 10px;
-  background-color: #E4DBBC;
 }
 
+html,
+.section{
+  background-color: #faf8e3;
+}
+/* faf8e3;
 /*************
  *  Nav-Bar  *
  *************/
-
+.nav{
+  background-color:#C33430;
+}
 .nav-center{
   max-width: 960px;
 }
@@ -20,6 +25,13 @@ li .nav-item{
   padding-top: 20px;
 }
 
+.nav-item a.is-tab.is-active,
+a.nav-item.is-tab.is-active {
+  border-bottom: 3px solid #ba8e51;
+  color: #ba8e51;
+}
+
+
 /****************
  * Main content *
  ****************/
@@ -28,13 +40,23 @@ li .nav-item{
   margin: 20px;
 }
 
+#filter-bar{
+  min-width: 190px;
+}
+
+.nav a,
+.label{
+  color:#faf8e3;
+}
+
 .checked-filters li{
   list-style-type: square;
   margin-left: 5px;
 }
 
 .menu-list{
-  margin-left: 6px;
+  /*margin-left: 6px;*/
+  display:inline-block;
 }
 
 /**************
@@ -48,7 +70,7 @@ li .nav-item{
 }
 
 .collection-view{
-  max-width: 1140px;
+  max-width: 960px;
 }
 
 .heading{
@@ -59,12 +81,26 @@ li .nav-item{
   max-width: 200px;
   max-height:307px;
 }
-
+@media screen and (max-width: 1139px){
+   .collection-list{
+     margin: 0 auto;
+     text-align:center;
+   }
+}
 .card{
   background-color:#EBE9DC;
 }
 
-
+.menu-labels {
+  color: #7a7a7a;
+  font-size: 0.8em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  width: auto;
+}
+.overflow{
+  overflow: auto;
+}
 .collection-item{
   display: inline-block;
   margin: 15px;
@@ -85,3 +121,31 @@ li .nav-item{
 .card-footer-item:not(:last-child) {
   border-right: 1px solid #555952;
 }
+
+
+/***************
+ *  Login Page *
+ ***************/
+.nav-container,
+#login-main{
+  max-width: 960px;
+  margin: 0 auto;
+}
+.nav-login-container{
+  margin-top: 10px;
+}
+
+.label{
+  text-align:left;
+}
+ .label:not(:last-child) {
+    margin-bottom: 0px;
+ }
+ .nav-login{
+   display:inline-block;
+ }
+
+ #app-description,
+ #signup-container{
+   padding-top: 70px;
+ }
