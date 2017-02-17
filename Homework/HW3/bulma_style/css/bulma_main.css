@@ -1,5 +1,6 @@
 header{
-  padding-bottom: 10px;
+  margin-bottom: 10px;
+  background-color:#C33430;
 }
 
 html,
@@ -45,7 +46,7 @@ a.nav-item.is-tab.is-active {
 }
 
 .nav a,
-.label{
+.label-login{
   color:#faf8e3;
 }
 
@@ -127,16 +128,19 @@ a.nav-item.is-tab.is-active {
  *  Login Page *
  ***************/
 .nav-container,
-#login-main{
+#login-main,
+#login-nav{
   max-width: 960px;
   margin: 0 auto;
 }
+
 .nav-login-container{
   margin-top: 10px;
 }
 
 .label{
   text-align:left;
+
 }
  .label:not(:last-child) {
     margin-bottom: 0px;
@@ -149,3 +153,31 @@ a.nav-item.is-tab.is-active {
  #signup-container{
    padding-top: 70px;
  }
+
+
+.input.is-inline-half{
+  width:49.5%;
+}
+
+#is-inline-third{
+    width: 32.3%;
+}
+
+#birthday{
+  margin-top: 25px;
+}
+
+.app-feature-content{
+  margin: 25px 0;
+}
+
+.icon,
+.feature-detail{
+  display: inline-block;
+}
+
+.feature-detail{
+  padding-top: 7px;
+  padding-left: 15px;
+  font-size: 15px;
+}
