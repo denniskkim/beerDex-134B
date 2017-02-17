@@ -4,15 +4,100 @@
     <title>Inbox</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="static/main.css" type="text/css">
+    <style type="text/css" media="screen">
+        #side-menu {
+            position: absolute;
+            display: inline-block;
+            width: 200px;
+            border-right: 1px solid grey;
+            height: 95%;
+            padding: 10px
+        }
+        #side-menu>ul {
+            list-style: none;
+        }
+        #side-menu>h2 {
+            margin-left: 9%;
+            border-bottom: 1px solid;
+            width: 70%;
+        }
+        #side-menu>ul>li {
+            margin-left: -20px;
+            font-size: 16pt;
+            margin-top: 8%;
+            border: 1px solid;
+            width: 90%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        #message-display {
+            display: inline-block;
+            width: 100%%;
+            height: 100%;
+        }
+        #message-input {
+            display: block;
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            height: 20%;
+            /* width: 100%; */
+
+        }
+        #message-input>textarea {
+            display: inline-block;
+            height: 80%;
+            width: 99.6%;
+            /* width: 100%; */
+
+        }
+        #message-input>button {
+            display: inline-block;
+            width: 100%;
+        }
+        #main-display {
+            height: 100%;
+            width: 100%;
+            /* width: 100%; */
+        }
+        #screen {
+            position: absolute;
+            left: 225px;
+            display: block;
+            width: 74%;
+            height: 80%;
+            border-bottom: 1px grey;
+            background-color: white;
+        }
+        .message {
+            padding: 10px;
+        }
+        .message>em {
+            font-size: 16pt;
+            color: blue;
+            padding-right: 20px;
+        }
+        .message>p {
+            display: inline;
+            font-size: 14pt;
+        }
+
+    </style>
 </head>
 <body>
-    <nav >
+    <header id="header" class="">
+     <nav >
         <a href=""> <img src="img/tempIcon.png" alt=""></a>
         <a href="">Collections</a>
         <a href="">Trades</a>
         <a href="">Wishlist</a>
-    </nav>
-    <aside>
+    </nav>   
+</header><!-- /header -->
+
+
+<main id="main-display">
+    <aside id="side-menu">
         &nbsp;
         <h2>Inbox</h2>
         <ul>
@@ -22,14 +107,21 @@
             <li>Joey</li>
         </ul>
     </aside>
-    <main>
-        <div>
-            <em>Bob </em> Hello <br>
-            <em>You </em> Hi <br>
+    <section id="screen">
+        <div id="message-display">
+            <section class="message">
+                <em>Bob </em> <p> Hello</p>
+            </section>
+            <section class="message">
+                <em>You </em><p> Hi</p>
+            </section>
         </div>
-        <br>
-        <textarea name="inputMessage" placeholder="Type Message Here..."></textarea>
-        <input type="button" name="send" value="Send">
-    </main>
+        <div id="message-input">
+           <textarea name="inputMessage" placeholder="Type Message Here..."></textarea>
+           <button type="submit"> Send </button>
+       </div>
+   </section>
+
+</main>
 </body>
 </html>
