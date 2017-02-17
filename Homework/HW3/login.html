@@ -4,21 +4,74 @@
     <title>Login/Signup</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="static/main.css" type="text/css">
+    <style type="text/css" media="screen">
+        #login-bar {
+            width: 100%;
+        }
+        #login-bar>section>figure {
+            display: inline-block;
+            width: 5%;
+        }
+        #login-bar>section>h1 {
+            display: inline-block;
+        }
+        #login-bar>section>form {
+            float: right;
+            margin-top: 30px;
+            overflow: hidden;
+            display: block;
+            width: 30%;
+        }
+        #login-form {
+        }
+        #beer-intro {
+            display: block;
+            float: left;
+            width: 60%;
+            border-right: 0.5px solid grey;
+            margin: 0 .5% 1% 1%;
+            padding-right: 30px;
+        }
+        #signup {
+            display: inline-block;
+            width: 30%;
+            margin: 0 .5% 1% 1%;
+        }
+        #signup>input {
+            display: inline-block;
+            width: 40%;
+        }
+        #signup>section>input {
+            display: inline-block;
+            width: 15%;
+        }
+        #signup>button {
+            display: block;
+            margin: auto;
+            width: 30%;
+        }
+        #main-intro {
+            border-top: 1px solid grey;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <figure>
-            <img src="img/tempIcon.png" alt="">
-        </figure>
-        <h1>Beer Dex</h1>
-        <form>
-            <input type="email" name="login" placeholder="Email Address">
-            <input type="password" name="login-password" placeholder="password">
-            <input type="submit" value="Login" >
-        </form>
-    </header><!-- /header -->
-    <main>
+    <header id="login-bar">
         <section>
+            <figure>
+                <img src="img/tempIcon.png" alt="">
+            </figure>
+            <h1>Beer Dex</h1>
+            <form id="login-form">
+                <input type="email" name="login" placeholder="Email Address">
+                <input type="password" name="login-password" placeholder="password">
+                <input type="submit" value="Login" >
+            </form>
+        </section>
+    </header><!-- /header -->
+    <br>
+    <main id="main-intro">
+        <section id="beer-intro">
             <h2>BeerDex</h2>
             <article>
                 <h2>About BeerDex</h2>
@@ -29,22 +82,27 @@
             </article>
             <button type="button">View Beer Statistics</button>
         </section>
-        <br>
-        <form>
+        <form id="signup">
+            <h2>Sign Up Now!</h2>
             <input type="text" name="firstname" placeholder="First Name">
             <input type="text" name="lastname" placeholder="Last Name">
             <input type="email" name="email" placeholder="Email Address">
             <input type="email" name="confirmemail" placeholder="Confirm Email Address">
             <input type="password" name="password" placeholder="Password">
             <input type="password" name="confirmpassword" placeholder="Confirm Password">
-            Birth Date &nbsp; <input type="number" name="month" min="1" max="12" placeholder="mm"> <input type="number" name="day" min="1" max="31" placeholder="dd"> <input type="number" name="year" min="1930" max="2017" placeholder="yy">
+            <section>
+                <br>
+                Birth Date &nbsp; <input type="number" name="month" min="1" max="12" placeholder="mm"> <input type="number" name="day" min="1" max="31" placeholder="dd"> <input type="number" name="year" min="1930" max="2017" placeholder="yy">
+            </section>
+            <br>
             City &nbsp;
             <select name="city">
                 <option value="San Diego">San Diego</option>
                 <option value="San Jose">San Jose</option>
                 <option value="Los Angeles">Los Angeles</option>
                 <option value="San Francisco">San Francisco</option>
-            </select>
+            </select><br>
+            <br>
             <button type="button">Create Account</button>
         </form>
     </main>
