@@ -1,0 +1,35 @@
+/*@import url("bulma/sass/utilities/_all.sass");
+@import url("bulma/sass/grid/columns.sass");
+@import url("bulma/sass/elements/button.sass");
+@import url("bulma/sass/elements/box.sass");
+@import url("bulma/sass/elements/content.sass");
+@import url("bulma/sass/elements/title.sass");
+@import url("bulma/sass/elements/table.sass");
+@import url("bulma/sass/elements/image.sass");
+@import url("bulma/sass/elements/icon.sass");
+@import url("bulma/sass/elements/form.sass");
+@import url("bulma/sass/layout/footer.sass");
+@import url("bulma/sass/layout/section.sass");
+@import url("bulma/sass/components/card.sass");
+@import url("bulma/sass/components/media.sass");
+@import url("bulma/sass/components/nav.sass");
+@import url("bulma/sass/components/menu.sass");*/
+
+@charset "utf-8"
+
+@import "bulma/sass/utilities/_all.sass";
+@import "bulma/sass/grid/columns.sass";
+@import "bulma/sass/elements/button.sass";
+@import "bulma/sass/elements/box.sass";
+@import "bulma/sass/elements/content.sass";
+@import "bulma/sass/elements/title.sass";
+@import "bulma/sass/elements/table.sass";
+@import "bulma/sass/elements/image.sass";
+@import "bulma/sass/elements/icon.sass";
+@import "bulma/sass/elements/form.sass";
+@import "bulma/sass/layout/footer.sass";
+@import "bulma/sass/layout/section.sass";
+@import "bulma/sass/components/card.sass";
+@import "bulma/sass/components/media.sass";
+@import "bulma/sass/components/nav.sass";
+@import "bulma/sass/components/menu.sass";
