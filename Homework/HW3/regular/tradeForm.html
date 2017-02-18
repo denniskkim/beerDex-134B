@@ -1,91 +1,43 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Trade Creation</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="static/main.css" type="text/css">
-    <style type="text/css" media="screen">
-        .trade-block {
-            border: 2px solid;
-            display: block;
-            margin: 1.5% 2.5% 1.5% 2.5%;
-            padding: 0 2% 2% 2%;
-
-        }
-
-        #trade-process {
-            text-align: center;
-            padding-top: 2%;
-        }
-
-        .button-padding {
-            padding: 0.5% 0.5% 0.5% 0.5%;
-            margin: 0 1% 0 0;
-        }
-
-        #trade-header {
-            margin: 0.5% 2% 1% 2%;
-        }
-
-        section.trade-block>form {
-        }
-        section.trade-block>form>input {
-            margin: 5px 0 5px 0;
-        }
-        section.trade-block>form>section>img {
-            margin-top: 5px;
-        }
-        #trade {
-            display: block;
-            margin: auto;
-            width: 50%;
-            padding-top: 3%;
-        }
-
-    </style>
+  <title>Trade Creation</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="static/main.css" type="text/css">
 </head>
-
 <body>
-    <header>
-        <h2 id="trade-header">Create Trade Request</h2>
-    </header>
-    <!-- /header -->
-    <main id="trade">
-        <section class="trade-block">
-           <h2>Trading From</h2>
-           <form>
-               <input type="text" name="beer_1" placeholder="Input Beer Choice 1..."> <br>
-               <input type="text" name="beer_2" placeholder="Input Beer Choice 2..."> <br>
-               <section>
-                  <img src="img/plus_icon.ico" alt="" width="20px" height="20px">
-                  <input type="Button" name="add" value="Add More Choices...">                
-              </section>
-
-          </form>       
-      </section>
-      <hr>
-      <section class="trade-block">
-        <h2>Trading To</h2>
-        <form action="tradeForm_submit" method="get" accept-charset="utf-8">
-            <input type="text" name="beer_1" placeholder="Input Beer Choice 1..."> <br>
-            <input type="text" name="beer_2" placeholder="Input Beer Choice 2..."> <br>
-            <section>
-             <img src="img/plus_icon.ico" alt="" width="20px" height="20px">           
-             <input type="Button" name="add" value="Add More Choices...">               
-         </section>
-
-     </form>
-
- </section>
-
-</main>
-<section id="trade-process">
- <button type="button" class="button-padding">Create</button>
- <button type="button" class="button-padding">Cancel</button>   
-</section>
-
-
+  <header>
+    <h2 id="trade-header">Create Trade Request</h2>
+  </header>
+  <!-- /header -->
+  <main id="trade">
+    <section class="trade-block">
+      <h2>Trading From</h2>
+      <form>
+        <input type="text" name="beer_1" placeholder="Input Beer Choice 1..."> <br>
+        <input type="text" name="beer_2" placeholder="Input Beer Choice 2..."> <br>
+        <section>
+          <img src="img/plus_icon.ico" alt="" width="20px" height="20px">
+          <input type="Button" name="add" value="Add More Choices...">
+        </section>
+      </form>
+    </section>
+    <hr>
+    <section class="trade-block">
+      <h2>Trading To</h2>
+      <form action="tradeForm_submit" method="get" accept-charset="utf-8">
+        <input type="text" name="beer_1" placeholder="Input Beer Choice 1..."> <br>
+        <input type="text" name="beer_2" placeholder="Input Beer Choice 2..."> <br>
+        <section>
+          <img src="img/plus_icon.ico" alt="" width="20px" height="20px">
+          <input type="Button" name="add" value="Add More Choices...">
+        </section>
+      </form>
+    </section>
+  </main>
+  <section id="trade-process">
+    <button type="button" class="button-padding">Create</button>
+    <button type="button" class="button-padding">Cancel</button>
+  </section>
 </body>
-
 </html>
