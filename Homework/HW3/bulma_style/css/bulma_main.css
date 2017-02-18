@@ -181,3 +181,33 @@ a.nav-item.is-tab.is-active {
   padding-left: 15px;
   font-size: 15px;
 }
+
+/**********
+ *  Form  *
+ **********/
+ .form-container {
+     background: darkgray;
+     display: table;
+     position: absolute;
+     height: 100%;
+     width: 100%;
+ }
+
+ .middle {
+     display: table-cell;
+     vertical-align: middle;
+ }
+
+.add-form {
+    padding: 50px;
+    background: white;
+    height: 60%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+}
+
+.form-title{
+  text-align:center;
+}
