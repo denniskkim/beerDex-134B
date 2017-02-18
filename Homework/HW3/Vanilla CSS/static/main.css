@@ -1,0 +1,116 @@
+body {
+    padding: 0;
+    margin: 0;
+    background: #FAF8E3;
+}
+
+.logo {
+    float: left;
+}
+
+li.nav {
+    display: inline;
+}
+
+a.nav {
+    text-decoration: none;
+    color: #FAF8E3;
+}
+
+nav {
+    background: #C33430;
+}
+
+ul.nav {
+    padding: 10px;
+    margin: 0px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+}
+#browse-list {
+    width: 100%;
+}
+div.stat-box {
+    display: inline-block;
+    width: 20%;
+    height: 20%;
+    vertical-align: top;
+    /* padding: 100px; */
+    border: 1px solid black;
+    padding: 10px;
+    margin: 1% 0.5% 0.5% 0.5%;
+}
+div.stat-box>img {
+    max-width: 100%;
+    max-height: 100%;
+}
+aside.filter {
+    margin-top: 50px;
+    margin-left: 5%;
+    padding: 10px;
+    border: 2px solid#BA8E51;
+    width: 10%;
+    height: 400px;
+    float: left;
+}
+
+.overflow {
+    height: 100px;
+    overflow-y: scroll;
+}
+
+.center {
+    margin-top: 50px;
+    margin-left: 25%;
+    width: 50%;
+    height: 600px;
+    overflow-y: scroll;
+}
+
+.card {
+    float: none;
+    border: 2px solid#BA8E51;
+    padding: 10px;
+    margin: auto;
+}
+
+.card-img {
+    height: 200px;
+    width: 150px;
+}
+
+.collection-list {
+    list-style: none;
+}
+
+.collection-item {
+    padding: 5px;
+}
+
+.add-form {
+    padding: 50px;
+    background: white;
+    height: 60%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+}
+
+.outer-container {
+    background: darkgray;
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.add-header {
+    vertical-align: top;
+}
