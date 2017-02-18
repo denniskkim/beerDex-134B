@@ -221,8 +221,14 @@ a.nav-item.is-tab.is-active {
 .form-title{
   text-align:center;
 }
-
-
+/**********
+ *  Trade  *
+ **********/
+ .trade-menu {
+  width: 100%;
+  display: block;
+  padding-right: 5%;
+}
 /**********
  *  Inbox  *
  **********/
