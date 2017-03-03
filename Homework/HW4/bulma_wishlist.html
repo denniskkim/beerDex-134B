@@ -5,44 +5,45 @@
     <title>BeerDex - HomePage</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="vendor/css/bulma.css">
-    <link rel="stylesheet" href="css/bulma_main.css">
+    <link rel="stylesheet" href="css/vendor/bulma_main.css">
 </head>
 
 
 <body>
-    <header>
-      <nav class="nav has-shadow">
-        <div class="container">
-          <div class="nav-left">
-            <a href="bulma_index.html" class="nav-item is-active">
-              <img src="img/tempIcon.png" alt="BeerDex Icon">
-              <br>BeerDex
-            </a>
-            <a href="bulma_collection.html" class="nav-item is-tab is-hidden-mobile ">Collection</a>
-            <a href="bulma_trades.html" class="nav-item is-tab is-hidden-mobile">Trades</a>
-            <a href="bulma_wishlist.html" class="nav-item is-tab is-hidden-mobile">Wish List</a>
-            <a href="bulma_stats.html" class="nav-item is-tab is-hidden-mobile">Statistics</a>
-          </div>
-          <span class="nav-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-          <div class="nav-right nav-menu">
-            <a class="nav-item is-tab is-hidden-tablet is-active">Home</a>
-            <a class="nav-item is-tab is-hidden-tablet">Features</a>
-            <a class="nav-item is-tab is-hidden-tablet">Pricing</a>
-            <a class="nav-item is-tab is-hidden-tablet">About</a>
-            <a class="nav-item is-tab" href="bulma_login.html">Log out</a>
-          </div>
+  <header>
+    <nav class="nav has-shadow">
+      <div class="container">
+        <div class="nav-left">
+          <a href="index.html" class="nav-item">
+            <img src="img/tempIcon.png" alt="BeerDex Icon">
+            <br>BeerDex
+          </a>
+          <a href="bulma_collection.html" class="nav-item is-tab is-hidden-mobile ">Collection</a>
+          <a href="bulma_trades.html" class="nav-item is-tab is-hidden-mobile">Trades</a>
+          <a href="bulma_wishlist.html" class="nav-item is-tab is-hidden-mobile is-active">Wish List</a>
+          <a href="bulma_stats.html" class="nav-item is-tab is-hidden-mobile">Statistics</a>
         </div>
-      </nav>
-    </header>
+        <span class="nav-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        <div class="nav-right nav-menu">
+          <a class="nav-item is-tab is-hidden-tablet ">Home</a>
+          <a class="nav-item is-tab is-hidden-tablet">Features</a>
+          <a class="nav-item is-tab is-hidden-tablet">Pricing</a>
+          <a class="nav-item is-tab is-hidden-tablet">About</a>
 
-    <main id="collection-list" class="columns">
+          <a class="nav-item is-tab" href="bulma_login.html">Log out</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+    <main id="collection-list" class="columns is-fluid">
         <!-- <div class="column is-2"> -->
-          <aside id="filter-bar" class="column is-2">
-            <div class="menu box">
+        <aside id="filter-bar" class="column is-2">
+          <div class="menu box">
               <ul class="checked-filters menu-list">
                   <li>Ballast Point</li>
                   <li>IPA</li>
@@ -73,10 +74,10 @@
               </div>
             </div>
           </aside>
-        <!-- </div> -->
+        </div>
 
-        <section id="collection-view " class="section column is-8" >
-            <h2 class="title is-2 heading">Welcome to BeerDex</h2>
+        <section id="collection-view" class="section column is-8" >
+            <h2 class="title is-2 heading">My Wishlist</h2>
             <ul class="collection-list">
                 <li class="collection-item">
                     <div class="card">
@@ -89,11 +90,14 @@
                                 <p class="title is-4"><b>Ballast Point</b></p>
                                 <p class="subtitle is-6"><b>Dorado</b> 	&#91;Double IPA&#93;</p>
                               </div>
+                              <div class="media-right">
+                                <button class="delete is-large"></button>
+                              </div>
                             </div>
                           </div>
                           <footer class="card-footer">
                             <a href="bulma_collectionForm.html" class="card-footer-item">Add to Collection</a>
-                            <a href="#" class="card-footer-item">Add to WishList</a>
+                            <a href="#" class="card-footer-item">Search for Trades</a>
                           </footer>
                         </div>
                     </div>
@@ -109,11 +113,14 @@
                               <p class="title is-4"><b>Ballast Point</b></p>
                               <p class="subtitle is-6"><b>Victory at Sea</b> &#91;Stout&#93;</p>
                             </div>
+                            <div class="media-right">
+                              <button class="delete is-large"></button>
+                            </div>
                             </div>
                           </div>
                           <footer class="card-footer">
                             <a href="bulma_collectionForm.html" class="card-footer-item">Add to Collection</a>
-                            <a href="#" class="card-footer-item">Add to WishList</a>
+                            <a href="#" class="card-footer-item">Search for Trades</a>
                           </footer>
                         </div>
                 </li>
@@ -128,11 +135,14 @@
                             <p class="title is-4"><b>Ballast Point</b></p>
                             <p class="subtitle is-6"><b>Sculpin</b> &#91;IPA&#93; </p>
                           </div>
+                          <div class="media-right">
+                            <button class="delete is-large"></button>
+                          </div>
                         </div>
                       </div>
                       <footer class="card-footer">
                         <a href="bulma_collectionForm.html" class="card-footer-item">Add to Collection</a>
-                        <a href="#" class="card-footer-item">Add to WishList</a>
+                        <a href="#" class="card-footer-item">Search for Trades</a>
                       </footer>
                     </div>
                 </li>

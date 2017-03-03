@@ -3,6 +3,6 @@
     "rules": "database.rules.json"
   },
   "hosting": {
-    "public": "HW2"
+    "public": "HW3/bulma"
   }
 }
