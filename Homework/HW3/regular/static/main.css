@@ -118,3 +118,192 @@ aside.filter {
 .add-header {
     vertical-align: top;
 }
+
+.trade-block {
+    border: 2px solid;
+    display: block;
+    margin: 1.5% 2.5% 1.5% 2.5%;
+    padding: 0 2% 2% 2%;
+
+}
+
+#trade-process {
+    text-align: center;
+    padding-top: 2%;
+}
+
+.button-padding {
+    padding: 0.5% 0.5% 0.5% 0.5%;
+    margin: 0 1% 0 0;
+}
+
+#trade-header {
+    margin: 0.5% 2% 1% 2%;
+}
+
+section.trade-block>form {
+}
+section.trade-block>form>input {
+    margin: 5px 0 5px 0;
+}
+section.trade-block>form>section>img {
+    margin-top: 5px;
+}
+#trade {
+    display: block;
+    margin: auto;
+    width: 50%;
+    padding-top: 3%;
+}
+#pseudo-menu {
+    display: block;
+    width: 90%;
+    text-align: right;
+    margin-top: 30px;
+}
+#pseudo-menu>input {
+    margin: 0 1% 0 1%;
+}
+#filter-bar {
+    display: block;
+    float: left;
+    width: 20%;
+    margin: 2% 2.5% 0 .5%;
+}
+#filter-bar>h2 {
+    text-align: center;
+    border: 1px solid;
+    padding: 5% 0 5% 0;
+}
+#filter-bar>fieldset {
+    width: 70%;
+    margin: auto;
+    padding-bottom: 3%;
+}
+#filter-bar>fieldset>label {
+    display: block;
+}
+#trade-view {
+    display: block;
+    position: absolute;
+    top: 15%;
+    left: 30%;
+    border: 2px solid;
+    width: 60%;
+    height: 80%;
+}
+.trade-item {
+    display: block;
+    padding-top: 3%;
+    padding-bottom: 8%;
+    padding-left: 3%;
+    margin: 1% 2.5% 1% 2.5%;
+    border-bottom: 1px solid;
+    height: 20%;
+}
+.trade-submit {
+    display: block;
+    float: right;
+}
+.trade-submit>button {
+    height: 100px;
+    width: 100px;
+}
+#trade-view>section>img {
+    display: block;
+    float: left;
+    margin: 0;
+    height: 150px;
+    width: 100px;
+    padding: 1.5% 3% 1.5% 0;
+}
+#trade-view>h2#trade-header{
+    margin: .5% 1% .5% 2%;
+}
+.trade-info {
+    display: inline-block;
+    width: 60%;
+    margin: auto;
+    height: 100%;
+}
+.trade-info>h2[id="looking-for"] {
+}
+.trade-info>h2[id="trading-for"] {
+}
+#side-menu {
+    position: absolute;
+    display: inline-block;
+    width: 200px;
+    border-right: 1px solid grey;
+    height: 95%;
+    padding: 10px
+}
+#side-menu>ul {
+    list-style: none;
+}
+#side-menu>h2 {
+    margin-left: 9%;
+    border-bottom: 1px solid;
+    width: 70%;
+}
+#side-menu>ul>li {
+    margin-left: -20px;
+    font-size: 16pt;
+    margin-top: 8%;
+    border: 1px solid;
+    width: 90%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+#message-display {
+    display: inline-block;
+    width: 100%%;
+    height: 100%;
+}
+#message-input {
+    display: block;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    height: 20%;
+    /* width: 100%; */
+
+}
+#message-input>textarea {
+    display: inline-block;
+    height: 80%;
+    width: 99.6%;
+    /* width: 100%; */
+
+}
+#message-input>button {
+    display: inline-block;
+    width: 100%;
+}
+#main-display {
+    height: 100%;
+    width: 100%;
+    /* width: 100%; */
+}
+#screen {
+    position: absolute;
+    left: 225px;
+    display: block;
+    width: 74%;
+    height: 80%;
+    border-bottom: 1px grey;
+    background-color: white;
+}
+.message {
+    padding: 10px;
+}
+.message>em {
+    font-size: 16pt;
+    color: blue;
+    padding-right: 20px;
+}
+.message>p {
+    display: inline;
+    font-size: 14pt;
+}
