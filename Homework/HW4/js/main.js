@@ -1,12 +1,12 @@
 var config = {
-    apiKey: "",
-    authDomain: "",
-    databaseURL: ""
+    apiKey: "AIzaSyDzjSixsprastrEyyrrGMrE5UiXa4JWW34",
+    authDomain: "beerdex-384f9.firebaseapp.com",
+    databaseURL: "https://beerdex-384f9.firebaseio.com"
 }
 
 var firebaseApp = firebase.initializeApp(config);
 var db = firebaseApp.database();
-var collectionRef = db.ref('collection');
+var collectionRef = db.ref('collections');
 
 function getImgURL(imgName) 
 {
@@ -65,30 +65,26 @@ function refreshCollectionView()
 }
 
 
-function initVue()
-{
-    var vm = new Vue({
-        el: '#collection',
-        firebase: {
-            collectionRef: db.ref('collection'),
+var vm = new Vue({
+    el: '#collectionList',
+    firebase : {
+        collection: db.ref('collections')
+    },
+    methods: {
+        addBeerToCollection: function(){
+            // var user;
+            this.$firebaseRefs.collection.push(this.beer);
+        },
+        deleteBeerFromCollection: function(beer)
+        {
+            // var user;
+            this.$firebaseRefs.collection.child(beer[".key"]).remove();
+        },
+        updateBeerToCollection: function()
+        {
+            // var user;
+            this.$firebaseRefs.collection.child(this.beer[key]).update(this.beer);
         }
-        methods: {
-            addBeerToCollection(){
-                var user; 
-                this.$firebaseRefs.collectionRef.child(user).push(this.beer);
-            };
-            deleteBeerFromCollection()
-            {
-                var user;
-                this.$firebaseRefs.collectionRef.child(user).child(this.beer[key]).remove();
-            };
-            updateBeerToCollection()
-            {
-                var user;
-                this.$firebaseRefs.collectionRef.child(user).child(this.beer[key]).update(this.beer);
-            };
-        }
+    }
 
-    })
-}
-
+});
