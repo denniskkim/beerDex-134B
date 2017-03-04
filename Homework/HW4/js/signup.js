@@ -6,8 +6,6 @@ var config = {
   messagingSenderId: "728464289732"
 };
 
-// firebase.initializeApp(config);
-
 var userRef = firebase.database().ref('user');
 
 var signUpVM = new Vue({
