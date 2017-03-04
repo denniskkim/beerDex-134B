@@ -112,25 +112,32 @@ function getImgURL(imgName)
 
 console.log(firebase.auth().currentUser)
 
-var collectionList = new Vue({
-    el: '#collectionList',
-    firebase : {
-        collection: collectionRef.orderByChild("UID").equalTo(firebase.auth().currentUser != null ? firebase.auth().currentUser.uid : "")
-    },
-    methods: {
-        deleteBeerFromCollection: function(beer)
-        {
-            // var user;
-            this.$firebaseRefs.collection.child(beer[".key"]).remove();
-        },
-        updateBeerToCollection: function()
-        {
-            // var user;
-            this.$firebaseRefs.collection.child(this.beer[key]).update(this.beer);
-        }
-    }
 
-});
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        var collectionList = new Vue({
+            el: '#collectionList',
+            firebase : {
+                collection: collectionRef.orderByChild("UID").equalTo(firebase.auth().currentUser != null ? firebase.auth().currentUser.uid : "")
+            },
+            methods: {
+                deleteBeerFromCollection: function(beer)
+                {
+                    // var user;
+                    this.$firebaseRefs.collection.child(beer[".key"]).remove();
+                },
+                updateBeerToCollection: function()
+                {
+                    // var user;
+                    this.$firebaseRefs.collection.child(this.beer[key]).update(this.beer);
+                }
+            }
+
+        });
+    }
+})
+
+
 
 var collectionForm = new Vue({
     el: "#addBeerForm",
