@@ -12,6 +12,10 @@ li.nav {
     display: inline;
 }
 
+/*li.nav:last-child{
+  float: right;
+}*/
+
 a.nav {
     text-decoration: none;
     color: #FAF8E3;
@@ -114,6 +118,7 @@ aside.filter {
 .add-header {
     vertical-align: top;
 }
+
 .trade-block {
     border: 2px solid;
     display: block;
