@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="vendor/css/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/bulma.css">
     <link rel="stylesheet" href="css/vendor/bulmaMain.css">
+    <script src="https://unpkg.com/vue@2.2.1"></script>
+    <script src="https://gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+    <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
 </head>
 
 <body>
@@ -19,29 +22,29 @@
                         <br>BeerDex
                     </a>
                 </div>
-                <div class="nav-right">
-                    <form action="#" class="nav-login-container">
+                <div id="login-form" class="nav-right">
+                    <form class="nav-login-container" v-on:submit.prevent="checkUser">
                         <div class="nav-login">
-                            <label for="#" class="label label-login">Login</label>
+                            <label for="login" class="label label-login">Login</label>
                             <div class="control">
-                                <input type="email" name="login">
+                                <input v-model="user.username" type="email" name="login">
                             </div>
                         </div>
                         <div class="nav-login">
-                            <label for="#" class="label label-login">Password</label>
+                            <label for="login-pass" class="label label-login">Password</label>
                             <div class="control">
-                                <input type="password" name="login-pass">
+                                <input v-model="user.password"type="password" name="login-pass">
                             </div>
                         </div>
                         <div class="nav-login">
-                            <a href="index.html">
-                                <input type="button" value="Login">
-                            </a>
+                            <input type="submit" value="Login">
                         </div>
                     </form>
                 </div>
+
             </div>
-            </div>
+
+          </div>
 
     </header>
     <main id="login-main">
@@ -82,38 +85,42 @@
             <section id="signup-container" class="column is-half">
                 <h4 class="title is-3">Sign Up Now!</h4>
                 <br>
-                <form>
+                <form v-on:submit.prevent="createUser">
                     <div class="control">
-                        <input class="input is-medium is-inline is-inline-half" type="text" placeholder="First Name">
-                        <input class="input is-medium is-inline is-inline-half" type="text" placeholder="Last Name">
+                        <input v-model="newUser.firstName" class="input is-medium is-inline is-inline-half" type="text" placeholder="First Name">
+                        <input v-model="newUser.lastName" class="input is-medium is-inline is-inline-half" type="text" placeholder="Last Name">
                     </div>
 
                     <div class="control">
-                        <input class="input is-medium" type="email" placeholder="Email Address">
+                        <input v-model="newUser.email" class="input is-medium" type="email" placeholder="Email Address">
                     </div>
                     <div class="control">
-                        <input class="input is-medium" type="email" placeholder="Confirm Email Address">
+                        <input v-on:change="emailConfirm" v-model="confirmEmail" class="input is-medium" type="email" placeholder="Confirm Email Address">
+                        <p v-show="validEmail">Email Address does not match!</p>
                     </div>
                     <div class="control">
-                        <input class="input is-medium" type="password" placeholder="New Password">
+                        <input v-model="newUser.password" class="input is-medium" type="password" placeholder="New Password">
                     </div>
+                    <!-- Do some computed thing here -->
 
                     <section id="birthday">
                         <label class="label">Birthday</label>
                         <div class="control">
-                            <input class="input is-medium is-inline" id="is-inline-third" type="text" placeholder="Month">
-                            <input class="input is-medium is-inline" id="is-inline-third" type="text" placeholder="Day">
-                            <input class="input is-medium is-inline" id="is-inline-third" type="text" placeholder="Year">
+                            <input v-model="newUser.birth.month" class="input is-medium is-inline" id="is-inline-third" type="text" placeholder="Month">
+                            <input v-model="newUser.birth.day" class="input is-medium is-inline" id="is-inline-third" type="text" placeholder="Day">
+                            <input v-on:change="validateAge" v-model="newUser.birth.year" class="input is-medium is-inline" id="is-inline-third" type="text" placeholder="Year">
+                            <p v-show="validAge">Sorry, you must be 21+ to sign up! Drink Responsibility!</p>
                         </div>
                     </section>
                     <br>
-                    <a href="index.html">
-                        <button class="button is-success is-focused" type="button">Create Account</button>
-                    </a>
+                    <button class="button is-success is-focused" type="submit">Create Account</button>
                 </form>
             </section>
         </div>
     </main>
+
+    <script src="./js/login.js"></script>
+    <script src="./js/signup.js"></script>
 </body>
 
 </html>

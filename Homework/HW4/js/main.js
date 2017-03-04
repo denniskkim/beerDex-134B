@@ -1,7 +1,8 @@
 var config = {
     apiKey: "AIzaSyDzjSixsprastrEyyrrGMrE5UiXa4JWW34",
     authDomain: "beerdex-384f9.firebaseapp.com",
-    databaseURL: "https://beerdex-384f9.firebaseio.com"
+    databaseURL: "https://beerdex-384f9.firebaseio.com",
+    storageBucket: 'gs://beerdex-384f9.appspot.com'
 }
 
 var firebaseApp = firebase.initializeApp(config);
@@ -10,10 +11,9 @@ var collectionRef = db.ref('collections');
 
 function getImgURL(imgName) 
 {
-    var storageRef = firebaseApp.storage();
-    var starsRef = storageRef.child('img/' + imgName);
+    var bucketref = firebase.storage().ref().child('public/img/' + imgName);
     var return_URL = null;
-    starsRef.getDownloadURL().then(function(url) {
+    bucketref.getDownloadURL().then(function(url) {
         return_URL = url;
     }).catch(function(err)
     {
@@ -34,6 +34,7 @@ function getImgURL(imgName)
     // Check that return_URL is not null 
     return return_URL;
 }
+
 
 // Create
 function addBeerToCollection(userID,beerObject)
