@@ -11,13 +11,12 @@
       <script src="https://gstatic.com/firebasejs/3.5.2/firebase.js"></script>
       <!-- VueFire -->
       <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
-      <script src="js/main.js"></script>
   </head>
   <body>
     <main>
       <div class="form-container">
         <div class="middle">
-          <div class="add-form" id="collectionForm">
+          <div class="add-form" id="addBeerForm">
                 <h3 class="title is-3 form-title">Add Beer to Collection</h3>
                 <label class="label">Brewery</label>
                 <p class="control">
@@ -31,36 +30,10 @@
                 <p class="control">
                   <input class="input" type="text" placeholder="IPA, Stout, Pale Ale" v-model="beerStyle">
                 </p>
-                <!--<div class="control-label">-->
-                    <!--<label class="label">Flavors</label>-->
-                <!--</div>-->
-
-                <!--<span class="tag is-dark"> Coffee <button class="delete is-small"></button> </span>-->
-                <!--<span class="tag is-dark"> Vanilla <button class="delete is-small"></button></span>-->
-                <!--<label class="label">Rating</label>-->
-                <!--<p class="control">-->
-                  <!--<span class="select">-->
-                    <!--<select>-->
-                      <!--<option></option>-->
-                      <!--<option>5</option>-->
-                      <!--<option>4</option>-->
-                      <!--<option>3</option>-->
-                      <!--<option>2</option>-->
-                      <!--<option>1</option>-->
-                    <!--</select>-->
-                  <!--</span>-->
-                <!--</p>-->
-                <!--<p class="control">-->
-                  <!--<label class="checkbox">-->
-                    <!--Need more?-->
-                    <!--&nbsp;-->
-                    <!--<input type="checkbox">-->
-                  <!--</label>-->
-                <!--</p>-->
                 <label class="label">Quantity</label>
                 <p class="control">
-                  <span class="select" v-model="quantity">
-                    <select>
+                  <span class="select">
+                    <select v-model="quantity">
                       <option>1</option>
                       <option>2</option>
                       <option>3</option>
@@ -72,7 +45,7 @@
 
                 <div class="control is-grouped">
                   <p class="control">
-                    <input class="button is-primary" type="submit" value="Submit">
+                    <input class="button is-primary" type="submit" v-on:click="addBeerToCollection">
                   </p>
                   <p class="control">
                     <button class="button is-link">Cancel</button>
@@ -82,5 +55,8 @@
         </div>
       </div>
     </main>
+    <script src="js/main.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/signup.js"></script>
   </body>
 </html>
