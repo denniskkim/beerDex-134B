@@ -1,9 +1,9 @@
 var config = {
-  apiKey: "AIzaSyCoNBix4jgEGBRPIEve6fV999PyqrEAQJY",
-  authDomain: "cse134-beerdex-hw2.firebaseapp.com",
-  databaseURL: "https://cse134-beerdex-hw2.firebaseio.com",
-  storageBucket: "cse134-beerdex-hw2.appspot.com",
-  messagingSenderId: "981656805275"
+  apiKey: "AIzaSyDzjSixsprastrEyyrrGMrE5UiXa4JWW34",
+  authDomain: "beerdex-384f9.firebaseapp.com",
+  databaseURL: "https://beerdex-384f9.firebaseio.com",
+  storageBucket: "beerdex-384f9.appspot.com",
+  messagingSenderId: "728464289732"
 };
 
 // firebase.initializeApp(config);
@@ -37,10 +37,7 @@ var signUpVM = new Vue({
         firebase.auth().createUserWithEmailAndPassword(self.newUser.email,self.newUser.password)
         .then(function(user){
           console.log("Success");
-          console.log("What is user");
-          console.log(user);
-          console.log("this is the current user");
-          console.log(firebase.auth().currentUser);
+          window.location = 'index.html';
         },
         function(error){
           console.log("Failure");
