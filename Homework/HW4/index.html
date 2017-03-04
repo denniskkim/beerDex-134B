@@ -6,6 +6,13 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/bulma.css">
     <link rel="stylesheet" href="css/vendor/bulmaMain.css">
+    <link rel="stylesheet" href="css/vendor/bulmaMain.css">
+    <!-- Vue -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- Firebase -->
+    <script src="https://gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+    <!-- VueFire -->
+    <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
 </head>
 
 
@@ -73,10 +80,14 @@
                 </div>
             </div>
         </aside>
+
         <!-- </div> -->
 
         <section id="collection-view " class="section column is-8">
-            <h2 class="title is-2 heading">Welcome to BeerDex</h2>
+            <span>
+               <h2 class="title is-2 heading">Welcome to BeerDex</h2>
+                <a href="collectionForm.html" class="button is-primary">Add to Collection</a>
+            </span>
             <ul class="collection-list">
                 <li class="collection-item">
                     <div class="card">

@@ -65,16 +65,12 @@ function refreshCollectionView()
 }
 
 
-var vm = new Vue({
+var collectionList = new Vue({
     el: '#collectionList',
     firebase : {
         collection: db.ref('collections')
     },
     methods: {
-        addBeerToCollection: function(){
-            // var user;
-            this.$firebaseRefs.collection.push(this.beer);
-        },
         deleteBeerFromCollection: function(beer)
         {
             // var user;
@@ -88,3 +84,16 @@ var vm = new Vue({
     }
 
 });
+
+var collectionForm = new Vue({
+    el: "#collectionForm",
+    firebase: {
+        collection: db.ref('collection')
+    },
+    methods: {
+        addBeerToCollection: function(beer)
+        {
+            this.$firebaseRefs.collection.push(beer);
+        }
+    }
+})
