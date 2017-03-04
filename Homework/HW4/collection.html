@@ -6,6 +6,12 @@
     <meta charset="UTF-8">
       <link rel="stylesheet" href="css/bulma.css">
     <link rel="stylesheet" href="css/vendor/bulmaMain.css">
+    <!-- Vue -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- Firebase -->
+    <script src="https://gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+    <!-- VueFire -->
+    <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
 </head>
 
 
@@ -77,93 +83,92 @@
 
         <section id="collection-view" class="section column is-8" >
             <h2 class="title is-2 heading">My Collection</h2>
-            <ul class="collection-list">
-                <li class="collection-item">
-                    <div class="card">
-                        <figure class="cardImage" >
-                          <img class="card-img" src="img/ballast-collection1.jpg" alt="ballast Dorado">
-                        </figure>
-                        <div class="card-content">
-                            <div class="media">
-                              <div class="media-content">
-                                <p class="title is-4"><b>Ballast Point</b></p>
-                                <p class="subtitle is-6"><b>Dorado</b> 	&#91;Double IPA &#93;</p>
-                                <label>Quantity:
-                                  <select name="quantity" class="quantity_val">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5+</option>
-                                  </select>
-                                </label>
-                              </div>
-                              <div class="media-right">
-                                <button class="delete is-large"></button>
-                              </div>
+            <div id='collectionList'>
+                <ul class="collection-list">
+                    <li class="collection-item" v-for="beer in collection">
+                        <div class="card">
+                            <figure class="cardImage" >
+                                <img class="card-img" :src="beer.img" :alt="beer.imgDescription">
+                            </figure>
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-content">
+                                        <p class="title is-4"><b>{{ beer.breweryName }}</b></p>
+                                        <p class="subtitle is-6"><b>{{ beer.beerName }}</b> {{beer.beerStyle}}</p>
+                                        <p>You have {{ beer.quantity }} of these.</p>
+                                    </div>
+                                    <div class="media-right">
+                                        <button class="delete is-large" @click="deleteBeerFromCollection(beer)"></button>
+                                    </div>
+                                </div>
                             </div>
-                          </div>
                         </div>
-                    </div>
-                </li>
-                <li class="collection-item">
-                    <div class="card">
-                        <figure class="cardImage">
-                          <img class="card-img" src="img/victory-at-sea.jpg" alt="victory-at-sea">
-                        </figure>
-                        <div class="card-content">
-                          <div class="media">
-                            <div class="media-content">
-                              <p class="title is-4"><b>Ballast Point</b></p>
-                              <p class="subtitle is-6"><b>Victory at Sea</b> &#91;Stout &#93;</p>
-                              <label>Quantity:
-                                <select name="quantity" class="quantity_val">
-                                  <option value="1">1</option>
-                                  <option value="2">2</option>
-                                  <option value="3">3</option>
-                                  <option value="4">4</option>
-                                  <option value="5">5+</option>
-                                </select>
-                              </label>
-                            </div>
-                            <div class="media-right">
-                              <button class="delete is-large"></button>
-                            </div>
-                            </div>
-                          </div>
-                        </div>
-                </li>
-                <li class="collection-item">
-                    <div class="card">
-                      <figure class="cardImage">
-                        <img class="card-img" src="img/ballast-collection2.jpg" alt="Sculpin">
-                      </figure>
-                      <div class="card-content">
-                        <div class="media">
-                          <div class="media-content">
-                            <p class="title is-4"><b>Ballast Point</b></p>
-                            <p class="subtitle is-6"><b>Sculpin</b> &#91;IPA&#93; </p>
-                            <label>Quantity:
-                              <select name="quantity" class="quantity_val">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5+</option>
-                              </select>
-                            </label>
-                          </div>
-                          <div class="media-right">
-                            <button class="delete is-large"></button>
-                          </div>
-                          </div>
-                        </div>
-                      </div>
-                </li>
-            </ul>
-        </section>
-    </main>
-    <!-- Use aside tag for filter sidebar -->
+                    </li>
+                </ul>
+            </div>
+
+
+            <!--</div>-->
+
+                <!--<li class="collection-item">-->
+                    <!--<div class="card">-->
+                        <!--<figure class="cardImage">-->
+                          <!--<img class="card-img" src="img/victory-at-sea.jpg" alt="victory-at-sea">-->
+                        <!--</figure>-->
+                        <!--<div class="card-content">-->
+                          <!--<div class="media">-->
+                            <!--<div class="media-content">-->
+                              <!--<p class="title is-4"><b>Ballast Point</b></p>-->
+                              <!--<p class="subtitle is-6"><b>Victory at Sea</b> &#91;Stout &#93;</p>-->
+                              <!--<label>Quantity:-->
+                                <!--<select name="quantity" class="quantity_val">-->
+                                  <!--<option value="1">1</option>-->
+                                  <!--<option value="2">2</option>-->
+                                  <!--<option value="3">3</option>-->
+                                  <!--<option value="4">4</option>-->
+                                  <!--<option value="5">5+</option>-->
+                                <!--</select>-->
+                              <!--</label>-->
+                            <!--</div>-->
+                            <!--<div class="media-right">-->
+                              <!--<button class="delete is-large"></button>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                          <!--</div>-->
+                        <!--</div>-->
+                <!--</li>-->
+                <!--<li class="collection-item">-->
+                    <!--<div class="card">-->
+                      <!--<figure class="cardImage">-->
+                        <!--<img class="card-img" src="img/ballast-collection2.jpg" alt="Sculpin">-->
+                      <!--</figure>-->
+                      <!--<div class="card-content">-->
+                        <!--<div class="media">-->
+                          <!--<div class="media-content">-->
+                            <!--<p class="title is-4"><b>Ballast Point</b></p>-->
+                            <!--<p class="subtitle is-6"><b>Sculpin</b> &#91;IPA&#93; </p>-->
+                            <!--<label>Quantity:-->
+                              <!--<select name="quantity" class="quantity_val">-->
+  <!--<option value="1">1</option>-->
+  <!--<option value="2">2</option>-->
+  <!--<option value="3">3</option>-->
+  <!--<option value="4">4</option>-->
+  <!--<option value="5">5+</option>-->
+  <!--</select>-->
+  <!--</label>-->
+  <!--</div>-->
+  <!--<div class="media-right">-->
+  <!--<button class="delete is-large"></button>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</li>-->
+  <!--</ul>-->
+  </section>
+  </main>
+  <!-- Use aside tag for filter sidebar -->
+  <script src="js/main.js"></script>
 </body>
 
 </html>

@@ -1,1 +1,91 @@
+var config = {
+    apiKey: "AIzaSyDzjSixsprastrEyyrrGMrE5UiXa4JWW34",
+    authDomain: "beerdex-384f9.firebaseapp.com",
+    databaseURL: "https://beerdex-384f9.firebaseio.com",
+    storageBucket: 'gs://beerdex-384f9.appspot.com'
+}
 
+var firebaseApp = firebase.initializeApp(config);
+var db = firebaseApp.database();
+var collectionRef = db.ref('collections');
+
+function getImgURL(imgName) 
+{
+    var bucketref = firebase.storage().ref().child('public/img/' + imgName);
+    var return_URL = null;
+    bucketref.getDownloadURL().then(function(url) {
+        return_URL = url;
+    }).catch(function(err)
+    {
+        switch (error.code) {
+            case 'storage/object_not_found':
+                break; // File doesn't exist
+
+            case 'storage/unauthorized': // User doesn't have permission to access the object
+                break;
+
+            case 'storage/canceled':
+                break; // User canceled the upload
+
+            case 'storage/unknown':
+                break; // Unknown error occurred, inspect the server response
+        }
+    });
+    // Check that return_URL is not null 
+    return return_URL;
+}
+
+
+// Create
+function addBeerToCollection(userID,beerObject)
+{
+    collectionRef.child(userID).push(beerKey,beerObject);
+}
+
+// Read
+function getCollection(userID)
+{
+    return collectionRef.child(userID);
+}
+
+// Delete 
+function deleteBeerFromCollection(userID,beerKey,beerObject)
+{
+    collectionRef.child(userID).child(beerObject['key']).remove();
+}
+
+// Update
+function updateBeerToCollection(userID,beerKey,beerObject)
+{
+    collectionRef.child(userID).child(beerKey).update(beerObject);
+}
+
+function refreshCollectionView()
+{
+
+}
+
+
+var vm = new Vue({
+    el: '#collectionList',
+    firebase : {
+        collection: db.ref('collections')
+    },
+    methods: {
+        addBeerToCollection: function(){
+            // var user;
+            this.$firebaseRefs.collection.push(this.beer);
+        },
+        deleteBeerFromCollection: function(beer)
+        {
+            // var user;
+            this.$firebaseRefs.collection.child(beer[".key"]).remove();
+        },
+        updateBeerToCollection: function()
+        {
+            // var user;
+            this.$firebaseRefs.collection.child(this.beer[key]).update(this.beer);
+        }
+    }
+
+});
