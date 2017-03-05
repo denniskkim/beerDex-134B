@@ -17,7 +17,15 @@
       <div class="form-container">
         <div class="middle">
           <div class="add-form" id="addBeerForm">
-                <h3 class="title is-3 form-title">Add Beer to Collection</h3>
+              <h3 class="title is-3 form-title">Add Beer to Collection</h3>
+              <div v-if="!image">
+                  <h2>Select an image</h2>
+                  <input type="file" @change="onFileChange">
+              </div>
+              <div v-else>
+                  <img :src="image" />
+                  <button @click="removeImage">Remove image</button>
+              </div>
                 <label class="label">Brewery</label>
                 <p class="control">
                   <input class="input" type="text" placeholder="Ballast Point, Stone, Ale Smith" v-model="breweryName">
@@ -56,7 +64,5 @@
       </div>
     </main>
     <script src="js/main.js"></script>
-    <script src="js/login.js"></script>
-    <script src="js/signup.js"></script>
   </body>
 </html>

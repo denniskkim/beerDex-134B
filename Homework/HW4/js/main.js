@@ -2,16 +2,17 @@ var config = {
     apiKey: "AIzaSyDzjSixsprastrEyyrrGMrE5UiXa4JWW34",
     authDomain: "beerdex-384f9.firebaseapp.com",
     databaseURL: "https://beerdex-384f9.firebaseio.com",
-    storageBucket: 'gs://beerdex-384f9.appspot.com'
-}
+    storageBucket: "beerdex-384f9.appspot.com",
+    messagingSenderId: "728464289732"
+};
+
 
 var firebaseApp = firebase.initializeApp(config);
 var db = firebaseApp.database();
 var collectionRef = db.ref('collections');
+var userRef = db.ref('user');
+var beerDatabaseRef = db.ref('beers');
 
-
-
-var userRef = firebase.database().ref('user');
 
 var signUpVM = new Vue({
     el:'#signup-container',
@@ -110,8 +111,30 @@ function getImgURL(imgName)
     return return_URL;
 }
 
-console.log(firebase.auth().currentUser)
-
+var loginVM = new Vue({
+    el: '#login-form', data: {
+        user: {
+            username: '',
+            password: ''
+        }
+    },
+    firebase : {
+        userDB: userRef
+    },
+    methods : {
+        checkUser : function(){
+            var self = this;
+            firebase.auth().signInWithEmailAndPassword(self.user.username, self.user.password)
+                .then(function(user){
+                        console.log("Success");
+                        window.location = 'index.html';
+                    },
+                    function(error){
+                        console.log("Error");
+                    });
+        }
+    }
+});
 
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -142,6 +165,8 @@ firebase.auth().onAuthStateChanged(function(user) {
 var collectionForm = new Vue({
     el: "#addBeerForm",
     data: {
+        errorMessage: "",
+        image: "",
         breweryName: "",
         beerName: "",
         beerStyle: "",
@@ -151,21 +176,114 @@ var collectionForm = new Vue({
         collection: collectionRef
     },
     methods: {
-        addBeerToCollection: function()
-        {
+        onFileChange: function(e) {
+            var files = e.target.files || e.dataTransfer.files;
+            if (!files.length)
+                return;
+            this.createImage(files[0]);
+        },
+        createImage: function(file) {
+            var image = new Image();
+            var reader = new FileReader();
+            var vm = this;
+
+            reader.onload = (e) => {
+                vm.image = e.target.result;
+            }
+
+            reader.readAsDataURL(file);
+        },
+        removeImage: function (e) {
+            this.image = '';
+        },
+        addBeerToCollection: function() {
             var beerToAdd = {
                 UID: firebase.auth().currentUser.uid,
                 breweryName: this.breweryName,
                 beerName: this.beerName,
                 beerStyle: this.beerStyle,
-                quantity: this.quantity
+                quantity: parseInt(this.quantity),
+                image: this.image
             };
-            console.log(beerToAdd);
-            this.$firebaseRefs.collection.push(beerToAdd);
+            var valid = beerToAdd.UID.length && beerToAdd.breweryName.length &&
+                beerToAdd.beerStyle.length && beerToAdd.quantity && beerToAdd.image.length;
+            if (valid) {
+                beerDatabaseRef.push(beerToAdd).then(function(snapshot) {
+                    console.log(snapshot)
+                    beerToAdd.beerID = snapshot.key;
+                    collectionRef.push(beerToAdd);
+                    deactivateModal('addCollectionModal');
+                    this.errorMessage = "";
+
+                });
+            } else {
+                this.errorMessage = "Please fill out all fields.";
+            }
         }
+    }
+});
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        var databaseItem = new Vue({
+            el: "#databaseList",
+            firebase: {
+                database: beerDatabaseRef
+            },
+            methods: {
+                addBeerToCollection: function (beer) {
+                    var beerToAdd = {
+                        UID: firebase.auth().currentUser.uid,
+                        breweryName: beer.breweryName,
+                        beerName: beer.beerName,
+                        beerStyle: beer.beerStyle,
+                        quantity: 1,
+                        image: beer.image,
+                        beerID: beer[".key"]
+                    }
+                    var valid = beerToAdd.UID.length && beerToAdd.breweryName.length &&
+                        beerToAdd.beerStyle.length && beerToAdd.quantity && beerToAdd.image.length;
+                    if (valid) {
+                        collectionRef.orderByChild("beerID").equalTo(beerToAdd.beerID).once('value', function(snapshot) {
+                            var snapVal = snapshot.val();
+                            for (var property in snapVal) {
+                                if (snapVal.hasOwnProperty(property)) {
+                                    beerToAdd.quantity = snapVal[property].quantity + beerToAdd.quantity;
+                                    collectionRef.child(property).remove();
+                                }
+                            }
+                        }).then(function() {
+                            console.log(beerToAdd);
+                            collectionRef.push(beerToAdd);
+                        });
+                    } else {
+                        console.log("Error")
+                    }
+                }
+            }
+        })
     }
 })
 
-var filterByCurrentUser = function(firebaseCollection) {
-    console.log()
+Vue.component('modal', {
+    template: '#modal-template'
+})
+
+// start app
+new Vue({
+    el: '#app',
+    data: {
+        showModal: false
+    }
+})
+
+var activateModal = function(modalID) {
+    var modal = document.getElementById(modalID);
+    modal.className += " is-active";
+};
+
+var deactivateModal = function(modalID) {
+    var modal = document.getElementById(modalID);
+    modal.className = modal.className.replace(" is-active", "");
 }
+
