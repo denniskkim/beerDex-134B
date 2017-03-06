@@ -4,7 +4,8 @@
 <head>
     <title>BeerDex - HomePage</title>
     <meta charset="UTF-8">
-      <link rel="stylesheet" href="css/bulma.css">
+    <link rel="stylesheet" href="css/starability.min.css">
+    <link rel="stylesheet" href="css/bulma.css">
     <link rel="stylesheet" href="css/vendor/bulmaMain.css">
     <!-- Vue -->
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
@@ -88,13 +89,14 @@
                     <li class="collection-item" v-for="beer in collection">
                         <div class="card">
                             <figure class="cardImage" >
-                                <img class="card-img" :src="beer.img" :alt="beer.imgDescription">
+                                <img class="card-img" :src="beer.image" :alt="beer.imgDescription">
                             </figure>
                             <div class="card-content">
                                 <div class="media">
                                     <div class="media-content">
                                         <p class="title is-4"><b>{{ beer.breweryName }}</b></p>
                                         <p class="subtitle is-6"><b>{{ beer.beerName }}</b> {{beer.beerStyle}}</p>
+                                        <p><b>ABV</b> {{beer.ABV}}%</p>
                                         <p>You have {{ beer.quantity }} of these.</p>
                                     </div>
                                     <div class="media-right">
@@ -169,8 +171,6 @@
   </main>
   <!-- Use aside tag for filter sidebar -->
   <script src="js/main.js"></script>
-  <script src="js/login.js"></script>
-  <script src="js/signup.js"></script>
 </body>
 
 </html>
