@@ -1,0 +1,316 @@
+header {
+    margin-bottom: 10px;
+    background-color: #C33430;
+}
+
+html,
+.section {
+    background-color: #faf8e3;
+}
+
+
+/* faf8e3;
+/*************
+ *  Nav-Bar  *
+ *************/
+
+.nav {
+    background-color: #C33430;
+}
+
+.nav-center {
+    max-width: 960px;
+}
+
+.nav-item {
+    font-size: 16px;
+}
+
+li .nav-item {
+    padding-top: 20px;
+}
+
+.nav-item a.is-tab.is-active,
+a.nav-item.is-tab.is-active {
+    border-bottom: 3px solid #ba8e51;
+    color: #ba8e51;
+}
+
+
+/****************
+ * Main content *
+ ****************/
+
+#collection-list,
+#filter-bar {
+    margin: 20px;
+}
+
+#filter-bar {
+    min-width: 190px;
+}
+
+.nav a,
+.label-login {
+    color: #faf8e3;
+}
+
+.checked-filters li {
+    list-style-type: square;
+    margin-left: 5px;
+}
+
+.menu-list {
+    /*margin-left: 6px;*/
+    display: inline-block;
+}
+
+
+/**************
+ * collection *
+ **************/
+
+.cardImage {
+    text-align: center;
+    background-color: #4B5048;
+    padding-top: 10px;
+    padding-bottom: 6px;
+}
+
+.collection-view {
+    max-width: 960px;
+}
+
+.heading {
+    text-align: center;
+}
+
+.card-img {
+    max-width: 200px;
+    max-height: 307px;
+}
+
+@media screen and (max-width: 1139px) {
+    .collection-list {
+        margin: 0 auto;
+        text-align: center;
+    }
+}
+
+.card {
+    background-color: #EBE9DC;
+}
+
+.menu-labels {
+    color: #7a7a7a;
+    font-size: 0.8em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    width: auto;
+}
+
+.overflow {
+    overflow: auto;
+}
+
+.collection-item {
+    display: inline-block;
+    margin: 15px;
+}
+
+.card {
+    width: 280px;
+}
+
+.card-footer {
+    border-top: 1px solid #555952;
+}
+
+.card-footer-item {
+    color: black;
+}
+
+.card-footer-item:not(:last-child) {
+    border-right: 1px solid #555952;
+}
+
+
+/***************
+ *  Login Page *
+ ***************/
+
+.nav-container,
+#login-main,
+#login-nav {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.nav-login-container {
+    margin-top: 10px;
+}
+
+.label {
+    text-align: left;
+}
+
+.label:not(:last-child) {
+    margin-bottom: 0px;
+}
+
+.nav-login {
+    display: inline-block;
+}
+
+#app-description,
+#signup-container {
+    padding-top: 70px;
+}
+
+.input.is-inline-half {
+    width: 49.5%;
+}
+
+#is-inline-third {
+    width: 32.3%;
+}
+
+#birthday {
+    margin-top: 25px;
+}
+
+.app-feature-content {
+    margin: 25px 0;
+}
+
+.icon,
+.feature-detail {
+    display: inline-block;
+}
+
+.feature-detail {
+    padding-top: 7px;
+    padding-left: 15px;
+    font-size: 15px;
+}
+
+
+/**********
+ *  Form  *
+ **********/
+
+.form-container {
+    background: darkgray;
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.add-form {
+    padding: 50px;
+    background: white;
+    height: 70%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+}
+
+.trade-form {
+    padding: 50px;
+    background: white;
+    height: 40%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+}
+
+.form-title {
+    text-align: center;
+}
+
+
+/**********
+ *  Trade  *
+ **********/
+
+.trade-menu {
+    width: 100%;
+    display: block;
+    padding-right: 5%;
+}
+
+
+/**********
+ *  Inbox  *
+ **********/
+
+.unread-messages {
+    margin-left: 20%;
+    font-size: 13pt;
+    font-weight: bold;
+}
+
+.read-messages {
+    margin-left: 20%;
+    font-size: 12pt;
+}
+
+.unread-messages>li {
+    /* padding-top: 2.5px; */
+    /* padding-bottom: 2.5px; */
+    padding-top: 8%;
+    padding-bottom: 8%;
+}
+
+.read-messages>li {
+    padding-top: 8%;
+    padding-bottom: 8%;
+}
+
+#inbox-side {
+    margin: 1% 1% 1% 1%;
+}
+
+.send-message {}
+
+.message-display {
+    padding: 2% 2% 2% 2%;
+}
+
+.message-sender {
+    display: inline !important;
+    color: blue;
+}
+
+p.message-text-user {
+    margin-right: 3%;
+    display: inline-block;
+    font-size: 12pt;
+}
+
+p.message-text-sender {
+    margin-left: 3%;
+    display: inline-block;
+    font-size: 12pt;
+}
+
+ul.messages-list>li {
+    padding-top: 1%;
+    padding-bottom: 3%;
+}
+
+.user-text {
+    display: inline;
+}
+
+.user-image {
+    display: inline-block;
+}

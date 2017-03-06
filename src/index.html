@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>BeerDex - HomePage</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/starability.min.css">
+    <link rel="stylesheet" href="css/bulma.css">
+    <link rel="stylesheet" href="css/vendor/bulmaMain.css">
+    <link rel="stylesheet" href="css/vendor/bulmaMain.css">
+
+    <!-- Vue -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- Firebase -->
+    <script src="https://gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+    <!-- VueFire -->
+    <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
+</head>
+
+
+<body>
+    <header>
+        <nav class="nav has-shadow">
+            <div class="container">
+                <div class="nav-left">
+                    <a href="index.html" class="nav-item is-active">
+                        <img src="img/tempIcon.png" alt="BeerDex Icon">
+                        <br>BeerDex
+                    </a>
+                    <a href="collection.html" class="nav-item is-tab is-hidden-mobile ">Collection</a>
+                    <a href="trades.html" class="nav-item is-tab is-hidden-mobile">Trades</a>
+                    <a href="wishlist.html" class="nav-item is-tab is-hidden-mobile">Wish List</a>
+                    <a href="stats.html" class="nav-item is-tab is-hidden-mobile">Statistics</a>
+                </div>
+                <span class="nav-toggle">
+            <span></span>
+                <span></span>
+                <span></span>
+                </span>
+                <div class="nav-right nav-menu">
+                    <a class="nav-item is-tab is-hidden-tablet is-active">Home</a>
+                    <a class="nav-item is-tab is-hidden-tablet">Features</a>
+                    <a class="nav-item is-tab is-hidden-tablet">Pricing</a>
+                    <a class="nav-item is-tab is-hidden-tablet">About</a>
+                    <a class="nav-item is-tab" href="login.html">Log out</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main id="collection-list" class="columns">
+        <!-- <div class="column is-2"> -->
+        <aside id="filter-bar" class="column is-2">
+            <div class="menu box">
+                <ul class="checked-filters menu-list">
+                    <li>Ballast Point</li>
+                    <li>IPA</li>
+                </ul>
+                <h3 class="menu-label overflow">Breweries</h3>
+                <div class="overflow menu-list">
+                    <input type="checkbox" name="beer" value="Ballast Point" checked="checked">Ballast Point<br>
+                    <input type="checkbox" name="beer" value="Alesmith">Alesmith<br>
+                    <input type="checkbox" name="beer" value="Green Flash">Green Flash<br>
+                    <input type="checkbox" name="beer" value="Ballast Point">Modern Times<br>
+                    <input type="checkbox" name="beer" value="Alesmith">Belching Beaver<br>
+                    <input type="checkbox" name="beer" value="Green Flash">Stone<br>
+                </div>
+                <h3 class="menu-label overflow">Styles</h3>
+                <div class="overflow menu-list">
+                    <input type="checkbox" name="beer" value="IPA" checked="checked">IPA<br>
+                    <input type="checkbox" name="beer" value="Stout">Stout<br>
+                    <input type="checkbox" name="beer" value="Gose">Gose<br>
+                    <input type="checkbox" name="beer" value="Ballast Point">Hefeweizen<br>
+                    <input type="checkbox" name="beer" value="Berliner Weissbeir">Berliner Weissbier<br>
+                    <input type="checkbox" name="beer" value="Kolsch">Kolsch<br>
+                </div>
+                <h3 class="menu-label overflow">Ratings</h3>
+                <div class="overflow menu-list">
+                    <input type="checkbox" name="beer" value="1 star" checked="checked">&#9733;<br>
+                    <input type="checkbox" name="beer" value="2 star">&#9733;&#9733;<br>
+                    <input type="checkbox" name="beer" value="3 star">&#9733;&#9733;&#9733;<br>
+                </div>
+            </div>
+        </aside>
+
+        <!-- </div> -->
+
+        <section id="collection-view " class="section column is-8">
+            <span>
+               <h2 class="title is-2 heading">Welcome to BeerDex</h2>
+            </span>
+
+            <div id="databaseList">
+                <ul class="collection-list">
+                    <li class="collection-item" v-for="beer in database">
+                        <div class="card">
+                            <figure class="cardImage">
+                                <img class="card-img" :src="beer.image" :alt="beer.beerName">
+                            </figure>
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-content">
+                                        <p class="title is-4"><b>{{ beer.breweryName }}</b></p>
+                                        <p class="subtitle is-6"><b>{{ beer.beerName }}</b> {{ beer.beerStyle }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a class="card-footer-item" @click="addBeerToCollection(beer)">Add to Collection</a>
+                                <a class="card-footer-item">Add to Wishlist</a>
+                            </footer>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <button class="button is-primary" onclick="activateModal('addCollectionModal')">Can't find what you're looking for?</button>
+        </section>
+    </main>
+
+    <!-- COLLECTION MODAL -->
+    <div class="modal" id="addCollectionModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <div id="addBeerForm">
+            <section class="modal-card-body">
+                    <h3 class="title is-3 form-title">Add Beer to Collection</h3>
+                    <div v-if="!image">
+                        <h2>Select an image</h2>
+                        <input type="file" @change="onFileChange">
+                    </div>
+                    <div v-else>
+                        <img width="10%" height="10%":src="image" />
+                        <button @click="removeImage">Remove image</button>
+                    </div>
+                    <label class="label">Brewery</label>
+                    <p class="control">
+                        <input class="input" type="text" placeholder="Ballast Point, Stone, Ale Smith" v-model="breweryName">
+                    </p>
+                    <label class="label">Name</label>
+                    <p class="control">
+                        <input class="input" type="text" placeholder="Sculpin, Victory At Sea" v-model="beerName">
+                    </p>
+                    <label class="label">Style</label>
+                    <p class="control">
+                        <span class="select">
+                        <select v-model="beerStyle">
+                            <option v-for="style in beerStyles" v-bind:value="style">
+                                {{ style }}
+                            </option>
+                        </select>
+                        </span>
+                    </p>
+                    <label class="label">Alcohol by Volume</label>
+                    <p class="control">
+                        <input class="input" type="text" placeholder="5.4%" v-model="ABV">
+                    </p>
+                    <label class="label">Quantity</label>
+                    <p class="control">
+                  <span class="select">
+                    <select v-model="quantity">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5+</option>
+                    </select>
+                  </span>
+                    </p>
+                <span class="help is-danger">{{ errorMessage }}</span>
+            </section>
+            <footer class="modal-card-foot">
+                <input class="button is-success" type="submit" v-on:click="addBeerToCollection">
+                <button class="button" onclick="deactivateModal('addCollectionModal')">Cancel</button>
+            </footer>
+            </div>
+        </div>
+    </div>
+
+    <!-- Use aside tag for filter sidebar -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

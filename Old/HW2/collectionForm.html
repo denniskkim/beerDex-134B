@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Collection Form</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <header>
+        <h1>Add Beer to Collection</h1>
+    </header><!-- /header -->
+    <main>
+        <form>
+            Brewery &nbsp; <input type="text" name="brewery" placeholder="Name of Brewery"> <br>
+            Name &nbsp; <input type="text" name="beer" placeholder="Name of Beer"> <br>
+            Style &nbsp; <input type="text" name="style" placeholder="Name of Beer Style"> <br>
+            Flavors &nbsp; <br>
+            <select name="flavors" multiple>
+                <option value="Vanilla">Vanilla</option>
+                <option value="Coffee">Coffee</option>
+                <option value="Chocolate">Chocolate</option>
+            </select><br>
+            Rating (Between 1 and 5) &nbsp; <input type="number" name="rating" min="1" max="5"> <br>
+            Buy Again &nbsp; <input type="checkbox" name="buyAgain"> <br>
+            Quantity &nbsp;
+            <select name="quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select> <br>
+            <input type="submit" name="submit" value="Add">
+        </form>
+    </main>
+</body>
+</html>

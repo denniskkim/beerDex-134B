@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trade Creation</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="static/main.css" type="text/css">
+</head>
+<body>
+  <header>
+    <h2 id="trade-header">Create Trade Request</h2>
+  </header>
+  <!-- /header -->
+  <main id="trade">
+    <section class="trade-block">
+      <h2>Trading From</h2>
+      <form>
+        <input type="text" name="beer_1" placeholder="Input Beer Choice 1..."> <br>
+        <input type="text" name="beer_2" placeholder="Input Beer Choice 2..."> <br>
+        <section>
+          <img src="img/plus_icon.ico" alt="" width="20px" height="20px">
+          <input type="Button" name="add" value="Add More Choices...">
+        </section>
+      </form>
+    </section>
+    <hr>
+    <section class="trade-block">
+      <h2>Trading To</h2>
+      <form action="tradeForm_submit" method="get" accept-charset="utf-8">
+        <input type="text" name="beer_1" placeholder="Input Beer Choice 1..."> <br>
+        <input type="text" name="beer_2" placeholder="Input Beer Choice 2..."> <br>
+        <section>
+          <img src="img/plus_icon.ico" alt="" width="20px" height="20px">
+          <input type="Button" name="add" value="Add More Choices...">
+        </section>
+      </form>
+    </section>
+  </main>
+  <section id="trade-process">
+    <button type="button" class="button-padding">Create</button>
+    <button type="button" class="button-padding">Cancel</button>
+  </section>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>BeerDex - HomePage</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1 id="home-logo">BeerDex
+                <a href="index.html"><img src="img/tempIcon.png" alt="BeerDex Icon"></a>
+            </h1>
+            <ul id="nav-list">
+                <li>
+                    <a href="collection.html">Collections</a>
+                </li>
+                <li>
+                    <a href="trades.html">Trades</a>
+                </li>
+                <li>
+                    <a href="wishlist.html">Wish-List</a>
+                </li>
+                <li>
+                    <a href="statistics.html">Statistics</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main id="collection-list">
+        <aside id="filter-bar">
+            <label>Breweries:
+          <input list="breweries" name="breweryList" /></label>
+            <datalist id="breweries">
+            <option value="Ballast Point">
+            <option value="Stone Brewery">
+            <option value="Green Flash">
+          </datalist>
+            <br>
+            <label>Type:
+          <input list="type" name="typeList" /></label>
+            <datalist id="type">
+            <option value="IPA">
+            <option value="Amber Ale">
+            <option value="Stout">
+          </datalist>
+        </aside>
+        <section id="collection-view">
+            <h2 id="collection-header">My Collection</h2>
+            <ul class="collection-list">
+                <li><img class="beer-img" src="img/ballast-collection1.jpg" alt="ballast Dorado"></li>
+                <li>
+                    <p class="brewery-text">Ballast Point</p>
+                </li>
+                <li>
+                    <p class="beer-text">Dorado</p>
+                </li>
+                <li>
+                    <button class="remove-item">
+              <img src="img/trash.png" alt="trash bin image">
+            </button>
+                </li>
+                <li>
+                    <label>Quantity:
+              <select name="quantity" class="quantity_val">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5+</option>
+              </select>
+            </label>
+                </li>
+                <li>
+                    <img class="beer-rating" src="img/star-rating.png" alt="beer-rating">
+                </li>
+            </ul>
+            <ul class="beer-case">
+                <li><img class="beer-img" src="img/ballast-collection2.jpg" alt="ballast sculpin"></li>
+                <li>
+                    <p class="brewery-text">Ballast Point</p>
+                </li>
+                <li>
+                    <p class="beer-text">Scuplin</p>
+                </li>
+                <li>
+                    <button class="remove-item">
+              <img src="img/trash.png" alt="trash bin image">
+            </button>
+                </li>
+                <li>
+                    <label>Quantity:
+              <select name="quantity" class="quantity_val">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5+</option>
+              </select>
+            </label>
+                </li>
+                <li>
+                    <img class="beer-rating" src="img/star-rating.png" alt="beer-rating">
+                </li>
+            </ul>
+        </section>
+    </main>
+    <!-- Use aside tag for filter sidebar -->
+</body>
+
+</html>
