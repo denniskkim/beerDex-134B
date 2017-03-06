@@ -209,12 +209,15 @@ var collectionForm = new Vue({
                 ABV: parseFloat(this.ABV),
                 image: this.image
             };
+            var tmpQuantity = beerToAdd.quantity;
             var valid = beerToAdd.UID.length && beerToAdd.breweryName.length &&
                 beerToAdd.beerStyle.length && beerToAdd.quantity && beerToAdd.image.length;
             if (valid) {
+                beerToAdd.quantity = 1;
                 beerDatabaseRef.push(beerToAdd).then(function(snapshot) {
                     console.log(snapshot)
                     beerToAdd.beerID = snapshot.key;
+                    beerToAdd.quantity = tmpQuantity;
                     collectionRef.push(beerToAdd);
                     deactivateModal('addCollectionModal');
                     this.errorMessage = "";
@@ -245,30 +248,37 @@ firebase.auth().onAuthStateChanged(function(user) {
                         image: beer.image,
                         ABV: beer.ABV,
                         beerID: beer[".key"]
-                    }
-                    var valid = beerToAdd.UID.length && beerToAdd.breweryName.length &&
-                        beerToAdd.beerStyle.length && beerToAdd.quantity && beerToAdd.image.length;
+                    };
+
+                    var valid = beerToAdd.UID &&
+                                beerToAdd.breweryName.length &&
+                                beerToAdd.beerStyle.length &&
+                                beerToAdd.quantity &&
+                                beerToAdd.image.length &&
+                                beerToAdd.ABV;
+
                     if (valid) {
-                        collectionRef.orderByChild("beerID").equalTo(beerToAdd.beerID).once('value', function(snapshot) {
-                            var snapVal = snapshot.val();
-                            for (var property in snapVal) {
-                                if (snapVal.hasOwnProperty(property)) {
-                                    beerToAdd.quantity = snapVal[property].quantity + beerToAdd.quantity;
-                                    collectionRef.child(property).remove();
-                                }
-                            }
-                        }).then(function() {
-                            console.log(beerToAdd);
+                        collectionRef.orderByChild("UID").equalTo(firebase.auth().currentUser.uid)
+                            .once('value', function(parentSnapshot) {
+                                parentSnapshot.forEach(function(snapshot) {
+                                    var snapVal = snapshot.val();
+                                    if (snapVal.beerID === beerToAdd.beerID) {
+                                        beerToAdd.quantity = snapVal.quantity + beerToAdd.quantity;
+                                        collectionRef.child(snapshot.key).remove();
+                                    }
+                                })
+                            })
+                        .then(function() {
                             collectionRef.push(beerToAdd);
                         });
                     } else {
-                        console.log("Error")
+                        console.log("Error");
                     }
                 }
             }
         })
     }
-})
+});
 
 
 Vue.component('modal', {

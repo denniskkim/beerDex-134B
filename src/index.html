@@ -102,8 +102,10 @@
                                     <div class="media-content">
                                         <p class="title is-4"><b>{{ beer.breweryName }}</b></p>
                                         <p class="subtitle is-6"><b>{{ beer.beerName }}</b> {{ beer.beerStyle }}</p>
+                                        <p><b>ABV</b> {{beer.ABV}}%</p>
                                     </div>
                                 </div>
+                                {{ beer.quantityMessage }}
                             </div>
                             <footer class="card-footer">
                                 <a class="card-footer-item" @click="addBeerToCollection(beer)">Add to Collection</a>
