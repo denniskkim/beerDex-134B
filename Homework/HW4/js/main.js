@@ -13,6 +13,9 @@ var collectionRef = db.ref('collections');
 var userRef = db.ref('user');
 var beerDatabaseRef = db.ref('beers');
 
+var BEER_STYLES = ['Pale Ale', 'Lager', 'IPA', 'Wheat', 'Belgian', 'Porter', 'Stout', 'Sour', 'Other'];
+
+
 
 var signUpVM = new Vue({
     el:'#signup-container',
@@ -170,6 +173,8 @@ var collectionForm = new Vue({
         breweryName: "",
         beerName: "",
         beerStyle: "",
+        beerStyles: BEER_STYLES,
+        ABV: 0.0,
         quantity: 0
     },
     firebase: {
@@ -203,6 +208,7 @@ var collectionForm = new Vue({
                 beerName: this.beerName,
                 beerStyle: this.beerStyle,
                 quantity: parseInt(this.quantity),
+                ABV: parseFloat(this.ABV),
                 image: this.image
             };
             var valid = beerToAdd.UID.length && beerToAdd.breweryName.length &&
@@ -239,6 +245,7 @@ firebase.auth().onAuthStateChanged(function(user) {
                         beerStyle: beer.beerStyle,
                         quantity: 1,
                         image: beer.image,
+                        ABV: beer.ABV,
                         beerID: beer[".key"]
                     }
                     var valid = beerToAdd.UID.length && beerToAdd.breweryName.length &&
