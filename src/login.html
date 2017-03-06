@@ -4,7 +4,7 @@
 <head>
     <title>Login/Signup</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="vendor/css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/vendor/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/bulma.css">
     <link rel="stylesheet" href="css/vendor/bulmaMain.css">
     <script src="https://unpkg.com/vue@2.2.1"></script>
@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <div class="nav-login">
-                            <input type="submit" value="Login">
+                            <button type="submit">Login</button>
                         </div>
                     </form>
                 </div>
@@ -115,10 +115,13 @@
                             </div>
                         </section>
                         <br>
-                        <button class="button is-success is-focused" type="submit">Create Account</button>
+                        <button class="button is-info" type="submit">Create Account</button>
                     </form>
                 <hr>
-                <button v-on:click="googleLogin" class="button is-success is-focused" type="button">Continue with Google</button>
+                <button v-on:click="googleLogin" class="button is-danger is-focused" type="button">
+                  <i class="fa fa-google" aria-hidden="true"></i>
+                  &nbsp; Continue with Google
+                </button>
             </section>
         </div>
     </main>
