@@ -15,76 +15,7 @@ var beerDatabaseRef = db.ref('beers');
 
 var BEER_STYLES = ['Pale Ale', 'Lager', 'IPA', 'Wheat', 'Belgian', 'Porter', 'Stout', 'Sour', 'Other'];
 
-var signUpVM = new Vue({
-    el:'#signup-container',
-    data: {
-        newUser: {
-            firstName : '',
-            lastName : '',
-            email : '',
-            password: '',
-            birth : {
-                month: '',
-                day: '',
-                year: ''
-            }
-        },
-        confirmEmail : '',
-        validEmail : false,
-        validAge : false
-    },
-    methods: {
-        createUser : function(){
-            var self = this;
-            console.log(self.validEmail);
-            console.log(self.validAge);
-            if(!self.validEmail && !self.validAge){
-                firebase.auth().createUserWithEmailAndPassword(self.newUser.email,self.newUser.password)
-                    .then(function(user){
-                            console.log("Success");
-                            window.location = 'index.html';
-                        },
-                        function(error){
-                            console.log("Failure");
-                        });
-            }
-            console.log("Sign Up successful");
-        },
-        emailConfirm : function(){
-            var self = this;
-            if(self.newUser.email != self.confirmEmail){
-                self.validEmail = true;
-            }
-            else {
-                self.validEmail = false;
-            }
-        },
-        validateAge : function(){
-            var self = this;
-            var birthday = getAge(self.newUser.birth.month, self.newUser.birth.day, self.newUser.birth.year);
-            if(birthday < 21){
-                self.validAge = true;
-            }
-            else{
-                self.validAge = false;
-            }
-        }
-    }
-});
 
-function getAge(mon, day, year)
-{
-    var today = new Date();
-    var dateString = mon + "/" + day + "/" + year;
-    var birthDate = new Date(dateString);
-    var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate()))
-    {
-        age--;
-    }
-    return age;
-}
 
 function getImgURL(imgName)
 {
@@ -112,30 +43,6 @@ function getImgURL(imgName)
     return return_URL;
 }
 
-var loginVM = new Vue({
-    el: '#login-form', data: {
-        user: {
-            username: '',
-            password: ''
-        }
-    },
-    firebase : {
-        userDB: userRef
-    },
-    methods : {
-        checkUser : function(){
-            var self = this;
-            firebase.auth().signInWithEmailAndPassword(self.user.username, self.user.password)
-                .then(function(user){
-                        console.log("Success");
-                        window.location = 'index.html';
-                    },
-                    function(error){
-                        console.log("Error");
-                    });
-        }
-    }
-});
 
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {

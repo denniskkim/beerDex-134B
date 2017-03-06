@@ -42,6 +42,7 @@
                     </form>
                 </div>
 
+
             </div>
 
           </div>
@@ -83,46 +84,46 @@
                 <a href="stats.html"><button type="button" class="button is-info">View Beer Statistics</button></a>
             </section>
             <section id="signup-container" class="column is-half">
-                <h4 class="title is-3">Sign Up Now!</h4>
-                <br>
-                <form v-on:submit.prevent="createUser">
-                    <div class="control">
-                        <input v-model="newUser.firstName" class="input is-medium is-inline is-inline-half" type="text" placeholder="First Name">
-                        <input v-model="newUser.lastName" class="input is-medium is-inline is-inline-half" type="text" placeholder="Last Name">
-                    </div>
-
-                    <div class="control">
-                        <input v-model="newUser.email" class="input is-medium" type="email" placeholder="Email Address">
-                    </div>
-                    <div class="control">
-                        <input v-on:change="emailConfirm" v-model="confirmEmail" class="input is-medium" type="email" placeholder="Confirm Email Address">
-                        <p v-show="validEmail">Email Address does not match!</p>
-                    </div>
-                    <div class="control">
-                        <input v-model="newUser.password" class="input is-medium" type="password" placeholder="New Password">
-                    </div>
-                    <!-- Do some computed thing here -->
-
-                    <section id="birthday">
-                        <label class="label">Birthday</label>
-                        <div class="control">
-                            <input v-model="newUser.birth.month" class="input is-medium is-inline" id="is-inline-third" type="text" placeholder="Month">
-                            <input v-model="newUser.birth.day" class="input is-medium is-inline" id="is-inline-third" type="text" placeholder="Day">
-                            <input v-on:change="validateAge" v-model="newUser.birth.year" class="input is-medium is-inline" id="is-inline-third" type="text" placeholder="Year">
-                            <p v-show="validAge">Sorry, you must be 21+ to sign up! Drink Responsibility!</p>
-                        </div>
-                    </section>
+                <div id="signUp-cont"  v-show="signUpFlag">
+                    <h4 class="title is-3">Sign Up Now!</h4>
                     <br>
-                    <button class="button is-success is-focused" type="submit">Create Account</button>
-                </form>
-            </section>
-            <hr>
-            <section id="gmail-signup">
-              <button class="button is-focused"></button>
+                    <form v-on:submit.prevent="createUser">
+                        <div class="control">
+                            <input v-model="newUser.firstName" class="input is-medium is-inline is-inline-half" type="text" placeholder="First Name">
+                            <input v-model="newUser.lastName" class="input is-medium is-inline is-inline-half" type="text" placeholder="Last Name">
+                        </div>
+
+                        <div class="control">
+                            <input v-model="newUser.email" class="input is-medium" type="email" placeholder="Email Address">
+                        </div>
+                        <div class="control">
+                            <input v-on:change="emailConfirm" v-model="confirmEmail" class="input is-medium" type="email" placeholder="Confirm Email Address">
+                            <p v-show="validEmail">Email Address does not match!</p>
+                        </div>
+                        <div class="control">
+                            <input v-model="newUser.password" class="input is-medium" type="password" placeholder="New Password">
+                        </div>
+                        <!-- Do some computed thing here -->
+
+                        <section id="birthday">
+                            <label class="label">Birthday</label>
+                            <div class="control">
+                                <input v-model="newUser.birth.month" class="input is-medium is-inline" id="is-inline-third" type="text" placeholder="Month">
+                                <input v-model="newUser.birth.day" class="input is-medium is-inline" id="is-inline-third" type="text" placeholder="Day">
+                                <input v-on:change="validateAge" v-model="newUser.birth.year" class="input is-medium is-inline" id="is-inline-third" type="text" placeholder="Year">
+                                <p v-show="validAge">Sorry, you must be 21+ to sign up! Drink Responsibility!</p>
+                            </div>
+                        </section>
+                        <br>
+                        <button class="button is-success is-focused" type="submit">Create Account</button>
+                    </form>
+                <hr>
+                <button v-on:click="googleLogin" class="button is-success is-focused" type="button">Continue with Google</button>
             </section>
         </div>
     </main>
-    <script src="js/main.js"></script>
+    <script src="js/signUp.js"></script>
+    <script src="js/login.js"></script>
 </body>
 
 </html>
