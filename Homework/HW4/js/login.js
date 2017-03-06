@@ -1,4 +1,3 @@
-var userRef = firebase.database().ref('user');
 
 
 var loginVM = new Vue({

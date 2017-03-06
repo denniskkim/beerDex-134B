@@ -11,8 +11,6 @@ var collectionRef = db.ref('collections');
 
 
 
-var userRef = firebase.database().ref('user');
-
 var signUpVM = new Vue({
     el:'#signup-container',
     data: {
@@ -84,7 +82,7 @@ function getAge(mon, day, year)
     return age;
 }
 
-function getImgURL(imgName) 
+function getImgURL(imgName)
 {
     var bucketref = firebase.storage().ref().child('public/img/' + imgName);
     var return_URL = null;
@@ -106,7 +104,7 @@ function getImgURL(imgName)
                 break; // Unknown error occurred, inspect the server response
         }
     });
-    // Check that return_URL is not null 
+    // Check that return_URL is not null
     return return_URL;
 }
 
