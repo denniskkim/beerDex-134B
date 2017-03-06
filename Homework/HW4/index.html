@@ -4,6 +4,7 @@
 <head>
     <title>BeerDex - HomePage</title>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/starability.min.css">
     <link rel="stylesheet" href="css/bulma.css">
     <link rel="stylesheet" href="css/vendor/bulmaMain.css">
     <link rel="stylesheet" href="css/vendor/bulmaMain.css">
@@ -171,8 +172,8 @@
                                 </div>
                             </div>
                             <footer class="card-footer">
-                                <button class="card-footer-item" @click="addBeerToCollection(beer)">Add to Collection</button>
-                                <a href="#" class="card-footer-item">Add to WishList</a>
+                                <a class="card-footer-item" @click="addBeerToCollection(beer)">Add to Collection</a>
+                                <a class="card-footer-item">Add to Wishlist</a>
                             </footer>
                         </div>
                     </li>
