@@ -61,7 +61,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         var collectionList = new Vue({
             el: '#collectionList',
             firebase : {
-                collection: collectionRef.orderByChild("UID").equalTo(firebase.auth().currentUser != null ? firebase.auth().currentUser.uid : "")
+                collection: collectionRef.child(firebase.auth().currentUser.uid)
             },
             methods: {
                 deleteBeerFromCollection: function(beer)
@@ -120,7 +120,6 @@ var collectionForm = new Vue({
         },
         addBeerToCollection: function() {
             var beerToAdd = {
-                UID: firebase.auth().currentUser.uid,
                 breweryName: this.breweryName,
                 beerName: this.beerName,
                 beerStyle: this.beerStyle,
@@ -129,15 +128,17 @@ var collectionForm = new Vue({
                 image: this.image
             };
             var tmpQuantity = beerToAdd.quantity;
-            var valid = beerToAdd.UID.length && beerToAdd.breweryName.length &&
-                beerToAdd.beerStyle.length && beerToAdd.quantity && beerToAdd.image.length;
+            var valid = beerToAdd.breweryName.length &&
+                        beerToAdd.beerStyle.length &&
+                        beerToAdd.quantity &&
+                        beerToAdd.image.length;
             if (valid) {
                 beerToAdd.quantity = 1;
                 beerDatabaseRef.push(beerToAdd).then(function(snapshot) {
                     console.log(snapshot)
                     beerToAdd.beerID = snapshot.key;
                     beerToAdd.quantity = tmpQuantity;
-                    collectionRef.push(beerToAdd);
+                    collectionRef.child(firebase.auth().currentUser.uid).push(beerToAdd);
                     deactivateModal('addCollectionModal');
                     this.errorMessage = "";
 
@@ -171,24 +172,26 @@ firebase.auth().onAuthStateChanged(function(user) {
 
                     var valid = beerToAdd.UID &&
                                 beerToAdd.breweryName.length &&
+                                beerToAdd.beerName &&
                                 beerToAdd.beerStyle.length &&
                                 beerToAdd.quantity &&
                                 beerToAdd.image.length &&
                                 beerToAdd.ABV;
 
                     if (valid) {
-                        collectionRef.orderByChild("UID").equalTo(firebase.auth().currentUser.uid)
+                        collectionRef.child(firebase.auth().currentUser.uid)
                             .once('value', function(parentSnapshot) {
                                 parentSnapshot.forEach(function(snapshot) {
                                     var snapVal = snapshot.val();
                                     if (snapVal.beerID === beerToAdd.beerID) {
                                         beerToAdd.quantity = snapVal.quantity + beerToAdd.quantity;
-                                        collectionRef.child(snapshot.key).remove();
+                                        collectionRef.child(firebase.auth().currentUser.uid).child(snapshot.key).remove();
                                     }
                                 })
                             })
                         .then(function() {
-                            collectionRef.push(beerToAdd);
+                            alert("You now have " + beerToAdd.quantity + " " + beerToAdd.beerName);
+                            collectionRef.child(firebase.auth().currentUser.uid).push(beerToAdd);
                         });
                     } else {
                         console.log("Error");
