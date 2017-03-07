@@ -58,6 +58,8 @@ function resize(img) {
 
   var canvas = document.createElement('canvas');
 
+<<<<<<< HEAD
+=======
   var width = img.width;
   var height = img.height;
 
@@ -86,6 +88,7 @@ function resize(img) {
 
 }
 
+>>>>>>> bd0734b9998d98ce2523e2978091324a4bfb0488
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         var collectionList = new Vue({
@@ -122,7 +125,8 @@ var collectionForm = new Vue({
         beerStyle: "",
         beerStyles: BEER_STYLES,
         ABV: 0.0,
-        quantity: 0
+        quantity: 0,
+        rating: 0
     },
     firebase: {
         collection: collectionRef
@@ -135,11 +139,9 @@ var collectionForm = new Vue({
             this.createImage(files[0]);
         },
         createImage: function(file) {
-            var image = new Image();
             var reader = new FileReader();
             var vm = this;
             file = resize(file);
-
             reader.onload = (e) => {
                 vm.image = e.target.result;
             }
@@ -156,13 +158,16 @@ var collectionForm = new Vue({
                 beerStyle: this.beerStyle,
                 quantity: parseInt(this.quantity),
                 ABV: parseFloat(this.ABV),
+                rating: parseInt(this.rating),
                 image: this.image
             };
             var tmpQuantity = beerToAdd.quantity;
             var valid = beerToAdd.breweryName.length &&
                         beerToAdd.beerStyle.length &&
                         beerToAdd.quantity &&
-                        beerToAdd.image.length;
+                        beerToAdd.image.length &&
+                        beerToAdd.ABV &&
+                        beerToAdd.rating;
             if (valid) {
                 beerToAdd.quantity = 1;
                 beerDatabaseRef.push(beerToAdd).then(function(snapshot) {
@@ -254,4 +259,36 @@ var activateModal = function(modalID) {
 var deactivateModal = function(modalID) {
     var modal = document.getElementById(modalID);
     modal.className = modal.className.replace(" is-active", "");
+}
+
+var resize = function(img) {
+
+    var canvas = document.createElement('canvas');
+
+    var width = img.width;
+    var height = img.height;
+
+    // calculate the width and height, constraining the proportions
+    if (width > height) {
+        if (width > max_width) {
+            //height *= max_width / width;
+            height = Math.round(height *= max_width / width);
+            width = max_width;
+        }
+    } else {
+        if (height > max_height) {
+            //width *= max_height / height;
+            width = Math.round(width *= max_height / height);
+            height = max_height;
+        }
+    }
+
+    // resize the canvas and draw the image data into it
+    canvas.width = width;
+    canvas.height = height;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, width, height);
+
+    return canvas.toDataURL("image/png",0.7); // get the data from canvas as 70% JPG (can be also PNG, etc.)
+
 }
