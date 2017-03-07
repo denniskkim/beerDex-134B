@@ -48,8 +48,6 @@ function setImgURL()
     // Check that return_URL is not null 
 }
 
-setImgUrl();
-
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         var collectionList = new Vue({
@@ -86,7 +84,8 @@ var collectionForm = new Vue({
         beerStyle: "",
         beerStyles: BEER_STYLES,
         ABV: 0.0,
-        quantity: 0
+        quantity: 0,
+        rating: 0
     },
     firebase: {
         collection: collectionRef
@@ -119,13 +118,16 @@ var collectionForm = new Vue({
                 beerStyle: this.beerStyle,
                 quantity: parseInt(this.quantity),
                 ABV: parseFloat(this.ABV),
+                rating: parseInt(this.rating),
                 image: this.image
             };
             var tmpQuantity = beerToAdd.quantity;
             var valid = beerToAdd.breweryName.length &&
                         beerToAdd.beerStyle.length &&
                         beerToAdd.quantity &&
-                        beerToAdd.image.length;
+                        beerToAdd.image.length &&
+                        beerToAdd.ABV &&
+                        beerToAdd.rating;
             if (valid) {
                 beerToAdd.quantity = 1;
                 beerDatabaseRef.push(beerToAdd).then(function(snapshot) {

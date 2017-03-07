@@ -52,10 +52,6 @@
         <!-- <div class="column is-2"> -->
         <aside id="filter-bar" class="column is-2">
             <div class="menu box">
-                <ul class="checked-filters menu-list">
-                    <li>Ballast Point</li>
-                    <li>IPA</li>
-                </ul>
                 <h3 class="menu-label overflow">Breweries</h3>
                 <div class="overflow menu-list">
                     <input type="checkbox" name="beer" value="Ballast Point" checked="checked">Ballast Point<br>
@@ -156,17 +152,29 @@
                     <p class="control">
                         <input class="input" type="text" placeholder="5.4%" v-model="ABV">
                     </p>
+                    <label class="label">Rating</label>
+                    <p class="control">
+                      <span class="select">
+                        <select v-model="rating">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                      </span>
+                    </p>
                     <label class="label">Quantity</label>
                     <p class="control">
-                  <span class="select">
-                    <select v-model="quantity">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5+</option>
-                    </select>
-                  </span>
+                      <span class="select">
+                        <select v-model="quantity">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5+</option>
+                        </select>
+                      </span>
                     </p>
                 <span class="help is-danger">{{ errorMessage }}</span>
             </section>
