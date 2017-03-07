@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Login/Signup</title>
     <meta charset="UTF-8">
@@ -10,15 +9,15 @@
     <script src="https://unpkg.com/vue@2.2.1"></script>
     <script src="https://gstatic.com/firebasejs/3.5.2/firebase.js"></script>
     <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
+    <script src="js/main.js" type="text/javascript"></script>
 </head>
-
-<body>
+<body >
     <header>
         <nav class="nav has-shadow" id="login-nav">
             <div class="container">
                 <div class="nav-left">
                     <a class="nav-item">
-                        <img src="img/tempIcon.png" alt="BeerDex Icon">
+                        <img src="tempIcon.png" alt="BeerDex Icon">
                         <br>BeerDex
                     </a>
                 </div>
@@ -41,12 +40,8 @@
                         </div>
                     </form>
                 </div>
-
-
             </div>
-
-          </div>
-
+        </div>
     </header>
     <main id="login-main">
         <div class="columns">
@@ -59,24 +54,24 @@
                     <article>
                         <div class="app-feature-content">
                             <span class="icon is-large">
-                      <i class="fa fa-beer"></i>
-                    </span>
+                                <i class="fa fa-beer"></i>
+                            </span>
                             <p class="feature-detail"><b>Create your own collection</b> of beers.</p>
                         </div>
                     </article>
                     <article>
                         <div class="app-feature-content">
                             <span class="icon is-large">
-                      <i class="fa fa-exchange"></i>
-                    </span>
+                                <i class="fa fa-exchange"></i>
+                            </span>
                             <p class="feature-detail"><b>Trade your collectables </b> amongst the community.</p>
                         </div>
                     </article>
                     <article>
                         <div class="app-feature-content">
                             <span class="icon is-large">
-                      <i class="fa fa-search"></i>
-                    </span>
+                                <i class="fa fa-search"></i>
+                            </span>
                             <p class="feature-detail"><b>Search and learn</b> through a huge list of beers.</p>
                         </div>
                     </article>
@@ -92,7 +87,6 @@
                             <input v-model="newUser.firstName" class="input is-medium is-inline is-inline-half" type="text" placeholder="First Name">
                             <input v-model="newUser.lastName" class="input is-medium is-inline is-inline-half" type="text" placeholder="Last Name">
                         </div>
-
                         <div class="control">
                             <input v-model="newUser.email" class="input is-medium" type="email" placeholder="Email Address">
                         </div>
@@ -104,7 +98,6 @@
                             <input v-model="newUser.password" class="input is-medium" type="password" placeholder="New Password">
                         </div>
                         <!-- Do some computed thing here -->
-
                         <section id="birthday">
                             <label class="label">Birthday</label>
                             <div class="control">
@@ -117,16 +110,22 @@
                         <br>
                         <button class="button is-info" type="submit">Create Account</button>
                     </form>
-                <hr>
-                <button v-on:click="googleLogin" class="button is-danger is-focused" type="button">
-                  <i class="fa fa-google" aria-hidden="true"></i>
-                  &nbsp; Continue with Google
-                </button>
-            </section>
-        </div>
-    </main>
-    <script src="js/signUp.js"></script>
-    <script src="js/login.js"></script>
-</body>
+                    <hr>
+                    <button v-on:click="googleLogin" class="button is-danger is-focused" type="button">
+                        <i class="fa fa-google" aria-hidden="true"></i>
+                        &nbsp; Continue with Google
+                    </button>
+                </section>
+            </div>
+        </main>
 
-</html>
+        <script src="js/signUp.js"></script>
+        <script src="js/login.js"></script>
+        <script type="text/javascript" charset="utf-8" async defer>
+            window.onload = setImgURL();
+        </script>
+
+
+
+    </body>
+    </html>

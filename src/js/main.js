@@ -15,8 +15,32 @@ var beerDatabaseRef = db.ref('beers');
 
 var BEER_STYLES = ['Pale Ale', 'Lager', 'IPA', 'Wheat', 'Belgian', 'Porter', 'Stout', 'Sour', 'Other'];
 
+function setImgURL() 
+{
+    console.log("Setting img")
+    var imgs = document.getElementsByTagName("img");
+    for (var i = 0; i < imgs.length; i++) {
+        console.log(i);
+        var bucketref = firebase.storage().ref().child('public/img/' + String(imgs[i].src).replace(/^.*[\\\/]/, ''));
+        bucketref.getDownloadURL().then(function(url) {
+            var images = document.getElementsByTagName("img");
+            for (var i = images.length - 1; i >= 0; i--) {
+                if (String(url).includes(String(images[i].src).replace(/^.*[\\\/]/, ''))) {
+                    images[i].src = String(url);
+                }
+            }
+        }).catch(function(err)
+        {
+            switch (err.code) {
+                case 'storage/object_not_found':
+                    console.log("404 File image not found")
+                    break; // File doesn't exist
 
+                case 'storage/unauthorized': // User doesn't have permission to access the object
+                    console.log("403 Permission Denied for file image")
+                    break;
 
+<<<<<<< HEAD
 
 (function checkUserExists(){
   firebase.auth().onAuthStateChanged(function(user){
@@ -54,15 +78,63 @@ function getImgURL(imgName)
     });
     // Check that return_URL is not null
     return return_URL;
-}
+=======
+                case 'storage/canceled':
+                    console.log("400 Client Side error for file image")
+                    break; // User canceled the upload
 
+                case 'storage/unknown':
+                    console.log("500 Server error for file image")
+                    break; // Unknown error occurred, inspect the server response
+                default:
+                    console.log("ERROR occured " + err )
+                    break;
+            }
+        });
+    }
+    // Check that return_URL is not null 
+>>>>>>> bd0734b9998d98ce2523e2978091324a4bfb0488
+}
+var max_width = 200
+var max_height = 307 
+function resize(img) {
+
+  var canvas = document.createElement('canvas');
+
+  var width = img.width;
+  var height = img.height;
+
+  // calculate the width and height, constraining the proportions
+  if (width > height) {
+    if (width > max_width) {
+      //height *= max_width / width;
+      height = Math.round(height *= max_width / width);
+      width = max_width;
+    }
+  } else {
+    if (height > max_height) {
+      //width *= max_height / height;
+      width = Math.round(width *= max_height / height);
+      height = max_height;
+    }
+  }
+  
+  // resize the canvas and draw the image data into it
+  canvas.width = width;
+  canvas.height = height;
+  var ctx = canvas.getContext("2d");
+  ctx.drawImage(img, 0, 0, width, height);
+  
+  return canvas.toDataURL("image/png",0.7); // get the data from canvas as 70% JPG (can be also PNG, etc.)
+
+}
 
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         var collectionList = new Vue({
             el: '#collectionList',
             firebase : {
-                collection: collectionRef.orderByChild("UID").equalTo(firebase.auth().currentUser != null ? firebase.auth().currentUser.uid : "")
+                collection: collectionRef.child(firebase.auth().currentUser.uid)
             },
             methods: {
                 deleteBeerFromCollection: function(beer)
@@ -109,6 +181,7 @@ var collectionForm = new Vue({
             var image = new Image();
             var reader = new FileReader();
             var vm = this;
+            file = resize(file);
 
             reader.onload = (e) => {
                 vm.image = e.target.result;
@@ -121,7 +194,6 @@ var collectionForm = new Vue({
         },
         addBeerToCollection: function() {
             var beerToAdd = {
-                UID: firebase.auth().currentUser.uid,
                 breweryName: this.breweryName,
                 beerName: this.beerName,
                 beerStyle: this.beerStyle,
@@ -129,13 +201,18 @@ var collectionForm = new Vue({
                 ABV: parseFloat(this.ABV),
                 image: this.image
             };
-            var valid = beerToAdd.UID.length && beerToAdd.breweryName.length &&
-                beerToAdd.beerStyle.length && beerToAdd.quantity && beerToAdd.image.length;
+            var tmpQuantity = beerToAdd.quantity;
+            var valid = beerToAdd.breweryName.length &&
+                        beerToAdd.beerStyle.length &&
+                        beerToAdd.quantity &&
+                        beerToAdd.image.length;
             if (valid) {
+                beerToAdd.quantity = 1;
                 beerDatabaseRef.push(beerToAdd).then(function(snapshot) {
                     console.log(snapshot)
                     beerToAdd.beerID = snapshot.key;
-                    collectionRef.push(beerToAdd);
+                    beerToAdd.quantity = tmpQuantity;
+                    collectionRef.child(firebase.auth().currentUser.uid).push(beerToAdd);
                     deactivateModal('addCollectionModal');
                     this.errorMessage = "";
 
@@ -165,30 +242,39 @@ firebase.auth().onAuthStateChanged(function(user) {
                         image: beer.image,
                         ABV: beer.ABV,
                         beerID: beer[".key"]
-                    }
-                    var valid = beerToAdd.UID.length && beerToAdd.breweryName.length &&
-                        beerToAdd.beerStyle.length && beerToAdd.quantity && beerToAdd.image.length;
+                    };
+
+                    var valid = beerToAdd.UID &&
+                                beerToAdd.breweryName.length &&
+                                beerToAdd.beerName &&
+                                beerToAdd.beerStyle.length &&
+                                beerToAdd.quantity &&
+                                beerToAdd.image.length &&
+                                beerToAdd.ABV;
+
                     if (valid) {
-                        collectionRef.orderByChild("beerID").equalTo(beerToAdd.beerID).once('value', function(snapshot) {
-                            var snapVal = snapshot.val();
-                            for (var property in snapVal) {
-                                if (snapVal.hasOwnProperty(property)) {
-                                    beerToAdd.quantity = snapVal[property].quantity + beerToAdd.quantity;
-                                    collectionRef.child(property).remove();
-                                }
-                            }
-                        }).then(function() {
-                            console.log(beerToAdd);
-                            collectionRef.push(beerToAdd);
+                        collectionRef.child(firebase.auth().currentUser.uid)
+                            .once('value', function(parentSnapshot) {
+                                parentSnapshot.forEach(function(snapshot) {
+                                    var snapVal = snapshot.val();
+                                    if (snapVal.beerID === beerToAdd.beerID) {
+                                        beerToAdd.quantity = snapVal.quantity + beerToAdd.quantity;
+                                        collectionRef.child(firebase.auth().currentUser.uid).child(snapshot.key).remove();
+                                    }
+                                })
+                            })
+                        .then(function() {
+                            alert("You now have " + beerToAdd.quantity + " " + beerToAdd.beerName);
+                            collectionRef.child(firebase.auth().currentUser.uid).push(beerToAdd);
                         });
                     } else {
-                        console.log("Error")
+                        console.log("Error");
                     }
                 }
             }
         })
     }
-})
+});
 
 
 Vue.component('modal', {
