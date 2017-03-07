@@ -15,7 +15,16 @@ var beerDatabaseRef = db.ref('beers');
 
 var BEER_STYLES = ['Pale Ale', 'Lager', 'IPA', 'Wheat', 'Belgian', 'Porter', 'Stout', 'Sour', 'Other'];
 
-function setImgURL() 
+(function checkUserExists(){
+  firebase.auth().onAuthStateChanged(function(user){
+    if(!user){
+      window.location = 'login.html';
+    }
+  })
+}());
+
+
+function setImgURL()
 {
     console.log("Setting img")
     var imgs = document.getElementsByTagName("img");
@@ -40,63 +49,11 @@ function setImgURL()
                     console.log("403 Permission Denied for file image")
                     break;
 
-<<<<<<< HEAD
-
-(function checkUserExists(){
-  firebase.auth().onAuthStateChanged(function(user){
-    if(!user){
-      window.location = 'login.html';
-    }
-  })
-}());
 
 
 
-
-
-function getImgURL(imgName)
-{
-    var bucketref = firebase.storage().ref().child('public/img/' + imgName);
-    var return_URL = null;
-    bucketref.getDownloadURL().then(function(url) {
-        return_URL = url;
-    }).catch(function(err)
-    {
-        switch (error.code) {
-            case 'storage/object_not_found':
-                break; // File doesn't exist
-
-            case 'storage/unauthorized': // User doesn't have permission to access the object
-                break;
-
-            case 'storage/canceled':
-                break; // User canceled the upload
-
-            case 'storage/unknown':
-                break; // Unknown error occurred, inspect the server response
-        }
-    });
-    // Check that return_URL is not null
-    return return_URL;
-=======
-                case 'storage/canceled':
-                    console.log("400 Client Side error for file image")
-                    break; // User canceled the upload
-
-                case 'storage/unknown':
-                    console.log("500 Server error for file image")
-                    break; // Unknown error occurred, inspect the server response
-                default:
-                    console.log("ERROR occured " + err )
-                    break;
-            }
-        });
-    }
-    // Check that return_URL is not null 
->>>>>>> bd0734b9998d98ce2523e2978091324a4bfb0488
-}
 var max_width = 200
-var max_height = 307 
+var max_height = 307
 function resize(img) {
 
   var canvas = document.createElement('canvas');
@@ -118,13 +75,13 @@ function resize(img) {
       height = max_height;
     }
   }
-  
+
   // resize the canvas and draw the image data into it
   canvas.width = width;
   canvas.height = height;
   var ctx = canvas.getContext("2d");
   ctx.drawImage(img, 0, 0, width, height);
-  
+
   return canvas.toDataURL("image/png",0.7); // get the data from canvas as 70% JPG (can be also PNG, etc.)
 
 }
