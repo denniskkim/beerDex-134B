@@ -15,18 +15,23 @@ var beerDatabaseRef = db.ref('beers');
 
 var BEER_STYLES = ['Pale Ale', 'Lager', 'IPA', 'Wheat', 'Belgian', 'Porter', 'Stout', 'Sour', 'Other'];
 
-
-
 function setImgURL() 
 {
+    console.log("Setting img")
     var imgs = document.getElementsByTagName("img");
     for (var i = 0; i < imgs.length; i++) {
-        var bucketref = firebase.storage().ref().child('public/img/' + img[i].src);
+        console.log(i);
+        var bucketref = firebase.storage().ref().child('public/img/' + String(imgs[i].src).replace(/^.*[\\\/]/, ''));
         bucketref.getDownloadURL().then(function(url) {
-            img[i].src = url;
+            var images = document.getElementsByTagName("img");
+            for (var i = images.length - 1; i >= 0; i--) {
+                if (String(url).includes(String(images[i].src).replace(/^.*[\\\/]/, ''))) {
+                    images[i].src = String(url);
+                }
+            }
         }).catch(function(err)
         {
-            switch (error.code) {
+            switch (err.code) {
                 case 'storage/object_not_found':
                     console.log("404 File image not found")
                     break; // File doesn't exist
@@ -42,13 +47,14 @@ function setImgURL()
                 case 'storage/unknown':
                     console.log("500 Server error for file image")
                     break; // Unknown error occurred, inspect the server response
+                default:
+                    console.log("ERROR occured " + err )
+                    break;
             }
         });
     }
     // Check that return_URL is not null 
 }
-
-setImgUrl();
 
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
