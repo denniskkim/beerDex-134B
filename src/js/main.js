@@ -17,32 +17,38 @@ var BEER_STYLES = ['Pale Ale', 'Lager', 'IPA', 'Wheat', 'Belgian', 'Porter', 'St
 
 
 
-function getImgURL(imgName)
+function setImgURL() 
 {
-    var bucketref = firebase.storage().ref().child('public/img/' + imgName);
-    var return_URL = null;
-    bucketref.getDownloadURL().then(function(url) {
-        return_URL = url;
-    }).catch(function(err)
-    {
-        switch (error.code) {
-            case 'storage/object_not_found':
-                break; // File doesn't exist
+    var imgs = document.getElementsByTagName("img");
+    for (var i = 0; i < imgs.length; i++) {
+        var bucketref = firebase.storage().ref().child('public/img/' + img[i].src);
+        bucketref.getDownloadURL().then(function(url) {
+            img[i].src = url;
+        }).catch(function(err)
+        {
+            switch (error.code) {
+                case 'storage/object_not_found':
+                    console.log("404 File image not found")
+                    break; // File doesn't exist
 
-            case 'storage/unauthorized': // User doesn't have permission to access the object
-                break;
+                case 'storage/unauthorized': // User doesn't have permission to access the object
+                    console.log("403 Permission Denied for file image")
+                    break;
 
-            case 'storage/canceled':
-                break; // User canceled the upload
+                case 'storage/canceled':
+                    console.log("400 Client Side error for file image")
+                    break; // User canceled the upload
 
-            case 'storage/unknown':
-                break; // Unknown error occurred, inspect the server response
-        }
-    });
-    // Check that return_URL is not null
-    return return_URL;
+                case 'storage/unknown':
+                    console.log("500 Server error for file image")
+                    break; // Unknown error occurred, inspect the server response
+            }
+        });
+    }
+    // Check that return_URL is not null 
 }
 
+setImgUrl();
 
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
