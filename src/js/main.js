@@ -55,6 +55,39 @@ function setImgURL()
     }
     // Check that return_URL is not null 
 }
+var max_width = 200
+var max_height = 307 
+function resize(img) {
+
+  var canvas = document.createElement('canvas');
+
+  var width = img.width;
+  var height = img.height;
+
+  // calculate the width and height, constraining the proportions
+  if (width > height) {
+    if (width > max_width) {
+      //height *= max_width / width;
+      height = Math.round(height *= max_width / width);
+      width = max_width;
+    }
+  } else {
+    if (height > max_height) {
+      //width *= max_height / height;
+      width = Math.round(width *= max_height / height);
+      height = max_height;
+    }
+  }
+  
+  // resize the canvas and draw the image data into it
+  canvas.width = width;
+  canvas.height = height;
+  var ctx = canvas.getContext("2d");
+  ctx.drawImage(img, 0, 0, width, height);
+  
+  return canvas.toDataURL("image/png",0.7); // get the data from canvas as 70% JPG (can be also PNG, etc.)
+
+}
 
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -108,6 +141,7 @@ var collectionForm = new Vue({
             var image = new Image();
             var reader = new FileReader();
             var vm = this;
+            file = resize(file);
 
             reader.onload = (e) => {
                 vm.image = e.target.result;
