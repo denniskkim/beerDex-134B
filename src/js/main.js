@@ -40,6 +40,45 @@ function setImgURL()
                     console.log("403 Permission Denied for file image")
                     break;
 
+<<<<<<< HEAD
+
+(function checkUserExists(){
+  firebase.auth().onAuthStateChanged(function(user){
+    if(!user){
+      window.location = 'login.html';
+    }
+  })
+}());
+
+
+
+
+
+function getImgURL(imgName)
+{
+    var bucketref = firebase.storage().ref().child('public/img/' + imgName);
+    var return_URL = null;
+    bucketref.getDownloadURL().then(function(url) {
+        return_URL = url;
+    }).catch(function(err)
+    {
+        switch (error.code) {
+            case 'storage/object_not_found':
+                break; // File doesn't exist
+
+            case 'storage/unauthorized': // User doesn't have permission to access the object
+                break;
+
+            case 'storage/canceled':
+                break; // User canceled the upload
+
+            case 'storage/unknown':
+                break; // Unknown error occurred, inspect the server response
+        }
+    });
+    // Check that return_URL is not null
+    return return_URL;
+=======
                 case 'storage/canceled':
                     console.log("400 Client Side error for file image")
                     break; // User canceled the upload
@@ -54,6 +93,7 @@ function setImgURL()
         });
     }
     // Check that return_URL is not null 
+>>>>>>> bd0734b9998d98ce2523e2978091324a4bfb0488
 }
 var max_width = 200
 var max_height = 307 
