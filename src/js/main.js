@@ -17,6 +17,19 @@ var BEER_STYLES = ['Pale Ale', 'Lager', 'IPA', 'Wheat', 'Belgian', 'Porter', 'St
 
 
 
+
+(function checkUserExists(){
+  firebase.auth().onAuthStateChanged(function(user){
+    if(!user){
+      window.location = 'login.html';
+    }
+  })
+}());
+
+
+
+
+
 function getImgURL(imgName)
 {
     var bucketref = firebase.storage().ref().child('public/img/' + imgName);

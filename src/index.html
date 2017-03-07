@@ -15,12 +15,13 @@
     <script src="https://gstatic.com/firebasejs/3.5.2/firebase.js"></script>
     <!-- VueFire -->
     <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
+    <!-- <script src="js/checkUser.js"></script> -->
 </head>
 
 
 <body>
     <header>
-        <nav class="nav has-shadow">
+        <nav class="nav has-shadow" id="nav-bar">
             <div class="container">
                 <div class="nav-left">
                     <a href="index.html" class="nav-item is-active">
@@ -37,12 +38,12 @@
                 <span></span>
                 <span></span>
                 </span>
-                <div class="nav-right nav-menu">
+                <div class="nav-right nav-menu" id="logout-div">
                     <a class="nav-item is-tab is-hidden-tablet is-active">Home</a>
                     <a class="nav-item is-tab is-hidden-tablet">Features</a>
                     <a class="nav-item is-tab is-hidden-tablet">Pricing</a>
                     <a class="nav-item is-tab is-hidden-tablet">About</a>
-                    <a class="nav-item is-tab" href="login.html">Log out</a>
+                    <a v-on:click="logOut" class="nav-item is-tab" href="#">Log out</a>
                 </div>
             </div>
         </nav>
@@ -58,12 +59,17 @@
                 </ul>
                 <h3 class="menu-label overflow">Breweries</h3>
                 <div class="overflow menu-list">
-                    <input type="checkbox" name="beer" value="Ballast Point" checked="checked">Ballast Point<br>
+                  <ul>
+                    <li v-for="brewery in breweryName">
+                      <input type="checkbox" name="beer">{{brewery}}
+                    </li>
+                  </ul>
+                    <!-- <input type="checkbox" name="beer" value="Ballast Point" checked="checked">Ballast Point<br>
                     <input type="checkbox" name="beer" value="Alesmith">Alesmith<br>
                     <input type="checkbox" name="beer" value="Green Flash">Green Flash<br>
                     <input type="checkbox" name="beer" value="Ballast Point">Modern Times<br>
                     <input type="checkbox" name="beer" value="Alesmith">Belching Beaver<br>
-                    <input type="checkbox" name="beer" value="Green Flash">Stone<br>
+                    <input type="checkbox" name="beer" value="Green Flash">Stone<br> -->
                 </div>
                 <h3 class="menu-label overflow">Styles</h3>
                 <div class="overflow menu-list">
@@ -178,6 +184,8 @@
 
     <!-- Use aside tag for filter sidebar -->
     <script src="js/main.js"></script>
+    <script src="js/filter.js"></script>
+    <script src="js/logout.js"></script>
 </body>
 
 </html>
