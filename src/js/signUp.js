@@ -1,12 +1,3 @@
-var config = {
-    apiKey: "AIzaSyDzjSixsprastrEyyrrGMrE5UiXa4JWW34",
-    authDomain: "beerdex-384f9.firebaseapp.com",
-    databaseURL: "https://beerdex-384f9.firebaseio.com",
-    storageBucket: "beerdex-384f9.appspot.com",
-    messagingSenderId: "728464289732"
-};
-
-var firebaseApp = firebase.initializeApp(config);
 
 var signUpVM = new Vue({
     el:'#signup-container',
