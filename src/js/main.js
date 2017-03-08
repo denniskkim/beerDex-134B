@@ -63,7 +63,9 @@ var collectionForm = new Vue({
             var vm = this;
             // file = resize(file);
             reader.onload = (e) => {
-                vm.image = e.target.result;
+                var beer_image = new Image();
+                beer_image.src = e.target.result;
+                vm.image = resize(beer_image);
             }
 
             reader.readAsDataURL(file);

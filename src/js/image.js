@@ -46,9 +46,7 @@ var setImgURL = function() {
 };
 
 var resize = function(img) {
-
     var canvas = document.createElement('canvas');
-
     var width = img.width;
     var height = img.height;
 
