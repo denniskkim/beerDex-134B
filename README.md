@@ -8,5 +8,8 @@ Homework Four Link: https://beerdex-384f9.firebaseapp.com/login.html
 
 ## Developers 
 *Gabe Maze-Rogers* 
+
 *Dennis Kim* 
+
 *Clarence Nguyen* 
+
