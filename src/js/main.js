@@ -258,6 +258,27 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
+/*
+var topRated = new Vue({
+    el: "#topRated",
+    data: {
+
+    },
+    firebase: {
+        topRated
+    },
+
+});
+
+var getTopRatedBeers = function(collectionRef) {
+    collectonRef.on('value', function(parentSnapshot) {
+        parentSnapshot.forEach(function(childSnapshot) {
+            console.log(snapshot.val());
+        };
+    })
+};
+*/
+
 
 Vue.component('modal', {
     template: '#modal-template'
