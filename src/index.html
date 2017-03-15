@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="css/starability.min.css">
     <link rel="stylesheet" href="css/bulma.css">
     <link rel="stylesheet" href="css/vendor/bulmaMain.css">
-    <link rel="stylesheet" href="css/vendor/bulmaMain.css">
 
     <!-- Vue -->
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
@@ -57,43 +56,38 @@
                 <div class="overflow menu-list">
                   <ul>
                     <li v-for="brewery in breweryName">
-                      <input type="checkbox" name="beer">{{brewery}}
+                      <input type="checkbox" :value="brewery" v-model="breweryFilter" name="brewery" @click="renderFiltered">{{brewery}}
                     </li>
                   </ul>
-                    <!-- <input type="checkbox" name="beer" value="Ballast Point" checked="checked">Ballast Point<br>
-                    <input type="checkbox" name="beer" value="Alesmith">Alesmith<br>
-                    <input type="checkbox" name="beer" value="Green Flash">Green Flash<br>
-                    <input type="checkbox" name="beer" value="Ballast Point">Modern Times<br>
-                    <input type="checkbox" name="beer" value="Alesmith">Belching Beaver<br>
-                    <input type="checkbox" name="beer" value="Green Flash">Stone<br> -->
                 </div>
                 <h3 class="menu-label overflow">Styles</h3>
                 <div class="overflow menu-list">
-                    <input type="checkbox" name="beer" value="IPA" checked="checked">IPA<br>
-                    <input type="checkbox" name="beer" value="Stout">Stout<br>
-                    <input type="checkbox" name="beer" value="Gose">Gose<br>
-                    <input type="checkbox" name="beer" value="Ballast Point">Hefeweizen<br>
-                    <input type="checkbox" name="beer" value="Berliner Weissbeir">Berliner Weissbier<br>
-                    <input type="checkbox" name="beer" value="Kolsch">Kolsch<br>
+                  <ul>
+                    <li v-for="style in beerStyle">
+                      <input type="checkbox" name="beer" :value="style" v-model="styleFilter" @click="renderFiltered">{{style}}
+                    </li>
+                  </ul>
                 </div>
                 <h3 class="menu-label overflow">Ratings</h3>
                 <div class="overflow menu-list">
-                    <input type="checkbox" name="beer" value="1 star" checked="checked">&#9733;<br>
-                    <input type="checkbox" name="beer" value="2 star">&#9733;&#9733;<br>
-                    <input type="checkbox" name="beer" value="3 star">&#9733;&#9733;&#9733;<br>
+                    <input type="checkbox" name="beer" value="1-star">&#9733;<br>
+                    <input type="checkbox" name="beer" value="2-star">&#9733;&#9733;<br>
+                    <input type="checkbox" name="beer" value="3-star">&#9733;&#9733;&#9733;<br>
+                    <input type="checkbox" name="beer" value="4-star">&#9733;&#9733;&#9733;&#9733;<br>
+                    <input type="checkbox" name="beer" value="5-star">&#9733;&#9733;&#9733;&#9733;&#9733;<br>
                 </div>
             </div>
         </aside>
 
         <!-- </div> -->
 
-        <section id="collection-view " class="section column is-8">
+        <section id="collection-view " class="section column is-9">
             <span>
                <h2 class="title is-2 heading">Welcome to BeerDex</h2>
             </span>
 
-            <div id="databaseList">
-                <ul class="collection-list">
+            <div id="databaseList" >
+                <ul class="collection-list" v-show="filterSwitch">
                     <li class="collection-item" v-for="beer in database">
                         <div class="card">
                             <figure class="cardImage">
@@ -109,14 +103,42 @@
                                 </div>
                                 {{ beer.quantityMessage }}
                             </div>
-                            <footer class="card-footer">
-                                <a class="card-footer-item" @click="addBeerToCollection(beer)">Add to Collection</a>
-                                <a class="card-footer-item">Add to Wishlist</a>
-                            </footer>
+                            <div id="dummyCollectionAssoc">
+                              <footer class="card-footer">
+                                  <a class="card-footer-item" @click="addBeerToCollection(beer)">Add to Collection</a>
+                                  <a class="card-footer-item">Add to Wishlist</a>
+                              </footer>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="collection-list" v-show="!filterSwitch">
+                    <li class="collection-item" v-for="beers in filterBeerObject">
+                        <div class="card">
+                            <figure class="cardImage">
+                                <img class="card-img" :src="beers.image" :alt="beers.beerName">
+                            </figure>
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-content">
+                                        <p class="title is-4"><b>{{ beers.breweryName }}</b></p>
+                                        <p class="subtitle is-6"><b>{{ beers.beerName }}</b> {{ beers.beerStyle }}</p>
+                                        <p><b>ABV</b> {{beers.ABV}}%</p>
+                                    </div>
+                                </div>
+                                {{ beers.quantityMessage }}
+                            </div>
+                            <div id="dummyCollectionAssoc">
+                              <footer class="card-footer">
+                                  <a class="card-footer-item" @click="addBeerToCollection(beer)">Add to Collection</a>
+                                  <a class="card-footer-item">Add to Wishlist</a>
+                              </footer>
+                            </div>
                         </div>
                     </li>
                 </ul>
             </div>
+
             <button class="button is-primary" onclick="activateModal('addCollectionModal')">Can't find what you're looking for?</button>
         </section>
     </main>
@@ -193,7 +215,7 @@
     </div>
 
     <!-- Use aside tag for filter sidebar -->
-    <script src="js/main.js"></script>
+    <script src="js/tempMain.js"></script>
     <script src="js/filter.js"></script>
     <script src="js/logout.js"></script>
     <script src="js/image.js"></script>

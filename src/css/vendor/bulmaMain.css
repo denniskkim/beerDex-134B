@@ -8,6 +8,8 @@ html,
     background-color: #faf8e3;
 }
 
+.section{
+}
 
 /* faf8e3;
 /*************
@@ -39,14 +41,23 @@ a.nav-item.is-tab.is-active {
 /****************
  * Main content *
  ****************/
+#databaseList{
+  display: flex;
+  justify-content: center;
+  max-width: 1120px;
+}
 
-#collection-list,
-#filter-bar {
+.collection-list {
     margin: 20px;
+    max-width: 1240px;
 }
 
 #filter-bar {
     min-width: 190px;
+    max-width: 210px;
+    margin-top: 40px;
+    margin-left: 3%;
+    margin-right: 0;
 }
 
 .nav a,
@@ -76,8 +87,9 @@ a.nav-item.is-tab.is-active {
     padding-bottom: 6px;
 }
 
-.collection-view {
+#collection-view {
     max-width: 960px;
+    padding-left: 0px;
 }
 
 .heading {

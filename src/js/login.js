@@ -13,10 +13,10 @@ var loginVM = new Vue({
                 .then(function(user){
                         console.log("Success");
                         window.location = 'index.html';
-                    },
-                    function(error){
-                        console.log("Error");
-                    });
+                 },
+                 function(error){
+
+                 });
         }
 
     }

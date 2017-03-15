@@ -31,7 +31,14 @@ var signUpVM = new Vue({
                             window.location = 'index.html';
                         },
                         function(error){
-                            console.log("Failure");
+                            var errorCode = error.code;
+                            var errorMessage = error.message;
+                            if (errorCode == 'auth/weak-password') {
+                              alert('The password is too weak.');
+                            }
+                            else {
+                              alert(errorMessage);
+                            }
                         });
             }
             console.log("Sign Up successful");

@@ -6762,7 +6762,7 @@ label.panel-block:hover {
 
 .section {
   background-color: white;
-  padding: 3rem 1.5rem;
+  padding: 3rem 0;
 }
 
 @media screen and (min-width: 1000px) {

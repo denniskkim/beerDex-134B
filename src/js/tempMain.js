@@ -1,6 +1,6 @@
 var BEER_STYLES = ['Pale Ale', 'Lager', 'IPA', 'Wheat', 'Belgian', 'Porter', 'Stout', 'Sour', 'Other'];
 
-// checks user session 
+// checks user session
 (function checkUserExists(){
   firebase.auth().onAuthStateChanged(function(user){
     if(!user){
@@ -32,6 +32,17 @@ firebase.auth().onAuthStateChanged(function(user) {
 
         });
     }
+});
+
+var collectionVM = new Vue({
+  el : "#databaseList",
+  data : {
+    filterSwitch : true,
+    filterBeerObject : []
+  },
+  firebase: {
+      database: beerDatabaseRef
+  }
 });
 
 
@@ -110,10 +121,12 @@ var collectionForm = new Vue({
     }
 });
 
+
+
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         var databaseItem = new Vue({
-            el: "#databaseList",
+            el: "#dummyCollectionAssoc",
             firebase: {
                 database: beerDatabaseRef
             },
