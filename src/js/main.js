@@ -1,10 +1,10 @@
 var BEER_STYLES = ['Pale Ale', 'Lager', 'IPA', 'Wheat', 'Belgian', 'Porter', 'Stout', 'Sour', 'Other'];
-(function checkUserExists(){
-  firebase.auth().onAuthStateChanged(function(user){
-    if(!user){
-      window.location = 'login.html';
-    }
-  })
+(function checkUserExists() {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (!user) {
+            window.location = 'login.html';
+        }
+    })
 })();
 
 
@@ -12,25 +12,84 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         var collectionList = new Vue({
             el: '#collectionList',
-            firebase : {
+            data: {
+                noedit: true,
+                rating: 0
+            },
+            firebase: {
                 collection: collectionRef.child(firebase.auth().currentUser.uid)
             },
             methods: {
-                deleteBeerFromCollection: function(beer)
-                {
+                deleteBeerFromCollection: function(beer) {
                     // var user;
                     this.$firebaseRefs.collection.child(beer[".key"]).remove();
                 },
-                updateBeerToCollection: function()
-                {
-                    // var user;
-                    this.$firebaseRefs.collection.child(this.beer[key]).update(this.beer);
+                updateBeerInCollection: function(beer) {
+                    // TODO Change this to only show one dropdown when edit is pressed
+                    this.$firebaseRefs.collection.child(beer[".key"]).update({
+                        rating: beer.rating,
+                        quantity: beer.quantity
+                    });
+                    this.noedit = true;
                 }
             }
 
         });
     }
 });
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        var wishlistList = new Vue({
+            el: '#wishlistList',
+            data: {
+                noedit: true,
+                rating: 0
+            },
+            firebase: {
+                wishlist: wishlistRef.child(firebase.auth().currentUser.uid)
+            },
+            methods: {
+                deleteBeerFromWishlist: function(beer) {
+                    // var user;
+                    this.$firebaseRefs.wishlist.child(beer[".key"]).remove();
+                },
+                addBeerToCollection: function(beer) {
+                    var beerToAdd = {
+                        breweryName: beer.breweryName,
+                        beerName: beer.beerName,
+                        beerStyle: beer.beerStyle,
+                        ABV: beer.ABV,
+                        rating: 3,
+                        quantity: 1,
+                        image: beer.image
+                    };
+                    // Need to check if it's already in the collectionRef
+
+                    var seen = 0;
+                    collectionRef.child(firebase.auth().currentUser.uid)
+                        .once('value', function(parentSnapshot) {
+                            parentSnapshot.forEach(function(snapshot) {
+                                var snapVal = snapshot.val();
+                                if (snapVal.beerID === beerToAdd.beerID) {
+                                    seen += 1;
+                                }
+                            })
+                        })
+                        .then(function() {
+                            if (!seen) {
+                                alert("Added " + beerToAdd.beerName + " to your collection!");
+                                collectionRef.child(firebase.auth().currentUser.uid).push(beerToAdd);
+                            }
+                        });
+                    wishlistRef.child(firebase.auth().currentUser.uid).child(beer[".key"]).remove();
+                }
+            }
+
+        });
+    }
+});
+
 
 
 
@@ -70,7 +129,7 @@ var collectionForm = new Vue({
 
             reader.readAsDataURL(file);
         },
-        removeImage: function (e) {
+        removeImage: function(e) {
             this.image = '';
         },
         addBeerToCollection: function() {
@@ -85,11 +144,11 @@ var collectionForm = new Vue({
             };
             var tmpQuantity = beerToAdd.quantity;
             var valid = beerToAdd.breweryName.length &&
-                        beerToAdd.beerStyle.length &&
-                        beerToAdd.quantity &&
-                        beerToAdd.image.length &&
-                        beerToAdd.ABV &&
-                        beerToAdd.rating;
+                beerToAdd.beerStyle.length &&
+                beerToAdd.quantity &&
+                beerToAdd.image.length &&
+                beerToAdd.ABV &&
+                beerToAdd.rating;
             if (valid) {
                 beerToAdd.quantity = 1;
                 beerDatabaseRef.push(beerToAdd).then(function(snapshot) {
@@ -116,7 +175,7 @@ firebase.auth().onAuthStateChanged(function(user) {
                 database: beerDatabaseRef
             },
             methods: {
-                addBeerToCollection: function (beer) {
+                addBeerToCollection: function(beer) {
                     var beerToAdd = {
                         UID: firebase.auth().currentUser.uid,
                         breweryName: beer.breweryName,
@@ -129,12 +188,12 @@ firebase.auth().onAuthStateChanged(function(user) {
                     };
 
                     var valid = beerToAdd.UID &&
-                                beerToAdd.breweryName.length &&
-                                beerToAdd.beerName &&
-                                beerToAdd.beerStyle.length &&
-                                beerToAdd.quantity &&
-                                beerToAdd.image.length &&
-                                beerToAdd.ABV;
+                        beerToAdd.breweryName.length &&
+                        beerToAdd.beerName &&
+                        beerToAdd.beerStyle.length &&
+                        beerToAdd.quantity &&
+                        beerToAdd.image.length &&
+                        beerToAdd.ABV;
 
                     if (valid) {
                         collectionRef.child(firebase.auth().currentUser.uid)
@@ -147,10 +206,49 @@ firebase.auth().onAuthStateChanged(function(user) {
                                     }
                                 })
                             })
-                        .then(function() {
-                            alert("You now have " + beerToAdd.quantity + " " + beerToAdd.beerName);
-                            collectionRef.child(firebase.auth().currentUser.uid).push(beerToAdd);
-                        });
+                            .then(function() {
+                                alert("You now have " + beerToAdd.quantity + " " + beerToAdd.beerName);
+                                collectionRef.child(firebase.auth().currentUser.uid).push(beerToAdd);
+                            });
+                    } else {
+                        console.log("Error");
+                    }
+                },
+                addBeerToWishlist: function(beer) {
+                    var beerToAdd = {
+                        UID: firebase.auth().currentUser.uid,
+                        breweryName: beer.breweryName,
+                        beerName: beer.beerName,
+                        beerStyle: beer.beerStyle,
+                        image: beer.image,
+                        ABV: beer.ABV,
+                        beerID: beer[".key"]
+                    };
+
+                    var valid = beerToAdd.UID &&
+                        beerToAdd.breweryName.length &&
+                        beerToAdd.beerName &&
+                        beerToAdd.beerStyle.length &&
+                        beerToAdd.image.length &&
+                        beerToAdd.ABV;
+
+                    if (valid) {
+                        var seen = 0;
+                        wishlistRef.child(firebase.auth().currentUser.uid)
+                            .once('value', function(parentSnapshot) {
+                                parentSnapshot.forEach(function(snapshot) {
+                                    var snapVal = snapshot.val();
+                                    if (snapVal.beerID === beerToAdd.beerID) {
+                                        seen += 1;
+                                    }
+                                })
+                            })
+                            .then(function() {
+                                if (!seen) {
+                                    alert("Added " + beerToAdd.beerName + " to your wishlist!");
+                                    wishlistRef.child(firebase.auth().currentUser.uid).push(beerToAdd);
+                                }
+                            });
                     } else {
                         console.log("Error");
                     }

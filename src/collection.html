@@ -18,39 +18,39 @@
 
 
 <body>
-  <header>
-    <nav class="nav has-shadow">
-      <div class="container">
-        <div class="nav-left">
-          <a href="index.html" class="nav-item">
-            <img src="img/tempIcon.png" alt="BeerDex Icon">
-            <br>BeerDex
-          </a>
-          <a href="collection.html" class="nav-item is-tab is-hidden-mobile is-active">Collection</a>
-          <a href="trades.html" class="nav-item is-tab is-hidden-mobile">Trades</a>
-          <a href="wishlist.html" class="nav-item is-tab is-hidden-mobile">Wish List</a>
-          <a href="stats.html" class="nav-item is-tab is-hidden-mobile">Statistics</a>
-        </div>
-        <span class="nav-toggle">
+    <header>
+        <nav class="nav has-shadow">
+            <div class="container">
+                <div class="nav-left">
+                    <a href="index.html" class="nav-item">
+                        <img src="img/tempIcon.png" alt="BeerDex Icon">
+                        <br>BeerDex
+                    </a>
+                    <a href="collection.html" class="nav-item is-tab is-hidden-mobile is-active">Collection</a>
+                    <a href="trades.html" class="nav-item is-tab is-hidden-mobile">Trades</a>
+                    <a href="wishlist.html" class="nav-item is-tab is-hidden-mobile">Wish List</a>
+                    <a href="stats.html" class="nav-item is-tab is-hidden-mobile">Statistics</a>
+                </div>
+                <span class="nav-toggle">
           <span></span>
-          <span></span>
-          <span></span>
-        </span>
-        <div class="nav-right nav-menu">
-          <a class="nav-item is-tab is-hidden-tablet is-active">Home</a>
-          <a class="nav-item is-tab is-hidden-tablet">Features</a>
-          <a class="nav-item is-tab is-hidden-tablet">Pricing</a>
-          <a class="nav-item is-tab is-hidden-tablet">About</a>
+                <span></span>
+                <span></span>
+                </span>
+                <div class="nav-right nav-menu">
+                    <a class="nav-item is-tab is-hidden-tablet is-active">Home</a>
+                    <a class="nav-item is-tab is-hidden-tablet">Features</a>
+                    <a class="nav-item is-tab is-hidden-tablet">Pricing</a>
+                    <a class="nav-item is-tab is-hidden-tablet">About</a>
 
-          <a class="nav-item is-tab" href="login.html">Log out</a>
-        </div>
-      </div>
-    </nav>
-  </header>
+                    <a class="nav-item is-tab" href="login.html">Log out</a>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     <main id="collection-list" class="columns">
-          <aside id="filter-bar" class="column is-2">
-              <div class="menu box">
+        <aside id="filter-bar" class="column is-2">
+            <div class="menu box">
                 <h3 class="menu-label overflow">Breweries</h3>
                 <div class="overflow menu-list">
                     <input type="checkbox" name="beer" value="Ballast Point" checked="checked">Ballast Point<br>
@@ -71,47 +71,87 @@
                 </div>
                 <h3 class="menu-label overflow">Ratings</h3>
                 <div class="overflow menu-list">
-                  <input type="checkbox" name="beer" value="1 star" checked="checked">&#9733;<br>
-                  <input type="checkbox" name="beer" value="2 star">&#9733;&#9733;<br>
-                  <input type="checkbox" name="beer" value="3 star">&#9733;&#9733;&#9733;<br>
+                    <input type="checkbox" name="beer" value="1 star" checked="checked">&#9733;<br>
+                    <input type="checkbox" name="beer" value="2 star">&#9733;&#9733;<br>
+                    <input type="checkbox" name="beer" value="3 star">&#9733;&#9733;&#9733;<br>
                 </div>
-              </div>
+            </div>
 
-          </aside>
+        </aside>
 
-        <section id="collection-view" class="section column is-8" >
+        <section id="collection-view" class="section column is-8">
             <h2 class="title is-2 heading">My Collection</h2>
             <div id='collectionList'>
-                <ul class="collection-list">
-                    <li class="collection-item" v-for="beer in collection">
-                        <div class="card">
-                            <figure class="cardImage" >
-                                <img class="card-img" :src="beer.image" :alt="beer.imgDescription">
-                            </figure>
-                            <div class="card-content">
-                                <div class="media">
-                                    <div class="media-content">
-                                        <p class="title is-4"><b>{{ beer.breweryName }}</b></p>
-                                        <p class="subtitle is-6"><b>{{ beer.beerName }}</b> {{beer.beerStyle}}</p>
-                                        <p><b>ABV</b> {{beer.ABV}}%</p>
-                                        <p><b>Rating</b> {{beer.rating}}</p>
-                                        <hr>
-                                        <p>You have {{ beer.quantity }}.</p>
-                                    </div>
-                                    <div class="media-right">
-                                        <button class="delete is-large" @click="deleteBeerFromCollection(beer)"></button>
+                <div v-if="collection.length > 0">
+                    <ul class="collection-list">
+                        <li class="collection-item" v-for="beer in collection">
+                            <div class="card">
+                                <figure class="cardImage">
+                                    <img class="card-img" :src="beer.image" :alt="beer.imgDescription">
+                                </figure>
+                                <div class="card-content">
+                                    <div class="media">
+                                        <div class="media-content">
+                                            <p class="title is-4"><b>{{ beer.breweryName }}</b></p>
+                                            <p class="subtitle is-6"><b>{{ beer.beerName }}</b> {{beer.beerStyle}}</p>
+                                            <p><b>ABV</b> {{beer.ABV}}%</p>
+                                            <p v-if="noedit === true"><b>Rating</b> {{beer.rating}}
+                                            </p>
+                                            <div v-else>
+                                                <label class="label">Rating</label>
+                                                <p class="control">
+                                                    <span class="select">
+                                            <select v-model="beer.rating">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
+                                          </span>
+                                                </p>
+                                            </div>
+                                            <p v-if="noedit === true"><b>Quantity</b> {{beer.quantity}}
+                                            </p>
+                                            <div v-else>
+                                                <label class="label">Quantity</label>
+                                                <p class="control">
+                                                    <span class="select">
+                                            <select v-model="beer.quantity">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                                <option>5+</option>
+                                            </select>
+                                          </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="media-right">
+                                            <button class="delete is-large" @click="deleteBeerFromCollection(beer)"></button>
+                                        </div>
                                     </div>
                                 </div>
+                                <footer class="card-footer">
+                                    <a v-if="noedit === true" class="card-footer-item" v-on:click="noedit = !noedit">Edit Beer</a>
+                                    <a v-else class="card-footer-item" @click="updateBeerInCollection(beer)">Update Beer</a>
+                                    <a class="card-footer-item">Add to Trades</a>
+                                </footer>
                             </div>
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div v-else>
+                    You have nothing in your collection!
+                </div>
             </div>
-  </section>
-  </main>
-  <!-- Use aside tag for filter sidebar -->
-  <script src="js/config.js"></script>
-  <script src="js/main.js"></script>
+        </section>
+    </main>
+    <!-- Use aside tag for filter sidebar -->
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

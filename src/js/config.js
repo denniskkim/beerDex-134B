@@ -15,3 +15,4 @@ var db = firebaseApp.database();
 var collectionRef = db.ref('collections');
 var userRef = db.ref('user');
 var beerDatabaseRef = db.ref('beers');
+var wishlistRef = db.ref('wishlist');
