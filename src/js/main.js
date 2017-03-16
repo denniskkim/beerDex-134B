@@ -258,27 +258,110 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
-/*
-var topRated = new Vue({
-    el: "#topRated",
-    data: {
-
-    },
-    firebase: {
-        topRated
-    },
-
-});
-
-var getTopRatedBeers = function(collectionRef) {
-    collectonRef.on('value', function(parentSnapshot) {
+var getTopRatedBeers = function() {
+    var beerIdWithRating = [];
+    collectionRef.once('value', function(parentSnapshot) {
         parentSnapshot.forEach(function(childSnapshot) {
-            console.log(snapshot.val());
-        };
-    })
-};
-*/
+            var beerIDs = Object.keys(childSnapshot.val());
+            var parentObj = childSnapshot.val();
+            for (var i in beerIDs) {
+                var beerID = beerIDs[i];
+                var beerObjectID = parentObj[beerID].beerID;
+                if (parentObj[beerID].rating) {
+                    if (beerIdWithRating[beerObjectID]) {
+                        beerIdWithRating[beerObjectID].push(parentObj[beerID].rating)
+                    } else {
+                        beerIdWithRating[beerObjectID] = [parentObj[beerID].rating]
+                    }
+                }
+            }
+        });
+    }).then(function() {
+        console.log("hey")
+        var idWithRatingAvg = []
+        for (var id in beerIdWithRating) {
+            var ratingArray = beerIdWithRating[id];
+            var sum = 0;
+            for (var i in ratingArray) {
+                sum += parseInt(ratingArray[i]);
+            }
+            idWithRatingAvg[id] = sum / ratingArray.length;
+        }
 
+        var beersWithRating = [];
+        beerDatabaseRef.once('value', function(snapshot) {
+            var snapVal = snapshot.val();
+            var keys = Object.keys(snapVal);
+            for (var i in keys) {
+                var beerID = keys[i];
+                if (idWithRatingAvg[beerID]) {
+                    snapVal[beerID].rating = idWithRatingAvg[beerID];
+                    beersWithRating.push(snapVal[beerID]);
+                }
+            }
+            beersWithRating.sort(function(a, b) {
+                return parseFloat(b.rating) - parseFloat(a.rating);
+            });
+        }).then(function() {
+            console.log("hey")
+            var topRated = new Vue({
+                el: "#topRated",
+                data: {
+                    beers: beersWithRating
+                }
+            });
+        });
+    });
+};
+
+var getMostWishedForBeers = function() {
+    var beerCounts = [];
+    wishlistRef.once('value', function(parentSnapshot) {
+        parentSnapshot.forEach(function(childSnapshot) {
+            var beerIDs = Object.keys(childSnapshot.val());
+            var parentObj = childSnapshot.val();
+            console.log(parentObj);
+            console.log("fddsaf");
+            for (var i in beerIDs) {
+                var beerID = beerIDs[i];
+                var beerObjectID = parentObj[beerID].beerID;
+                if (beerCounts[beerObjectID]) {
+                    beerCounts[beerObjectID] += 1;
+                } else {
+                    beerCounts[beerObjectID] = 1;
+                }
+            }
+        })
+    }).then(function() {
+        var beersWithCounts = [];
+        console.log(beerCounts);
+        beerDatabaseRef.once('value', function(snapshot) {
+            var snapVal = snapshot.val();
+            var keys = Object.keys(snapVal);
+            for (var i in keys) {
+                var beerID = keys[i];
+                if (beerCounts[beerID]) {
+                    snapVal[beerID].count = beerCounts[beerID];
+                    beersWithCounts.push(snapVal[beerID]);
+                }
+            }
+            beersWithCounts.sort(function(a, b) {
+                return parseFloat(b.rating) - parseFloat(a.rating);
+            });
+        }).then(function() {
+            console.log(beersWithCounts);
+            var mostWished = new Vue({
+                el: "#mostWished",
+                data: {
+                    beers: beersWithCounts
+                }
+            });
+        });
+    });
+};
+
+getTopRatedBeers();
+getMostWishedForBeers();
 
 Vue.component('modal', {
     template: '#modal-template'
