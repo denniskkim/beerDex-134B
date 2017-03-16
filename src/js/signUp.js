@@ -17,6 +17,7 @@ var signUpVM = new Vue({
         validEmail : false,
         validAge : false,
         signUpFlag : true,
+        ageClear : false,
         signUpOption : ''
     },
     methods: {
@@ -24,7 +25,7 @@ var signUpVM = new Vue({
             var self = this;
             console.log(self.validEmail);
             console.log(self.validAge);
-            if(!self.validEmail && !self.validAge){
+            if(!self.validEmail && self.ageClear){
                 firebase.auth().createUserWithEmailAndPassword(self.newUser.email,self.newUser.password)
                     .then(function(user){
                             console.log("Success");
@@ -34,14 +35,19 @@ var signUpVM = new Vue({
                             var errorCode = error.code;
                             var errorMessage = error.message;
                             if (errorCode == 'auth/weak-password') {
-                              alert('The password is too weak.');
-                            }
-                            else {
-                              alert(errorMessage);
-                            }
+                               alert('The password is too weak.');
+                             }
+                             else if(errorCode == 'auth/email-already-in-use'){
+                               alert('Email is already in use! Please try to login');
+                             }
+                             else{
+                               alert(errorMessage);
+                             }
                         });
             }
-            console.log("Sign Up successful");
+            else if(!self.clearAge){
+              alert("Sorry you need to be 21+ to access this page" );
+            }
         },
         emailConfirm : function(){
             var self = this;
@@ -57,9 +63,11 @@ var signUpVM = new Vue({
             var birthday = getAge(self.newUser.birth.month, self.newUser.birth.day, self.newUser.birth.year);
             if(birthday < 21){
                 self.validAge = true;
+                self.ageClear = false;
             }
-            else{
+            else if(birthday >= 21 && this.newUser.birth.month && this.newUser.birth.day && this.newUser.birth.year){
                 self.validAge = false;
+                self.ageClear = true;
             }
         },
         changeSignUpView : function(){

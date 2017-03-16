@@ -9,6 +9,31 @@ var BEER_STYLES = ['Pale Ale', 'Lager', 'IPA', 'Wheat', 'Belgian', 'Porter', 'St
   })
 })();
 
+function grabFromBeerDB(target){
+  var outputList = [];
+
+  beerDatabaseRef.orderByChild("beerName").on("value",function(snapshot){
+    snapshot.forEach(function(data){
+      if(target == "brewery"){
+        var idx = outputList.indexOf(data.val().breweryName);
+        if(idx == -1){
+          // console.log(data.val());
+          outputList.push(data.val().breweryName);
+        }
+      }
+      else if(target=="style"){
+        var idx = outputList.indexOf(data.val().beerStyle);
+        if(idx == -1){
+          outputList.push(data.val().beerStyle);
+        }
+      }
+    });
+  });
+
+  return outputList;
+}
+
+
 
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -32,17 +57,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 
         });
     }
-});
-
-var collectionVM = new Vue({
-  el : "#databaseList",
-  data : {
-    filterSwitch : true,
-    filterBeerObject : []
-  },
-  firebase: {
-      database: beerDatabaseRef
-  }
 });
 
 
@@ -121,17 +135,22 @@ var collectionForm = new Vue({
     }
 });
 
-
-
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-        var databaseItem = new Vue({
-            el: "#dummyCollectionAssoc",
+        var collectionVM = new Vue({
+            el: "#databaseList",
+            data : {
+              filterSwitch : true,
+              currentUser : firebase.auth().currentUser,
+              filterBeerObject : []
+            },
             firebase: {
                 database: beerDatabaseRef
             },
             methods: {
                 addBeerToCollection: function (beer) {
+                    var self = this;
+                    // object wrapper for beer to be added to collection
                     var beerToAdd = {
                         UID: firebase.auth().currentUser.uid,
                         breweryName: beer.breweryName,
@@ -140,7 +159,7 @@ firebase.auth().onAuthStateChanged(function(user) {
                         quantity: 1,
                         image: beer.image,
                         ABV: beer.ABV,
-                        beerID: beer[".key"]
+                        // beerID: beer[".key"]
                     };
 
                     var valid = beerToAdd.UID &&
@@ -156,7 +175,8 @@ firebase.auth().onAuthStateChanged(function(user) {
                             .once('value', function(parentSnapshot) {
                                 parentSnapshot.forEach(function(snapshot) {
                                     var snapVal = snapshot.val();
-                                    if (snapVal.beerID === beerToAdd.beerID) {
+                                    // validity check to update user's quantity of beer in their collection
+                                    if (snapVal.beerName === beerToAdd.beerName && snapVal.beerStyle === beerToAdd.beerStyle && snapVal.breweryName === beerToAdd.breweryName) {
                                         beerToAdd.quantity = snapVal.quantity + beerToAdd.quantity;
                                         collectionRef.child(firebase.auth().currentUser.uid).child(snapshot.key).remove();
                                     }
@@ -165,13 +185,71 @@ firebase.auth().onAuthStateChanged(function(user) {
                         .then(function() {
                             alert("You now have " + beerToAdd.quantity + " " + beerToAdd.beerName);
                             collectionRef.child(firebase.auth().currentUser.uid).push(beerToAdd);
+
                         });
                     } else {
                         console.log("Error");
                     }
                 }
             }
-        })
+        });
+
+        // vue instance for our filter bar
+        var filterVM = new Vue({
+          el: '#filter-bar',
+          data : {
+            breweryName : grabFromBeerDB("brewery"),
+            beerStyle : grabFromBeerDB("style"),
+            breweryFilter : [],
+            styleFilter : [],
+            computedFilter : []
+          },
+          firebase : {
+            beerList: beerDatabaseRef
+          },
+          methods : {
+            renderFiltered: function(){
+              var tempList = []
+              // checks to see if any filters for brewery were checked.
+              if(this.breweryFilter.length > 0){
+                collectionVM.filterSwitch = false;
+                for(i = 0; i < this.breweryFilter.length; i++){
+                  // queries the instance of fitlered brewery from database
+                  beerDatabaseRef.orderByChild("breweryName").equalTo(this.breweryFilter[i]).on("value",function(snapshot){
+                    snapshot.forEach(function(data){
+                      // handles duplicate , need to be fixed
+                      var idx = tempList.indexOf(data.val().beerName);
+                      if(idx == -1){
+                        tempList.push(data.val());
+                      }
+                    });
+                  });
+                }
+              }
+              // checks to see if any filters for style was checked
+              if(this.styleFilter.length > 0){
+                collectionVM.filterSwitch = false;
+                for(i = 0; i < this.styleFilter.length; i++){
+                  // queries the instance of filtered style from Database
+                  beerDatabaseRef.orderByChild("beerStyle").equalTo(this.styleFilter[i]).on("value",function(snapshot){
+                    snapshot.forEach(function(data){
+                      // handles duplicate , need to be fixed
+                      var idx = tempList.indexOf(data.val().beerName);
+                      if(idx == -1){
+                        tempList.push(data.val());
+                      }
+                    });
+                  });
+                }
+              }
+              // resets view if no filter is checked
+              else if(this.styleFilter.length == 0 && this.breweryFilter.length == 0){
+                collectionVM.filterSwitch = true;
+              }
+              collectionVM.filterBeerObject = tempList;
+            }
+          }
+        });
     }
 });
 
