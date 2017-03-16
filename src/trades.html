@@ -32,36 +32,36 @@
                     <a href="stats.html" class="nav-item is-tab is-hidden-mobile">Statistics</a>
                 </div>
                 <span class="nav-toggle">
-          <span></span>
-                <span></span>
-                <span></span>
-                </span>
-                <div class="nav-right nav-menu">
-                    <a class="nav-item is-tab is-hidden-tablet is-active">Home</a>
-                    <a class="nav-item is-tab is-hidden-tablet">Features</a>
-                    <a class="nav-item is-tab is-hidden-tablet">Pricing</a>
-                    <a class="nav-item is-tab is-hidden-tablet">About</a>
-                    <a class="nav-item is-tab" href="login.html">Log out</a>
-                </div>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </span>
+              <div class="nav-right nav-menu">
+                <a class="nav-item is-tab is-hidden-tablet is-active">Home</a>
+                <a class="nav-item is-tab is-hidden-tablet">Features</a>
+                <a class="nav-item is-tab is-hidden-tablet">Pricing</a>
+                <a class="nav-item is-tab is-hidden-tablet">About</a>
+                <a class="nav-item is-tab" href="login.html">Log out</a>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
 
-    <section class="trade-menu">
-        <div class="control is-grouped is-pulled-right ">
-            <p class="control">
+<section class="trade-menu">
+    <div class="control is-grouped is-pulled-right ">
+        <p class="control">
 
-            </p>
-            <p class="control">
-                <button class="button is-primary" onclick="activateModal('addTradeModal')">Create Trades</button>
-    </section>
+        </p>
+        <p class="control">
+            <button class="button is-primary" onclick="activateModal('addTradeModal')">Create Trades</button>
+        </section>
     </p>
-    </div>
-    </section>
-    <br class="is-clearfix">
+</div>
+</section>
+<br class="is-clearfix">
 
-    <main id="trade-list" class="columns">
-        <aside id="filter-bar" class="column is-2">
+<main id="trade-list" class="columns">
+    <aside id="filter-bar" class="column is-2">
             <!-- <h1 class="title is-3">MarketPlace</h1>
             <div class="menu box">
                 <h3 class="menu-label overflow">Trades</h3>
@@ -124,98 +124,96 @@
                                                 <b>Looking For :</b>
                                                 <em style="font-size:10pt; display: block">
 
-                        <b> {{tradeReq.forBrewery}}</b> {{ tradeReq.tradeFor }}
-                      </em>
+                                                    <b> {{tradeReq.forBrewery}}</b> {{ tradeReq.tradeFor }}
+                                                </em>
                                             </p>
                                             <p class="subtitle is-5">
                                                 <b>Trading For : </b>
                                                 <em style="font-size:10pt; display: block">
 
-                       <b> {{tradeReq.fromBrewery}}</b> {{ tradeReq.tradeFrom }}
-                     </em>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <footer class="card-footer">
-                                    <a class="card-footer-item" v-on:click="getURL(tradeReq.user)">
-                Contact
-              </a>
-                                </footer>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <!-- listings -->
-                <div v-if="listings && tradesListings.length > 0">
-                    <ul class="collection-list">
-                        <li class="collection-item" v-for="tradeReq in tradesListings">
-                            <div class="card">
-                                <figure class="cardImage">
-                                    <img class="card-img" :src="tradeReq.image" :alt="tradeReq.imgDescription">
-                                </figure>
-                                <div class="card-content">
-                                    <div class="media">
-                                        <div class="media-content">
-                                            <p class="subtitle is-5">
-                                                <b>Looking For :</b>
-                                                <em style="font-size:10pt; display: block">
-                      <b> {{tradeReq.forBrewery}}</b> {{ tradeReq.tradeFor }}
-                    </em>
-                                            </p>
-                                            <p class="subtitle is-5">
-                                                <b>Trading For : </b>
-                                                <em style="font-size:10pt; display: block">
-                      <b> {{tradeReq.fromBrewery}}</b> {{ tradeReq.tradeFrom }}
-                    </em>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
+                                                   <b> {{tradeReq.fromBrewery}}</b> {{ tradeReq.tradeFrom }}
+                                               </em>
+                                           </p>
+                                       </div>
+                                   </div>
+                               </div>
+                               <footer class="card-footer">
+                                <a class="card-footer-item" v-on:click="getURL(tradeReq.user)">
+                                    Contact
+                                </a>
+                            </footer>
+                        </div>
+                    </li>
+                </ul>
             </div>
+            <!-- listings -->
+            <div v-if="listings && tradesListings.length > 0">
+                <ul class="collection-list">
+                    <li class="collection-item" v-for="tradeReq in tradesListings">
+                        <div class="card">
+                            <figure class="cardImage">
+                                <img class="card-img" :src="tradeReq.image" :alt="tradeReq.imgDescription">
+                            </figure>
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-content">
+                                        <p class="subtitle is-5">
+                                            <b>Looking For :</b>
+                                            <em style="font-size:10pt; display: block">
+                                              <b> {{tradeReq.forBrewery}}</b> {{ tradeReq.tradeFor }}
+                                          </em>
+                                      </p>
+                                      <p class="subtitle is-5">
+                                        <b>Trading For : </b>
+                                        <em style="font-size:10pt; display: block">
+                                          <b> {{tradeReq.fromBrewery}}</b> {{ tradeReq.tradeFrom }}
+                                      </em>
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </li>
+          </ul>
+      </div>
+
+  </div>
+</section>
+</main>
+
+<!-- Trade Modal -->
+
+<div class="modal" id="addTradeModal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <div id="addTradeForm">
+            <section class="modal-card-body">
+                <h3 class="title is-3 form-title">Add Request to All-Trades</h3>
+                <label class="label" style="color:red" v-if="errorMessage.length >0"> {{errorMessage}}</label>
+                <label class="label">Trade For</label>
+                <p class="control">
+                    <select v-model="tradeFor">
+                        <option v-for="beer in database">
+                          {{ beer.beerName }}
+                      </option>
+                  </select>
+              </p>
+              <label class="label">Trading From </label>
+              <p class="control">
+                <select v-model="tradeFrom">
+                    <option  v-for="beer in database">{{ beer.beerName }}</option>
+                </select>
+            </p>
         </section>
-    </main>
-
-    <!-- Trade Modal -->
-
-    <div class="modal" id="addTradeModal">
-        <div class="modal-background"></div>
-        <div class="modal-card">
-            <div id="addTradeForm">
-                <section class="modal-card-body">
-                    <h3 class="title is-3 form-title">Add Request to All-Trades</h3>
-                    <label class="label">Trade For</label>
-                    <p class="control">
-                        <select v-model="tradeFor">
-            <option v-for="beer in database">
-              {{ beer.beerName }}
-            </option>
-          </select>
-                    </p>
-                    <label class="label">Trading From </label>
-                    <p class="control">
-                        <select v-model="tradeFrom">
-            <figure class="cardImage">
-              <img class="card-img" :src="beer.image" :alt="beer.imgDescription">
-            </figure>
-            <option  v-for="beer in database">{{ beer.beerName }}</option>
-          </select>
-                    </p>
-                </section>
-                <footer class="modal-card-foot">
-                    <input class="button is-success" type="submit" v-on:click="createTradeRequest">
-                    <button class="button" onclick="deactivateModal('addTradeModal')">Cancel</button>
-                </footer>
-            </div>
-        </div>
+        <footer class="modal-card-foot">
+            <input class="button is-success" type="submit" v-on:click="createTradeRequest">
+            <button class="button" onclick="deactivateModal('addTradeModal')">Cancel</button>
+        </footer>
     </div>
-    <!-- Use aside tag for filter sidebar -->
-    <script src="js/trades.js"></script>
+</div>
+</div>
+<!-- Use aside tag for filter sidebar -->
+<script src="js/trades.js"></script>
 </body>
 
 </html>

@@ -72,6 +72,14 @@ if (document.getElementById("collectionList")) {
                             quantity: beer.quantity
                         });
                         this.noedit = true;
+                    },
+                    tradeBeerFromCollection: function(modalID,beer) {
+                      var select = document.getElementById('explicitTradeFrom')
+                      select.options[0].innerHTML = beer.beerName
+                      select.options[0].value = beer.beerName
+                      select.value = beer.beerName
+                      activateModal(modalID)
+
                     }
                 }
 
