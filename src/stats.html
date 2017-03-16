@@ -4,41 +4,50 @@
 <head>
     <title>BeerDex - HomePage</title>
     <meta charset="UTF-8">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#C33430">
     <link rel="stylesheet" href="css/bulma.css">
     <link rel="stylesheet" href="css/vendor/bulmaMain.css">
+    <!-- Vue -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- Firebase -->
+    <script src="https://gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+    <!-- VueFire -->
+    <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
+    <script src="js/config.js"></script>
 </head>
 
 
 <body>
-  <header>
-    <nav class="nav has-shadow">
-      <div class="container">
-        <div class="nav-left">
-          <a href="index.html" class="nav-item">
-            <img src="img/tempIcon.png" alt="BeerDex Icon">
-            <br>BeerDex
-          </a>
-          <a href="collection.html" class="nav-item is-tab is-hidden-mobile ">Collection</a>
-          <a href="trades.html" class="nav-item is-tab is-hidden-mobile">Trades</a>
-          <a href="wishlist.html" class="nav-item is-tab is-hidden-mobile">Wish List</a>
-          <a href="stats.html" class="nav-item is-tab is-hidden-mobile is-active">Statistics</a>
-        </div>
-        <span class="nav-toggle">
+    <header>
+        <nav class="nav has-shadow">
+            <div class="container">
+                <div class="nav-left">
+                    <a href="index.html" class="nav-item">
+                        <img src="img/tempIcon.png" alt="BeerDex Icon">
+                        <br>BeerDex
+                    </a>
+                    <a href="collection.html" class="nav-item is-tab is-hidden-mobile ">Collection</a>
+                    <a href="trades.html" class="nav-item is-tab is-hidden-mobile">Trades</a>
+                    <a href="wishlist.html" class="nav-item is-tab is-hidden-mobile">Wish List</a>
+                    <a href="stats.html" class="nav-item is-tab is-hidden-mobile is-active">Statistics</a>
+                </div>
+                <span class="nav-toggle">
           <span></span>
-          <span></span>
-          <span></span>
-        </span>
-        <div class="nav-right nav-menu">
-          <a class="nav-item is-tab is-hidden-tablet is-active">Home</a>
-          <a class="nav-item is-tab is-hidden-tablet">Features</a>
-          <a class="nav-item is-tab is-hidden-tablet">Pricing</a>
-          <a class="nav-item is-tab is-hidden-tablet">About</a>
+                <span></span>
+                <span></span>
+                </span>
+                <div class="nav-right nav-menu">
+                    <a class="nav-item is-tab is-hidden-tablet is-active">Home</a>
+                    <a class="nav-item is-tab is-hidden-tablet">Features</a>
+                    <a class="nav-item is-tab is-hidden-tablet">Pricing</a>
+                    <a class="nav-item is-tab is-hidden-tablet">About</a>
 
-          <a class="nav-item is-tab" href="login.html">Log out</a>
-        </div>
-      </div>
-    </nav>
-  </header>
+                    <a class="nav-item is-tab" href="login.html">Log out</a>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     <main id="collection-list" class="columns is-fluid">
         <section id="collection-view column ">
@@ -49,7 +58,7 @@
                         <div class="message-header">
                             <p>Top Rated Beers</p>
                         </div>
-                        <div class="message-body">
+                        <div class="message-body" id="topRated">
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -61,75 +70,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th>1</th>
-                                        <td>Sculpin </td>
-                                        <td>Ballast Point</td>
-                                        <td>IPA</td>
-                                        <td>4.8</td>
-                                    </tr>
-                                    <tr>
-                                        <th>2</th>
-                                        <td>Sculpin </td>
-                                        <td>Ballast Point</td>
-                                        <td>IPA</td>
-                                        <td>4.8</td>
-                                    </tr>
-                                    <tr>
-                                        <th>3</th>
-                                        <td>Sculpin </td>
-                                        <td>Ballast Point</td>
-                                        <td>IPA</td>
-                                        <td>4.8</td>
-                                    </tr>
-                                    <tr>
-                                        <th>4</th>
-                                        <td>Sculpin </td>
-                                        <td>Ballast Point</td>
-                                        <td>IPA</td>
-                                        <td>4.8</td>
-                                    </tr>
-                                    <tr>
-                                        <th>5</th>
-                                        <td>Sculpin </td>
-                                        <td>Ballast Point</td>
-                                        <td>IPA</td>
-                                        <td>4.8</td>
-                                    </tr>
-                                    <tr>
-                                        <th>6</th>
-                                        <td>Sculpin </td>
-                                        <td>Ballast Point</td>
-                                        <td>IPA</td>
-                                        <td>4.8</td>
-                                    </tr>
-                                    <tr>
-                                        <th>7</th>
-                                        <td>Sculpin </td>
-                                        <td>Ballast Point</td>
-                                        <td>IPA</td>
-                                        <td>4.8</td>
-                                    </tr>
-                                    <tr>
-                                        <th>8</th>
-                                        <td>Sculpin </td>
-                                        <td>Ballast Point</td>
-                                        <td>IPA</td>
-                                        <td>4.8</td>
-                                    </tr>
-                                    <tr>
-                                        <th>9</th>
-                                        <td>Sculpin </td>
-                                        <td>Ballast Point</td>
-                                        <td>IPA</td>
-                                        <td>4.8</td>
-                                    </tr>
-                                    <tr>
-                                        <th>10</th>
-                                        <td>Sculpin </td>
-                                        <td>Ballast Point</td>
-                                        <td>IPA</td>
-                                        <td>4.8</td>
+                                    <tr v-for="(beer, index) in beers">
+                                        <th>{{index + 1}}</th>
+                                        <td>{{beer.beerName}} </td>
+                                        <td>{{beer.breweryName}}</td>
+                                        <td>{{beer.beerStyle}}</td>
+                                        <td>{{beer.rating}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -141,7 +87,7 @@
                         <div class="message-header">
                             <p>Most Wished For Beers</p>
                         </div>
-                        <div class="message-body">
+                        <div class="message-body" id="mostWished">
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -149,127 +95,19 @@
                                         <th>Beer Name</th>
                                         <th><abbr title="Brewery">Brewery</abbr></th>
                                         <th><abbr title="Style">Style</abbr></th>
-                                        <th><abbr title="Rating">Rating</abbr></th>
+                                        <th><abbr title="Rating">Count</abbr></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th>1</th>
-                                        <td>Sculpin </td>
-                                        <td>Ballast Point</td>
-                                        <td>IPA</td>
-                                        <td>4.8</td>
-                                    </tr>
-                                    <tr>
-                                        <th>2</th>
-                                        <td>Sculpin </td>
-                                        <td>Ballast Point</td>
-                                        <td>IPA</td>
-                                        <td>4.8</td>
-                                    </tr>
-                                    <tr>
-                                        <th>3</th>
-                                        <td>Sculpin </td>
-                                        <td>Ballast Point</td>
-                                        <td>IPA</td>
-                                        <td>4.8</td>
-                                    </tr>
-                                    <tr>
-                                        <th>4</th>
-                                        <td>Sculpin </td>
-                                        <td>Ballast Point</td>
-                                        <td>IPA</td>
-                                        <td>4.8</td>
-                                    </tr>
-                                    <tr>
-                                        <th>5</th>
-                                        <td>Sculpin </td>
-                                        <td>Ballast Point</td>
-                                        <td>IPA</td>
-                                        <td>4.8</td>
-                                    </tr>
-                                    <tr>
-                                        <th>6</th>
-                                        <td>Sculpin </td>
-                                        <td>Ballast Point</td>
-                                        <td>IPA</td>
-                                        <td>4.8</td>
-                                    </tr>
-                                    <tr>
-                                        <th>7</th>
-                                        <td>Sculpin </td>
-                                        <td>Ballast Point</td>
-                                        <td>IPA</td>
-                                        <td>4.8</td>
-                                    </tr>
-                                    <tr>
-                                        <th>8</th>
-                                        <td>Sculpin </td>
-                                        <td>Ballast Point</td>
-                                        <td>IPA</td>
-                                        <td>4.8</td>
-                                    </tr>
-                                    <tr>
-                                        <th>9</th>
-                                        <td>Sculpin </td>
-                                        <td>Ballast Point</td>
-                                        <td>IPA</td>
-                                        <td>4.8</td>
-                                    </tr>
-                                    <tr>
-                                        <th>10</th>
-                                        <td>Sculpin </td>
-                                        <td>Ballast Point</td>
-                                        <td>IPA</td>
-                                        <td>4.8</td>
+                                    <tr v-for="(beer, index) in beers">
+                                        <th>{{index+1}}</th>
+                                        <td>{{beer.beerName}} </td>
+                                        <td>{{beer.breweryName}}</td>
+                                        <td>{{beer.beerStyle}}</td>
+                                        <td>{{beer.count}}</td>
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </article>
-                </li>
-                <li class="collection-item">
-                    <article class="message">
-                        <div class="message-header">
-                            <p>Personal Stats</p>
-                        </div>
-                        <div class="message-body">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th><abbr title="Statistics">Stat</abbr></th>
-                                        <th><abbr title="Number">Number</abbr></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th>Number of Beers Traded</th>
-                                        <td>50 </td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Number of Beers Collected</strong></td>
-                                        <td>150</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Number of Beers Wished For</strong></td>
-                                        <td>60</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Number of Beers Tried</strong></td>
-                                        <td>24</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </article>
-                </li>
-                <li class="collection-item">
-                    <article class="message">
-                        <div class="message-header">
-                            <p>Hottest Beers</p>
-                        </div>
-                        <div class="message-body">
-                            <img src="img/graph.gif" alt="Graph" />
                         </div>
                     </article>
                 </li>
@@ -277,6 +115,8 @@
         </section>
     </main>
     <!-- Use aside tag for filter sidebar -->
+    <!--<script src="js/config.js"></script>-->
+    <script src="js/main.js"></script>
 </body>
 
 </html>

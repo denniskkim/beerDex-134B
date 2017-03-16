@@ -4,7 +4,8 @@
 <head>
     <title>BeerDex - HomePage</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/starability.min.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#C33430">
     <link rel="stylesheet" href="css/bulma.css">
     <link rel="stylesheet" href="css/vendor/bulmaMain.css">
 
@@ -98,7 +99,7 @@
                               </div>
                               <footer class="card-footer">
                                   <a class="card-footer-item" @click="addBeerToCollection(beer)">Add to Collection</a>
-                                  <a class="card-footer-item">Add to Wishlist</a>
+                                  <a class="card-footer-item"  @click="addBeerToWishlist(beer)">Add to Wishlist</a>
                               </footer>
                           </div>
                       </li>
@@ -123,7 +124,7 @@
                             </div>
                               <footer class="card-footer">
                                   <a class="card-footer-item" @click="addBeerToCollection(beers)">Add to Collection</a>
-                                  <a class="card-footer-item">Add to Wishlist</a>
+                                  <a class="card-footer-item"  @click="addBeerToWishlist(beers)">Add to Wishlist</a>
                               </footer>
                         </div>
                     </li>
@@ -140,14 +141,14 @@
         <div class="modal-background"></div>
         <div class="modal-card">
             <div id="addBeerForm">
-            <section class="modal-card-body">
+                <section class="modal-card-body">
                     <h3 class="title is-3 form-title">Add Beer to Collection</h3>
                     <div v-if="!image">
                         <h2>Select an image</h2>
                         <input type="file" @change="onFileChange">
                     </div>
                     <div v-else>
-                        <img width="10%" height="10%":src="image" />
+                        <img width="10%" height="10%" :src="image" />
                         <button @click="removeImage">Remove image</button>
                     </div>
                     <label class="label">Brewery</label>
@@ -174,7 +175,7 @@
                     </p>
                     <label class="label">Rating</label>
                     <p class="control">
-                      <span class="select">
+                        <span class="select">
                         <select v-model="rating">
                             <option>1</option>
                             <option>2</option>
@@ -186,7 +187,7 @@
                     </p>
                     <label class="label">Quantity</label>
                     <p class="control">
-                      <span class="select">
+                        <span class="select">
                         <select v-model="quantity">
                           <option>1</option>
                           <option>2</option>
@@ -196,18 +197,18 @@
                         </select>
                       </span>
                     </p>
-                <span class="help is-danger">{{ errorMessage }}</span>
-            </section>
-            <footer class="modal-card-foot">
-                <input class="button is-success" type="submit" v-on:click="addBeerToCollection">
-                <button class="button" onclick="deactivateModal('addCollectionModal')">Cancel</button>
-            </footer>
+                    <span class="help is-danger">{{ errorMessage }}</span>
+                </section>
+                <footer class="modal-card-foot">
+                    <input class="button is-success" type="submit" v-on:click="addBeerToCollection">
+                    <button class="button" onclick="deactivateModal('addCollectionModal')">Cancel</button>
+                </footer>
             </div>
         </div>
     </div>
 
     <!-- Use aside tag for filter sidebar -->
-    <script src="js/tempMain.js"></script>
+    <script src="js/main.js"></script>
     <!-- <script src="js/filter.js"></script> -->
     <script src="js/logout.js"></script>
     <script src="js/image.js"></script>
