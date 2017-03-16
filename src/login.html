@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Login/Signup</title>
     <meta charset="UTF-8">
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="css/vendor/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/bulma.css">
     <link rel="stylesheet" href="css/vendor/bulmaMain.css">
@@ -12,7 +14,8 @@
     <script src="js/config.js"></script>
     <script src="js/image.js"></script>
 </head>
-<body >
+
+<body>
     <header>
         <nav class="nav has-shadow" id="login-nav">
             <div class="container">
@@ -33,7 +36,7 @@
                         <div class="nav-login">
                             <label for="login-pass" class="label label-login">Password</label>
                             <div class="control">
-                                <input v-model="user.password"type="password" name="login-pass">
+                                <input v-model="user.password" type="password" name="login-pass">
                             </div>
                         </div>
                         <div class="nav-login">
@@ -42,7 +45,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+            </div>
     </header>
     <main id="login-main">
         <div class="columns">
@@ -80,7 +83,7 @@
                 <a href="stats.html"><button type="button" class="button is-info">View Beer Statistics</button></a>
             </section>
             <section id="signup-container" class="column is-half">
-                <div id="signUp-cont"  v-show="signUpFlag">
+                <div id="signUp-cont" v-show="signUpFlag">
                     <h4 class="title is-3">Sign Up Now!</h4>
                     <br>
                     <form v-on:submit.prevent="createUser">
@@ -116,17 +119,18 @@
                         <i class="fa fa-google" aria-hidden="true"></i>
                         &nbsp; Continue with Google
                     </button>
-                </section>
+            </section>
             </div>
-        </main>
+    </main>
 
-        <script src="js/signUp.js"></script>
-        <script src="js/login.js"></script>
-        <script type="text/javascript" charset="utf-8" async defer>
-            window.onload = setImgURL();
-        </script>
+    <script src="js/signUp.js"></script>
+    <script src="js/login.js"></script>
+    <script type="text/javascript" charset="utf-8" async defer>
+        window.onload = setImgURL();
+    </script>
 
 
 
-    </body>
-    </html>
+</body>
+
+</html>
