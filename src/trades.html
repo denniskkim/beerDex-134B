@@ -62,7 +62,7 @@
 
     <main id="trade-list" class="columns">
         <aside id="filter-bar" class="column is-2">
-            <h1 class="title is-3">MarketPlace</h1>
+            <!-- <h1 class="title is-3">MarketPlace</h1>
             <div class="menu box">
                 <h3 class="menu-label overflow">Trades</h3>
                 <div class="overflow menu-list">
@@ -93,7 +93,7 @@
                     <input type="checkbox" name="beer" value="2 star">&#9733;&#9733;<br>
                     <input type="checkbox" name="beer" value="3 star">&#9733;&#9733;&#9733;<br>
                 </div>
-            </div>
+            </div> -->
 
         </aside>
 
@@ -122,23 +122,23 @@
                                         <div class="media-content">
                                             <p class="subtitle is-5">
                                                 <b>Looking For :</b>
-                                                <em style="font-size:10pt; display: block"> 
+                                                <em style="font-size:10pt; display: block">
 
                         <b> {{tradeReq.forBrewery}}</b> {{ tradeReq.tradeFor }}
                       </em>
                                             </p>
                                             <p class="subtitle is-5">
                                                 <b>Trading For : </b>
-                                                <em style="font-size:10pt; display: block"> 
+                                                <em style="font-size:10pt; display: block">
 
-                       <b> {{tradeReq.fromBrewery}}</b> {{ tradeReq.tradeFrom }}                     
+                       <b> {{tradeReq.fromBrewery}}</b> {{ tradeReq.tradeFrom }}
                      </em>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                                 <footer class="card-footer">
-                                    <a class="card-footer-item" v-on:click="getURL(tradeReq.user)"> 
+                                    <a class="card-footer-item" v-on:click="getURL(tradeReq.user)">
                 Contact
               </a>
                                 </footer>
@@ -159,14 +159,14 @@
                                         <div class="media-content">
                                             <p class="subtitle is-5">
                                                 <b>Looking For :</b>
-                                                <em style="font-size:10pt; display: block"> 
+                                                <em style="font-size:10pt; display: block">
                       <b> {{tradeReq.forBrewery}}</b> {{ tradeReq.tradeFor }}
                     </em>
                                             </p>
                                             <p class="subtitle is-5">
                                                 <b>Trading For : </b>
-                                                <em style="font-size:10pt; display: block"> 
-                      <b> {{tradeReq.fromBrewery}}</b> {{ tradeReq.tradeFrom }}                     
+                                                <em style="font-size:10pt; display: block">
+                      <b> {{tradeReq.fromBrewery}}</b> {{ tradeReq.tradeFrom }}
                     </em>
                                             </p>
                                         </div>
