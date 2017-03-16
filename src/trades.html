@@ -6,6 +6,11 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="css/bulma.css">
   <link rel="stylesheet" href="css/vendor/bulmaMain.css">
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <!-- Firebase -->
+  <script src="https://gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+  <!-- VueFire -->
+  <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
   <script src="js/config.js"></script>
 </head>
 
@@ -41,22 +46,19 @@
   </header>
 
   <section class="trade-menu">
-   <div class="control is-grouped is-pulled-right ">
-    <p class="control">
-      <a class="button">
-        Your Listings
-      </a>
-    </p>
-    <p class="control">
-      <a href="tradeForm.html" class="button">
-        Create Trade
-      </a>
+    <div class="control is-grouped is-pulled-right " >
+      <p class="control">
+
+      </p>
+      <p class="control">
+        <button class="button is-primary" onclick="activateModal('addTradeModal')">Create Trades</button>
+      </section>
     </p>
   </div>
 </section>
 <br class="is-clearfix">
 
-<main id="collection-list" class="columns">
+<main id="trade-list" class="columns">
   <aside id="filter-bar" class="column is-2">
     <h1 class="title is-3">MarketPlace</h1>
     <div class="menu box">
@@ -93,74 +95,122 @@
 
   </aside>
 
-  <section id="collection-view" class="section column is-8" >
-    <h2 class="title is-2 heading">Trade Listings</h2>
-    <ul class="collection-list">
-      <li class="collection-item">
-        <div class="card">
-          <figure class="cardImage" >
-            <img class="card-img" src="img/ballast-collection1.jpg" alt="ballast Dorado">
-          </figure>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <p class="subtitle is-6"><b>Looking For</b>  &#91;Ballast Point Homework Series #1 &#93;</p>
-                <p class="subtitle is-6"><b>Trading For</b>  &#91;Ballast Point Dorado &#93;</p>
+
+
+  <section id="collection-view" class="section column is-8">
+    <h2 class="title is-2 heading">Trades List</h2>
+    <div id='tradeList'>
+      <a class="button" v-on:click="listings = !listings">
+        <p v-if="!listings">
+          Your Listings
+        </p>
+        <p v-else>
+          All Listings
+        </p>
+      </a>
+      <div v-if="!listings && trade.length > 0">
+        <ul class="collection-list">
+          <li class="collection-item" v-for="tradeReq in trade">
+            <div class="card">
+              <figure class="cardImage">
+                <img class="card-img" :src="tradeReq.image" :alt="tradeReq.imgDescription">
+              </figure>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content">
+                    <p class="subtitle is-5">
+                      <b>Looking For :</b> 
+                      {{ tradeReq.tradeFor }}
+                    </p> 
+                    <br>
+                    <p class="subtitle is-5">
+                      <b>Trading For : </b>
+                      {{ tradeReq.tradeFrom }}
+                    </p> 
+                  </div>
+                </div>
               </div>
-              <div class="media-right">
-               <a href="inbox.html">
-                <button class="button is-large"> Contact </button>
-              </a>
+              <footer class="card-footer">
+                <a class="card-footer-item" href="mailto:tradeReq.user"> 
+                  Contact
+                </a>
+              </footer>
             </div>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
-    </div>
-  </li>
-  <li class="collection-item">
-    <div class="card">
-      <figure class="cardImage">
-        <img class="card-img" src="img/victory-at-sea.jpg" alt="victory-at-sea">
-      </figure>
-      <div class="card-content">
-        <div class="media">
-          <div class="media-content">
-            <p class="subtitle is-6"><b>Looking For</b>  &#91;Ballast Point Victory At Sea&#93;</p>
-            <p class="subtitle is-6"><b>Trading For</b>  &#91;Ballast Point Dorado &#93;</p>
-          </div>
-          <div class="media-right">
-            <a href="inbox.html">
-              <button class="button is-large"> Contact </button>
-            </a>
-          </div>
-        </div>
+      <!-- listings -->
+      <div v-if="listings && tradesListings.length > 0">
+        <ul class="collection-list">
+          <li class="collection-item" v-for="tradeReq in tradesListings">
+            <div class="card">
+              <figure class="cardImage">
+                <img class="card-img" :src="tradeReq.image" :alt="tradeReq.imgDescription">
+              </figure>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content">
+                    <p class="subtitle is-5">
+                      <b>Looking For :</b> 
+                      {{ tradeReq.tradeFor }}
+                    </p> 
+                    <br>
+                    <p class="subtitle is-5">
+                      <b>Trading For : </b>
+                      {{ tradeReq.tradeFrom }}
+                    </p> 
+                  </div>
+                </div>
+              </div>
+              <footer class="card-footer">
+                <a class="card-footer-item" href="mailto:tradeReq.user"> 
+                  Contact
+                </a>
+              </footer>
+            </div>
+          </li>
+        </ul>
       </div>
+
     </div>
-  </li>
-  <li class="collection-item">
-    <div class="card">
-      <figure class="cardImage">
-        <img class="card-img" src="img/ballast-collection2.jpg" alt="Sculpin">
-      </figure>
-      <div class="card-content">
-        <div class="media">
-          <div class="media-content">
-            <p class="subtitle is-6"><b>Looking For</b>  &#91;Ballast Point Sculpin&#93;</p>
-            <p class="subtitle is-6"><b>Trading For</b>  &#91;Keystone Lite &#93;</p>
-          </div>
-          <div class="media-right">
-            <a href="inbox.html">
-              <button class="button is-large"> Contact </button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </li>
-</ul>
-</section>
+  </section>
 </main>
+
+<!-- Trade Modal -->
+
+<div class="modal" id="addTradeModal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <div id="addTradeForm">
+      <section class="modal-card-body">
+        <h3 class="title is-3 form-title">Add Request to All-Trades</h3>
+        <label class="label">Trade For</label>
+        <p class="control">
+          <select v-model="tradeFor">
+            <option v-for="beer in database">
+              {{ beer.beerName }}
+            </option>
+          </select>
+        </p>
+        <label class="label">Trading From </label>
+        <p class="control">
+          <select v-model="tradeFrom">
+            <figure class="cardImage">
+              <img class="card-img" :src="beer.image" :alt="beer.imgDescription">
+            </figure>
+            <option  v-for="beer in database">{{ beer.beerName }}</option>
+          </select>
+        </p>
+      </section>
+      <footer class="modal-card-foot">
+        <input class="button is-success" type="submit" v-on:click="createTradeRequest">
+        <button class="button" onclick="deactivateModal('addTradeModal')">Cancel</button>
+      </footer>
+    </div>
+  </div>
+</div>
 <!-- Use aside tag for filter sidebar -->
+<script src="js/trades.js"></script>
 </body>
 
 </html>
