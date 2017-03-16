@@ -2,218 +2,220 @@
 <html>
 
 <head>
-  <title>BeerDex - Trades</title>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="css/bulma.css">
-  <link rel="stylesheet" href="css/vendor/bulmaMain.css">
-  <script src="https://unpkg.com/vue/dist/vue.js"></script>
-  <!-- Firebase -->
-  <script src="https://gstatic.com/firebasejs/3.5.2/firebase.js"></script>
-  <!-- VueFire -->
-  <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
-  <script src="js/config.js"></script>
+    <title>BeerDex - Trades</title>
+    <meta charset="UTF-8">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#C33430">
+    <link rel="stylesheet" href="css/bulma.css">
+    <link rel="stylesheet" href="css/vendor/bulmaMain.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- Firebase -->
+    <script src="https://gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+    <!-- VueFire -->
+    <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
+    <script src="js/config.js"></script>
 </head>
 
 
 <body>
-  <header>
-    <nav class="nav has-shadow">
-      <div class="container">
-        <div class="nav-left">
-          <a href="index.html" class="nav-item">
-            <img src="img/tempIcon.png" alt="BeerDex Icon">
-            <br>BeerDex
-          </a>
-          <a href="collection.html" class="nav-item is-tab is-hidden-mobile">Collection</a>
-          <a href="trades.html" class="nav-item is-tab is-hidden-mobile  is-active">Trades</a>
-          <a href="wishlist.html" class="nav-item is-tab is-hidden-mobile">Wish List</a>
-          <a href="stats.html" class="nav-item is-tab is-hidden-mobile">Statistics</a>
-        </div>
-        <span class="nav-toggle">
+    <header>
+        <nav class="nav has-shadow">
+            <div class="container">
+                <div class="nav-left">
+                    <a href="index.html" class="nav-item">
+                        <img src="img/tempIcon.png" alt="BeerDex Icon">
+                        <br>BeerDex
+                    </a>
+                    <a href="collection.html" class="nav-item is-tab is-hidden-mobile">Collection</a>
+                    <a href="trades.html" class="nav-item is-tab is-hidden-mobile  is-active">Trades</a>
+                    <a href="wishlist.html" class="nav-item is-tab is-hidden-mobile">Wish List</a>
+                    <a href="stats.html" class="nav-item is-tab is-hidden-mobile">Statistics</a>
+                </div>
+                <span class="nav-toggle">
           <span></span>
-          <span></span>
-          <span></span>
-        </span>
-        <div class="nav-right nav-menu">
-          <a class="nav-item is-tab is-hidden-tablet is-active">Home</a>
-          <a class="nav-item is-tab is-hidden-tablet">Features</a>
-          <a class="nav-item is-tab is-hidden-tablet">Pricing</a>
-          <a class="nav-item is-tab is-hidden-tablet">About</a>
-          <a class="nav-item is-tab" href="login.html">Log out</a>
-        </div>
-      </div>
-    </nav>
-  </header>
+                <span></span>
+                <span></span>
+                </span>
+                <div class="nav-right nav-menu">
+                    <a class="nav-item is-tab is-hidden-tablet is-active">Home</a>
+                    <a class="nav-item is-tab is-hidden-tablet">Features</a>
+                    <a class="nav-item is-tab is-hidden-tablet">Pricing</a>
+                    <a class="nav-item is-tab is-hidden-tablet">About</a>
+                    <a class="nav-item is-tab" href="login.html">Log out</a>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-  <section class="trade-menu">
-    <div class="control is-grouped is-pulled-right " >
-      <p class="control">
+    <section class="trade-menu">
+        <div class="control is-grouped is-pulled-right ">
+            <p class="control">
 
-      </p>
-      <p class="control">
-        <button class="button is-primary" onclick="activateModal('addTradeModal')">Create Trades</button>
-      </section>
+            </p>
+            <p class="control">
+                <button class="button is-primary" onclick="activateModal('addTradeModal')">Create Trades</button>
+    </section>
     </p>
-  </div>
-</section>
-<br class="is-clearfix">
-
-<main id="trade-list" class="columns">
-  <aside id="filter-bar" class="column is-2">
-    <h1 class="title is-3">MarketPlace</h1>
-    <div class="menu box">
-      <h3 class="menu-label overflow">Trades</h3>
-      <div class="overflow menu-list">
-        <input type="checkbox" name="beer" value="Looking For" checked="checked">Looking For<br>
-        <input type="checkbox" name="beer" value="Trading For">Trading For<br>
-      </div>
-      <h3 class="menu-label overflow">Breweries</h3>
-      <div class="overflow menu-list">
-        <input type="checkbox" name="beer" value="Ballast Point" checked="checked">Ballast Point<br>
-        <input type="checkbox" name="beer" value="Alesmith">Alesmith<br>
-        <input type="checkbox" name="beer" value="Green Flash">Green Flash<br>
-        <input type="checkbox" name="beer" value="Ballast Point">Modern Times<br>
-        <input type="checkbox" name="beer" value="Alesmith">Belching Beaver<br>
-        <input type="checkbox" name="beer" value="Green Flash">Stone<br>
-      </div>
-      <h3 class="menu-label overflow">Styles</h3>
-      <div class="overflow menu-list">
-        <input type="checkbox" name="beer" value="IPA" checked="checked">IPA<br>
-        <input type="checkbox" name="beer" value="Stout">Stout<br>
-        <input type="checkbox" name="beer" value="Gose">Gose<br>
-        <input type="checkbox" name="beer" value="Ballast Point">Hefeweizen<br>
-        <input type="checkbox" name="beer" value="Berliner Weissbeir">Berliner Weissbier<br>
-        <input type="checkbox" name="beer" value="Kolsch">Kolsch<br>
-      </div>
-      <h3 class="menu-label overflow">Ratings</h3>
-      <div class="overflow menu-list">
-        <input type="checkbox" name="beer" value="1 star" checked="checked">&#9733;<br>
-        <input type="checkbox" name="beer" value="2 star">&#9733;&#9733;<br>
-        <input type="checkbox" name="beer" value="3 star">&#9733;&#9733;&#9733;<br>
-      </div>
     </div>
+    </section>
+    <br class="is-clearfix">
 
-  </aside>
+    <main id="trade-list" class="columns">
+        <aside id="filter-bar" class="column is-2">
+            <h1 class="title is-3">MarketPlace</h1>
+            <div class="menu box">
+                <h3 class="menu-label overflow">Trades</h3>
+                <div class="overflow menu-list">
+                    <input type="checkbox" name="beer" value="Looking For" checked="checked">Looking For<br>
+                    <input type="checkbox" name="beer" value="Trading For">Trading For<br>
+                </div>
+                <h3 class="menu-label overflow">Breweries</h3>
+                <div class="overflow menu-list">
+                    <input type="checkbox" name="beer" value="Ballast Point" checked="checked">Ballast Point<br>
+                    <input type="checkbox" name="beer" value="Alesmith">Alesmith<br>
+                    <input type="checkbox" name="beer" value="Green Flash">Green Flash<br>
+                    <input type="checkbox" name="beer" value="Ballast Point">Modern Times<br>
+                    <input type="checkbox" name="beer" value="Alesmith">Belching Beaver<br>
+                    <input type="checkbox" name="beer" value="Green Flash">Stone<br>
+                </div>
+                <h3 class="menu-label overflow">Styles</h3>
+                <div class="overflow menu-list">
+                    <input type="checkbox" name="beer" value="IPA" checked="checked">IPA<br>
+                    <input type="checkbox" name="beer" value="Stout">Stout<br>
+                    <input type="checkbox" name="beer" value="Gose">Gose<br>
+                    <input type="checkbox" name="beer" value="Ballast Point">Hefeweizen<br>
+                    <input type="checkbox" name="beer" value="Berliner Weissbeir">Berliner Weissbier<br>
+                    <input type="checkbox" name="beer" value="Kolsch">Kolsch<br>
+                </div>
+                <h3 class="menu-label overflow">Ratings</h3>
+                <div class="overflow menu-list">
+                    <input type="checkbox" name="beer" value="1 star" checked="checked">&#9733;<br>
+                    <input type="checkbox" name="beer" value="2 star">&#9733;&#9733;<br>
+                    <input type="checkbox" name="beer" value="3 star">&#9733;&#9733;&#9733;<br>
+                </div>
+            </div>
+
+        </aside>
 
 
 
-  <section id="collection-view" class="section column is-8">
-    <h2 class="title is-2 heading">Trades List</h2>
-    <div id='tradeList'>
-      <a class="button" v-on:click="listings = !listings">
-        <p v-if="!listings">
-          Your Listings
-        </p>
-        <p v-else>
-          All Listings
-        </p>
-      </a>
-      <div v-if="!listings && trade.length > 0">
-        <ul class="collection-list">
-          <li class="collection-item" v-for="tradeReq in trade">
-            <div class="card">
-              <figure class="cardImage">
-                <img class="card-img" :src="tradeReq.image" :alt="tradeReq.imgDescription">
-              </figure>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="subtitle is-5">
-                      <b>Looking For :</b> 
-                      <em style="font-size:10pt; display: block"> 
+        <section id="collection-view" class="section column is-8">
+            <h2 class="title is-2 heading">Trades List</h2>
+            <div id='tradeList'>
+                <a class="button" v-on:click="listings = !listings">
+                    <p v-if="!listings">
+                        Your Listings
+                    </p>
+                    <p v-else>
+                        All Listings
+                    </p>
+                </a>
+                <div v-if="!listings && trade.length > 0">
+                    <ul class="collection-list">
+                        <li class="collection-item" v-for="tradeReq in trade">
+                            <div class="card">
+                                <figure class="cardImage">
+                                    <img class="card-img" :src="tradeReq.image" :alt="tradeReq.imgDescription">
+                                </figure>
+                                <div class="card-content">
+                                    <div class="media">
+                                        <div class="media-content">
+                                            <p class="subtitle is-5">
+                                                <b>Looking For :</b>
+                                                <em style="font-size:10pt; display: block"> 
 
                         <b> {{tradeReq.forBrewery}}</b> {{ tradeReq.tradeFor }}
                       </em>
-                    </p>
-                    <p class="subtitle is-5">
-                      <b>Trading For : </b>
-                      <em style="font-size:10pt; display: block"> 
+                                            </p>
+                                            <p class="subtitle is-5">
+                                                <b>Trading For : </b>
+                                                <em style="font-size:10pt; display: block"> 
 
                        <b> {{tradeReq.fromBrewery}}</b> {{ tradeReq.tradeFrom }}                     
                      </em>
-                   </p> 
-                 </div>
-               </div>
-             </div>
-             <footer class="card-footer">
-              <a class="card-footer-item" v-on:click="getURL(tradeReq.user)"> 
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <footer class="card-footer">
+                                    <a class="card-footer-item" v-on:click="getURL(tradeReq.user)"> 
                 Contact
               </a>
-            </footer>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <!-- listings -->
-    <div v-if="listings && tradesListings.length > 0">
-      <ul class="collection-list">
-        <li class="collection-item" v-for="tradeReq in tradesListings">
-          <div class="card">
-            <figure class="cardImage">
-              <img class="card-img" :src="tradeReq.image" :alt="tradeReq.imgDescription">
-            </figure>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="subtitle is-5">
-                    <b>Looking For :</b> 
-                    <em style="font-size:10pt; display: block"> 
+                                </footer>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- listings -->
+                <div v-if="listings && tradesListings.length > 0">
+                    <ul class="collection-list">
+                        <li class="collection-item" v-for="tradeReq in tradesListings">
+                            <div class="card">
+                                <figure class="cardImage">
+                                    <img class="card-img" :src="tradeReq.image" :alt="tradeReq.imgDescription">
+                                </figure>
+                                <div class="card-content">
+                                    <div class="media">
+                                        <div class="media-content">
+                                            <p class="subtitle is-5">
+                                                <b>Looking For :</b>
+                                                <em style="font-size:10pt; display: block"> 
                       <b> {{tradeReq.forBrewery}}</b> {{ tradeReq.tradeFor }}
                     </em>
-                  </p>
-                  <p class="subtitle is-5">
-                    <b>Trading For : </b>
-                    <em style="font-size:10pt; display: block"> 
+                                            </p>
+                                            <p class="subtitle is-5">
+                                                <b>Trading For : </b>
+                                                <em style="font-size:10pt; display: block"> 
                       <b> {{tradeReq.fromBrewery}}</b> {{ tradeReq.tradeFrom }}                     
                     </em>
-                  </p> 
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-              </div>
+
             </div>
-          </div>
-        </li>
-      </ul>
-    </div>
+        </section>
+    </main>
 
-  </div>
-</section>
-</main>
+    <!-- Trade Modal -->
 
-<!-- Trade Modal -->
-
-<div class="modal" id="addTradeModal">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <div id="addTradeForm">
-      <section class="modal-card-body">
-        <h3 class="title is-3 form-title">Add Request to All-Trades</h3>
-        <label class="label">Trade For</label>
-        <p class="control">
-          <select v-model="tradeFor">
+    <div class="modal" id="addTradeModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <div id="addTradeForm">
+                <section class="modal-card-body">
+                    <h3 class="title is-3 form-title">Add Request to All-Trades</h3>
+                    <label class="label">Trade For</label>
+                    <p class="control">
+                        <select v-model="tradeFor">
             <option v-for="beer in database">
               {{ beer.beerName }}
             </option>
           </select>
-        </p>
-        <label class="label">Trading From </label>
-        <p class="control">
-          <select v-model="tradeFrom">
+                    </p>
+                    <label class="label">Trading From </label>
+                    <p class="control">
+                        <select v-model="tradeFrom">
             <figure class="cardImage">
               <img class="card-img" :src="beer.image" :alt="beer.imgDescription">
             </figure>
             <option  v-for="beer in database">{{ beer.beerName }}</option>
           </select>
-        </p>
-      </section>
-      <footer class="modal-card-foot">
-        <input class="button is-success" type="submit" v-on:click="createTradeRequest">
-        <button class="button" onclick="deactivateModal('addTradeModal')">Cancel</button>
-      </footer>
+                    </p>
+                </section>
+                <footer class="modal-card-foot">
+                    <input class="button is-success" type="submit" v-on:click="createTradeRequest">
+                    <button class="button" onclick="deactivateModal('addTradeModal')">Cancel</button>
+                </footer>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-<!-- Use aside tag for filter sidebar -->
-<script src="js/trades.js"></script>
+    <!-- Use aside tag for filter sidebar -->
+    <script src="js/trades.js"></script>
 </body>
 
 </html>
