@@ -22,6 +22,10 @@ firebase.auth().onAuthStateChanged(function(user) {
                 database: beerDatabaseRef
             },
             methods: {
+                getURL: function(user)
+                {
+                    window.location = "mailto:" + String(user)
+                }
             }
         });
     }
@@ -50,18 +54,24 @@ var tradeForm = new Vue({
                 tradeFor:this.tradeFor,
                 tradeFrom:this.tradeFrom,
             };
-            var valid = tradeRequest.tradeFor.length && tradeRequest.tradeFrom.length 
-            
+            var valid = tradeRequest.tradeFor.length && tradeRequest.tradeFrom.length
+
             // Checking to make sure form is filled out
             if (valid) {
                 beerDatabaseRef.orderByChild("beerName").equalTo(tradeRequest.tradeFor).on("child_added",function(snap)
                 {
                     tradeRequest.image = snap.child("image").val()
+                    tradeRequest.forBrewery = snap.child("breweryName").val()
+
+                    beerDatabaseRef.orderByChild("beerName").equalTo(tradeRequest.tradeFrom).on("child_added",function(snap)
+                    {
+                    tradeRequest.fromBrewery = snap.child("breweryName").val()
                     tradeRef.push(tradeRequest).then(function(snapshot) {
                         tradeRequest.tradeID = snapshot.key;
                         tradeListRef.child(firebase.auth().currentUser.uid).push(tradeRequest);
                         deactivateModal('addTradeModal');
                         this.errorMessage = "";
+                    });
                     });
                 });
                 deactivateModal('addTradeModal')
