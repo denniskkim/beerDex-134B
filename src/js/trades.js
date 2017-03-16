@@ -1,4 +1,3 @@
-var BEER_STYLES = ['Pale Ale', 'Lager', 'IPA', 'Wheat', 'Belgian', 'Porter', 'Stout', 'Sour', 'Other'];
 (function checkUserExists() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (!user) {
@@ -45,24 +44,20 @@ var tradeForm = new Vue({
     },
     methods: {
         createTradeRequest: function() {
-            console.log("Running createTradeRequest")
             var tradeRequest = {
                 UID: firebase.auth().currentUser.uid,
                 user: firebase.auth().currentUser.email,
                 tradeFor:this.tradeFor,
                 tradeFrom:this.tradeFrom,
             };
-            console.log("tradeRequest.tradeFor: " + tradeRequest.tradeFor)
-            console.log("tradeRequest.tradeFrom: " + tradeRequest.tradeFrom)
-                            
             var valid = tradeRequest.tradeFor.length && tradeRequest.tradeFrom.length 
-            console.log("Running createTradeRequest 2 ")
+            
+            // Checking to make sure form is filled out
             if (valid) {
                 beerDatabaseRef.orderByChild("beerName").equalTo(tradeRequest.tradeFor).on("child_added",function(snap)
                 {
                     tradeRequest.image = snap.child("image").val()
                     tradeRef.push(tradeRequest).then(function(snapshot) {
-                        console.log(snapshot)
                         tradeRequest.tradeID = snapshot.key;
                         tradeListRef.child(firebase.auth().currentUser.uid).push(tradeRequest);
                         deactivateModal('addTradeModal');
@@ -71,7 +66,6 @@ var tradeForm = new Vue({
                 });
                 deactivateModal('addTradeModal')
             } else {
-                 console.log("Running createTradeRequest 4 ")                           
                 this.errorMessage = "Please fill out all fields.";
             }
         }
@@ -81,14 +75,6 @@ var tradeForm = new Vue({
 Vue.component('modal', {
     template: '#modal-template'
 })
-
-// start app
-// new Vue({
-//     el: '#app',
-//     data: {
-//         showModal: false
-//     }
-// });
 
 var activateModal = function(modalID) {
     var modal = document.getElementById(modalID);
