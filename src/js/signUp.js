@@ -1,3 +1,43 @@
+var loginVM = new Vue({
+    el: '#login-form',
+    data: {
+        user: {
+            username: '',
+            password: ''
+        }
+    },
+    methods : {
+       // validates user credentials when creating new user.
+        checkUser : function(){
+            var self = this;
+            // user authentication with email and password
+            firebase.auth().signInWithEmailAndPassword(self.user.username, self.user.password)
+                .then(function(user){
+                        console.log("Success");
+                        window.location = 'index.html';
+                 },
+                 function(error){
+                   var errorCode = error.code;
+                   var errorMessage = error.message;
+                   if (errorCode == 'auth/invalid-email') {
+                      alert('Invalid email, Please try again.');
+                    }
+                    else if(errorCode == 'auth/user-not-found'){
+                      alert('User not found! Please Sign Up or Try Again.');
+                    }
+                    else if(errorCode == 'auth/wrong-password'){
+                      alert('Wrong Password, Please Try Again!')
+                    }
+                    else{
+                      alert(errorMessage);
+                    }
+                 });
+        }
+
+    }
+});
+
+
 
 var signUpVM = new Vue({
     el:'#signup-container',
@@ -25,6 +65,7 @@ var signUpVM = new Vue({
             var self = this;
             console.log(self.validEmail);
             console.log(self.validAge);
+            // makes sure that email match and age is appropriate
             if(!self.validEmail && self.ageClear){
                 firebase.auth().createUserWithEmailAndPassword(self.newUser.email,self.newUser.password)
                     .then(function(user){
@@ -58,13 +99,16 @@ var signUpVM = new Vue({
                 self.validEmail = false;
             }
         },
+        // validates age : need to be 21+
         validateAge : function(){
             var self = this;
             var birthday = getAge(self.newUser.birth.month, self.newUser.birth.day, self.newUser.birth.year);
+            // not old enough
             if(birthday < 21){
                 self.validAge = true;
                 self.ageClear = false;
             }
+            // valid user age
             else if(birthday >= 21 && this.newUser.birth.month && this.newUser.birth.day && this.newUser.birth.year){
                 self.validAge = false;
                 self.ageClear = true;
@@ -78,6 +122,7 @@ var signUpVM = new Vue({
             this.signUpFlag = true;
           }
         },
+        // google login portal
         googleLogin : function(){
           var self = this;
           var loginSuccess = false;
@@ -88,12 +133,15 @@ var signUpVM = new Vue({
     }
 });
 
+// redirect user to homepage if signed in
 firebase.auth().onAuthStateChanged(function(user){
   if(user) {
     window.location = 'index.html';
   }
 });
 
+
+// parses age from user input
 function getAge(mon, day, year)
 {
     var today = new Date();
