@@ -1,14 +1,13 @@
 /**
- * Created by gmr on 3/6/17.
+ * Created by gmr and clarence on 3/6/17.
  */
 var config = {
-    apiKey: "AIzaSyDzjSixsprastrEyyrrGMrE5UiXa4JWW34",
-    authDomain: "beerdex-384f9.firebaseapp.com",
-    databaseURL: "https://beerdex-384f9.firebaseio.com",
-    storageBucket: "beerdex-384f9.appspot.com",
-    messagingSenderId: "728464289732"
-};
-
+    apiKey: "AIzaSyA0EyXyzCgS9eBwleLHFmbYSlupKA4xXnY",
+    authDomain: "final-beerdex.firebaseapp.com",
+    databaseURL: "https://final-beerdex.firebaseio.com",
+    storageBucket: "final-beerdex.appspot.com",
+    messagingSenderId: "227954939284"
+  };
 
 var firebaseApp = firebase.initializeApp(config);
 var db = firebaseApp.database();

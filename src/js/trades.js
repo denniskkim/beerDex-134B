@@ -7,6 +7,7 @@
 })();
 var tradeRef = db.ref('trades');
 var tradeListRef = db.ref('tradesList');
+
 firebase.auth().onAuthStateChanged(function(user) {
     if (user && document.getElementById('tradeList')) {
         var tradeList = new Vue({
@@ -67,16 +68,15 @@ firebase.auth().onAuthStateChanged(function(user) {
                         {
                             tradeRequest.image = snap.child("image").val();
                             tradeRequest.forBrewery = snap.child("breweryName").val();
-
-                            beerDatabaseRef.orderByChild("beerName").equalTo(tradeRequest.tradeFrom).on("child_added",function(snap)
+                            beerDatabaseRef.orderByChild("beerName").equalTo(tradeRequest.tradeFrom).on("child_added",function(snapscreen)
                             {
-                            tradeRequest.fromBrewery = snap.child("breweryName").val();
-                            tradeRef.push(tradeRequest).then(function(snapshot) {
-                                tradeRequest.tradeID = snapshot.key;
-                                tradeListRef.child(firebase.auth().currentUser.uid).push(tradeRequest);
-                                deactivateModal('addTradeModal');
-                                this.errorMessage = "";
-                            });
+                                tradeRequest.fromBrewery = snapscreen.child("breweryName").val();
+                                tradeRef.push(tradeRequest).then(function(snapshot) {
+                                    tradeRequest.tradeID = snapshot.key;
+                                    tradeListRef.child(firebase.auth().currentUser.uid).push(tradeRequest);
+                                    deactivateModal('addTradeModal');
+                                    this.errorMessage = "";
+                                });
                             });
                         });
                         deactivateModal('addTradeModal')
