@@ -5,8 +5,8 @@
         }
     })
 })();
-var tradeRef = db.ref('trades')
-var tradeListRef = db.ref('tradesList')
+var tradeRef = db.ref('trades');
+var tradeListRef = db.ref('tradesList');
 firebase.auth().onAuthStateChanged(function(user) {
     if (user && document.getElementById('tradeList')) {
         var tradeList = new Vue({
@@ -28,7 +28,7 @@ firebase.auth().onAuthStateChanged(function(user) {
                 },
                 getURL: function(user)
                 {
-                    window.location = "mailto:" + String(user)
+                    window.location = "mailto:" + String(user);
                 }
             }
         });
@@ -89,9 +89,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 
     }
 });
-
-
-
 Vue.component('modal', {
     template: '#modal-template'
 })
