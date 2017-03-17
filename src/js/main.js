@@ -95,6 +95,7 @@ if (document.getElementById("wishlistList")) {
             var wishlistList = new Vue({
                 el: '#wishlistList',
                 data: {
+
                     noedit: true,
                     rating: 0
                 },
@@ -135,6 +136,14 @@ if (document.getElementById("wishlistList")) {
                                 }
                             });
                         wishlistRef.child(firebase.auth().currentUser.uid).child(beer[".key"]).remove();
+                    },
+                    tradeBeerFromCollection: function(modalID,beer) {
+                      var select = document.getElementById('explicitTradeFor')
+                      select.options[0].innerHTML = beer.beerName
+                      select.options[0].value = beer.beerName
+                      select.value = beer.beerName
+                      activateModal(modalID)
+
                     }
                 }
 

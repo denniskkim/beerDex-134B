@@ -32,25 +32,25 @@
                     <a href="stats.html" class="nav-item is-tab is-hidden-mobile">Statistics</a>
                 </div>
                 <span class="nav-toggle">
-          <span></span>
-                <span></span>
-                <span></span>
-                </span>
-                <div class="nav-right nav-menu">
-                    <a class="nav-item is-tab is-hidden-tablet ">Home</a>
-                    <a class="nav-item is-tab is-hidden-tablet">Features</a>
-                    <a class="nav-item is-tab is-hidden-tablet">Pricing</a>
-                    <a class="nav-item is-tab is-hidden-tablet">About</a>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </span>
+              <div class="nav-right nav-menu">
+                <a class="nav-item is-tab is-hidden-tablet ">Home</a>
+                <a class="nav-item is-tab is-hidden-tablet">Features</a>
+                <a class="nav-item is-tab is-hidden-tablet">Pricing</a>
+                <a class="nav-item is-tab is-hidden-tablet">About</a>
 
-                    <a class="nav-item is-tab" href="login.html">Log out</a>
-                </div>
+                <a class="nav-item is-tab" href="login.html">Log out</a>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
 
-    <main id="collection-list" class="columns is-fluid">
-        <!-- <div class="column is-2"> -->
-        <aside id="filter-bar" class="column is-2">
+<main id="collection-list" class="columns is-fluid">
+    <!-- <div class="column is-2"> -->
+    <aside id="filter-bar" class="column is-2">
             <!-- <div class="menu box">
                 <ul class="checked-filters menu-list">
                     <li>Ballast Point</li>
@@ -107,7 +107,7 @@
                                 </div>
                                 <footer class="card-footer">
                                     <a class="card-footer-item" @click="addBeerToCollection(beer)">Add to Collection</a>
-                                    <a class="card-footer-item">Add to Trades</a>
+                                    <a class="card-footer-item" @click="tradeBeerFromCollection('addTradeModal',beer)">Add to Trades</a>
                                 </footer>
                             </div>
                         </li>
@@ -119,8 +119,41 @@
             </div>
         </section>
     </main>
-    <!-- Use aside tag for filter sidebar -->
-    <script src="js/main.js"></script>
-</body>
 
-</html>
+    <!-- Trade Modal -->
+    <div class="modal" id="addTradeModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <div id="addTradeForm">
+                <section class="modal-card-body">
+                    <h3 class="title is-3 form-title">Add Request to All-Trades</h3>
+                    <label class="label" style="color:red" v-if="errorMessage.length >0"> {{errorMessage}}</label>
+                    <label class="label">Trade For</label>
+                    <p class="control">
+                        <select v-model="tradeFor" id="explicitTradeFor">
+                            <option>
+                            </option>
+                        </select>
+                    </p>
+                    <label class="label">Trading From </label>
+                    <p class="control">
+                        <select v-model="tradeFrom"> 
+                            <option  v-for="beer in database">
+                                {{ beer.beerName }}
+                            </option>
+                        </select>
+                    </p>
+                </section>
+                <footer class="modal-card-foot">
+                    <input class="button is-success" type="submit" v-on:click="createTradeRequest">
+                    <button class="button" onclick="deactivateModal('addTradeModal')">Cancel</button>
+                </footer>
+            </div>
+        </div>
+        <!-- Use aside tag for filter sidebar -->
+        <script src="js/main.js"></script>
+        <script src="js/trades.js"></script>
+
+    </body>
+
+    </html>
