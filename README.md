@@ -24,6 +24,15 @@ We used Vue to structure each of the main components of our app and connect them
   * This partnered Vue with Firebase to connect and render out the database and would update in real time. It also provided us with a simple, efficient way to connect our database to appropriate Vue objects.
 
 # Mobile Performance 
+To test mobile performance, we used the throttle feature in Chrome's dev tool and set it to 2G - "Good" to really try to get a good anaylsis on how our application would do in a mobile environment. 
+
+When first launching to the login page, it took an average of 1.65 seconds to load the login page. 
+
+![login-performance-analytics](/src/img/login-throttle-"good2g".png)
+
+However, after loading the login page, the performance of our application (after signing up and being redirected to the home page) took an average of 430 m.s. Navigating around the different applications also took about the same time, on average.
+
+![home-page-redirection-analytics](/src/img/throttle-2g-good-home-page.png)
 
 
 # Progressive Web Application (PWA)
