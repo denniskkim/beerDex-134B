@@ -27,7 +27,9 @@ We used Vue to structure each of the main components of our app and connect them
 
 
 # Progressive Web Application (PWA)
-Our main focus for moving towards as progressive web app was adding a manifest.json file to make the web app more mobile friendly. We made sure to include the specified icons and theme colors to handle the UX on a mobile device
+Our main focus for moving towards as progressive web app was adding a manifest.json file to make the web app more mobile friendly. We made sure to include the specified icons and theme colors to handle the UX on a mobile device.
+
+![ScreenShot of HomePage](/src/img/pwa_score.png)
 
 # Known Issues, Bugs, & Limitations
 * Firebase Limitations : We struggled to optimize Firebase to perform as quickly as we would like, especially when it came to dynamically rendering the user's collection and wishlist view.
