@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#C33430">
+    <meta name=viewport content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bulma.css">
     <link rel="stylesheet" href="css/vendor/bulmaMain.css">
     <!-- Vue -->
@@ -33,91 +34,91 @@
                     <a href="stats.html" class="nav-item is-tab is-hidden-mobile is-active">Statistics</a>
                 </div>
                 <span class="nav-toggle">
-          <span></span>
-                <span></span>
-                <span></span>
-                </span>
-                <div class="nav-right nav-menu">
-                    <a class="nav-item is-tab is-hidden-tablet is-active">Home</a>
-                    <a class="nav-item is-tab is-hidden-tablet">Features</a>
-                    <a class="nav-item is-tab is-hidden-tablet">Pricing</a>
-                    <a class="nav-item is-tab is-hidden-tablet">About</a>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </span>
+              <div class="nav-right nav-menu">
+                <a class="nav-item is-tab is-hidden-tablet is-active">Home</a>
+                <a class="nav-item is-tab is-hidden-tablet">Features</a>
+                <a class="nav-item is-tab is-hidden-tablet">Pricing</a>
+                <a class="nav-item is-tab is-hidden-tablet">About</a>
 
-                    <a class="nav-item is-tab" href="login.html">Log out</a>
-                </div>
+                <a class="nav-item is-tab" href="login.html">Log out</a>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
 
-    <main id="collection-list" class="columns is-fluid">
-        <section id="collection-view column ">
-            <h2 class="title is-2 heading">BeerDex Stats</h2>
-            <ul class="collection-list">
-                <li class="collection-item">
-                    <article class="message">
-                        <div class="message-header">
-                            <p>Top Rated Beers</p>
-                        </div>
-                        <div class="message-body" id="topRated">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th><abbr title="Position">Pos</abbr></th>
-                                        <th>Beer Name</th>
-                                        <th><abbr title="Brewery">Brewery</abbr></th>
-                                        <th><abbr title="Style">Style</abbr></th>
-                                        <th><abbr title="Rating">Rating</abbr></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="(beer, index) in beers">
-                                        <th>{{index + 1}}</th>
-                                        <td>{{beer.beerName}} </td>
-                                        <td>{{beer.breweryName}}</td>
-                                        <td>{{beer.beerStyle}}</td>
-                                        <td>{{beer.rating}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </article>
-                </li>
-                <li class="collection-item">
-                    <article class="message">
-                        <div class="message-header">
-                            <p>Most Wished For Beers</p>
-                        </div>
-                        <div class="message-body" id="mostWished">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th><abbr title="Position">Pos</abbr></th>
-                                        <th>Beer Name</th>
-                                        <th><abbr title="Brewery">Brewery</abbr></th>
-                                        <th><abbr title="Style">Style</abbr></th>
-                                        <th><abbr title="Rating">Count</abbr></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="(beer, index) in beers">
-                                        <th>{{index+1}}</th>
-                                        <td>{{beer.beerName}} </td>
-                                        <td>{{beer.breweryName}}</td>
-                                        <td>{{beer.beerStyle}}</td>
-                                        <td>{{beer.count}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </article>
-                </li>
-            </ul>
-        </section>
-    </main>
-    <!-- Use aside tag for filter sidebar -->
-    <!--<script src="js/config.js"></script>-->
-    <script src="js/main.js"></script>
-    <script src="js/statistics.js"></script>
+<main id="collection-list" class="columns is-fluid">
+    <section id="collection-view column ">
+        <h2 class="title is-2 heading">BeerDex Stats</h2>
+        <ul class="collection-list">
+            <li class="collection-item">
+                <article class="message">
+                    <div class="message-header">
+                        <p>Top Rated Beers</p>
+                    </div>
+                    <div class="message-body" id="topRated">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th><abbr title="Position">Pos</abbr></th>
+                                    <th>Beer Name</th>
+                                    <th><abbr title="Brewery">Brewery</abbr></th>
+                                    <th><abbr title="Style">Style</abbr></th>
+                                    <th><abbr title="Rating">Rating</abbr></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(beer, index) in beers">
+                                    <th>{{index + 1}}</th>
+                                    <td>{{beer.beerName}} </td>
+                                    <td>{{beer.breweryName}}</td>
+                                    <td>{{beer.beerStyle}}</td>
+                                    <td>{{beer.rating}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+            </li>
+            <li class="collection-item">
+                <article class="message">
+                    <div class="message-header">
+                        <p>Most Wished For Beers</p>
+                    </div>
+                    <div class="message-body" id="mostWished">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th><abbr title="Position">Pos</abbr></th>
+                                    <th>Beer Name</th>
+                                    <th><abbr title="Brewery">Brewery</abbr></th>
+                                    <th><abbr title="Style">Style</abbr></th>
+                                    <th><abbr title="Rating">Count</abbr></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(beer, index) in beers">
+                                    <th>{{index+1}}</th>
+                                    <td>{{beer.beerName}} </td>
+                                    <td>{{beer.breweryName}}</td>
+                                    <td>{{beer.beerStyle}}</td>
+                                    <td>{{beer.count}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+            </li>
+        </ul>
+    </section>
+</main>
+<!-- Use aside tag for filter sidebar -->
+<!--<script src="js/config.js"></script>-->
+<script src="js/main.js"></script>
+<script src="js/statistics.js"></script>
 </body>
 
 </html>
