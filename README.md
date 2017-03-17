@@ -1,5 +1,5 @@
 # BeerDex
-# Available At: https://beerdex-384f9.firebaseapp.com/
+# Available At: https://final-beerdex.firebaseapp.com/login.html
 
 BeerDex is a web application that allows users, who are beer enthusiasts or occasional drinkers, to diversify themselves in the world of beer. Users can store a diary of their own collectable collections and are able to trade amongst other members in the community. User can also search amongst the many beers in our database to enlighten themselves with beers they never knew existed. 
 
