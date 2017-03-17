@@ -1,5 +1,12 @@
+var beer_toggle = function()
+{
+  var nav = document.getElementsByClassName('nav-menu')[0];
+  nav.className = nav.className == 'nav-right nav-menu' ? 'nav-right nav-menu is-active' : 'nav-right nav-menu';
+}
+document.getElementsByClassName('nav-toggle')[0].addEventListener("click",beer_toggle);
 
 var BEER_STYLES = ['Pale Ale', 'Lager', 'IPA', 'Wheat', 'Belgian', 'Porter', 'Stout', 'Sour', 'Other'];
+
 
 /// checks user session
 (function checkUserExists(){
