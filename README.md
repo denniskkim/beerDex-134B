@@ -18,10 +18,13 @@ We used Vue to structure each of the main components of our app and connect them
   * This was our main CSS framework which we used to create the layout, provide fonts, and provide various components like tables and cards. Bulma was not as feature rich as something like Bootstrap, but we felt that it was light weight enough and provided UI that we felt better fit the target audience. We were also able to selectively include parts of the library to minimize including unneeded CSS. 
 
 * ### Vue: 
-  * 
+  * Vue was our main JavaScript framework, where we componentized all the main elements to create a reactive interactive view. It allowed us to speed up development but abstracting in a lot of the complexities when interacting with the DOM. We chose to use Vue instead of jQuery mainly because we had believed that the concept of components and props was a more fluid model.
 
-* ### Firebase: 
-  *
+* ### VueFire: 
+  * This partnered Vue with Firebase to connect and render out the database and would update in real time. It also provided us with a simple, efficient way to connect our database to appropriate Vue objects.
+
+# Mobile Performance 
+
 
 # Progressive Web Application (PWA)
 Our main focus for moving towards as progressive web app was adding a manifest.json file to make the web app more mobile friendly. We made sure to include the specified icons and theme colors to handle the UX on a mobile device
